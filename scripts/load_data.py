@@ -87,6 +87,69 @@ def load_sample(filepath: str) -> list:
         return json.load(f)
 
 
+def load_full_dataset(
+    input_path: str = "data/raw/pairs-20251209.json.gz",
+    cache_path: str = "data/raw/pairs_full.json",
+    use_cache: bool = True
+) -> list:
+    """
+    Load the entire dataset into memory as a list.
+    
+    This loads all ~755k entries into memory (~10 GB). Optionally caches
+    the uncompressed JSON for faster subsequent loads.
+    
+    Args:
+        input_path: Path to the compressed JSON.gz file
+        cache_path: Path to save/load uncompressed JSON cache (in data/raw/, gitignored)
+        use_cache: If True, use cached JSON if available; if False, always load from .gz
+        
+    Returns:
+        list: All entity pairs loaded into memory
+        
+    Example:
+        >>> data = load_full_dataset()  # First run: ~30-60s
+        >>> len(data)
+        755540
+        >>> data = load_full_dataset()  # Subsequent runs with cache: ~5-10s
+    """
+    import time
+    
+    cache_path = Path(cache_path)
+    input_path = Path(input_path)
+    
+    # Try to load from cache first
+    if use_cache and cache_path.exists():
+        print(f"Loading from cache: {cache_path}")
+        start = time.time()
+        with open(cache_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        elapsed = time.time() - start
+        print(f"✓ Loaded {len(data):,} pairs from cache in {elapsed:.2f}s")
+        return data
+    
+    # Load from compressed file
+    print(f"Loading full dataset from {input_path}")
+    print("⚠️  This will take 30-60 seconds and use ~10 GB of memory...")
+    start = time.time()
+    
+    data = []
+    for pair in tqdm(load_pairs(str(input_path)), desc="Loading pairs"):
+        data.append(pair)
+    
+    elapsed = time.time() - start
+    print(f"✓ Loaded {len(data):,} pairs in {elapsed:.2f}s")
+    
+    # Save cache if requested
+    if use_cache:
+        print(f"Saving cache to {cache_path} for faster future loads...")
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(cache_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False)
+        print(f"✓ Cache saved (next load will be ~5-10x faster)")
+    
+    return data
+
+
 def get_data_stats(filepath: str) -> Dict[str, Any]:
     """
     Calculate basic statistics about the dataset.
