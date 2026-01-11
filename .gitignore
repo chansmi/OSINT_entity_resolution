@@ -32,3 +32,5 @@ data/raw/
 dist/
 build/
 *.egg-info/
+Gemini.md
+Claude.md
