@@ -62,7 +62,8 @@ def evaluate(
     }
     
     # Confusion matrix: [[TN, FP], [FN, TP]]
-    cm = confusion_matrix(y_true, y_pred)
+    # Use labels=[0, 1] to ensure 2x2 matrix even if one class is missing
+    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
     results['confusion_matrix'] = {
         'true_negative': int(cm[0, 0]),
         'false_positive': int(cm[0, 1]),
