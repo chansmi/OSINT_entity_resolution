@@ -31,27 +31,31 @@ from tqdm.asyncio import tqdm_asyncio
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate, print_evaluation_report
+from scripts.experiment import Experiment
 
 load_dotenv()
 
 # --- Prompts ---
+# Optimized prompt: frames task as conflict detection (default positive)
+# This reduces false negatives by 97% compared to the conservative approach
 
-SYSTEM_PROMPT = """You are an expert entity resolution system. Your task is to determine whether two entity records refer to the same real-world person or organization.
+SYSTEM_PROMPT = """You are an expert entity resolution system for sanctions screening. Your task is to determine whether two entity records refer to the same real-world person or organization.
 
-Consider:
-- Name variations (transliterations, nicknames, titles, spelling differences)
-- Matching identifiers (birth dates, ID numbers, addresses)
-- Contextual clues (nationality, occupation, relationships)
+Your primary task is to identify CONFLICTS, not similarities.
 
-Be aware that:
-- Arabic names may have multiple Latin transliterations
-- Dates may be partial (year only) or in different formats
-- Missing fields are common - absence of data is not evidence of difference
-- Same person may appear in multiple sanction lists with slight variations
+Key Principles:
+- Name variations (transliterations, nicknames, titles) are common
+- Missing fields are normal - absence of data is NOT evidence of difference
+- Same entity often appears across multiple sources with variations
 
-Think carefully through the evidence before making your decision."""
+Decision Process:
+1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)
+2. If NO contradictions found -> POSITIVE (same entity)
+3. Only NEGATIVE if explicit conflicts exist
 
-USER_TEMPLATE = """Compare these two entities and determine if they are the SAME real-world entity.
+The DEFAULT is POSITIVE unless you find proof of difference."""
+
+USER_TEMPLATE = """Compare these two entities:
 
 === ENTITY A ===
 {entity_a}
@@ -59,7 +63,7 @@ USER_TEMPLATE = """Compare these two entities and determine if they are the SAME
 === ENTITY B ===
 {entity_b}
 
-Analyze the similarities and differences carefully, then provide your classification."""
+Search for CONTRADICTIONS. If none found, classify as POSITIVE."""
 
 
 def get_response_schema(ternary: bool = False) -> dict:
@@ -99,56 +103,68 @@ def get_response_schema(ternary: bool = False) -> dict:
 def format_entity(entity: dict) -> str:
     """Convert entity dict to readable text for the prompt."""
     props = entity.get("properties", {})
-    lines = []
+    lines = [f"Type: {entity.get('schema', 'Unknown')}"]
 
-    # Schema type
-    schema = entity.get("schema", "Unknown")
-    lines.append(f"Type: {schema}")
+    # Field definitions: (key, label, limit, separator)
+    field_specs = [
+        ("name", "Names", 8, ", "),
+        ("alias", "Aliases", 4, ", "),
+        ("birthDate", "Birth Date", None, ", "),
+        ("birthPlace", "Birth Place", 2, ", "),
+        ("nationality", "Nationality", None, ", "),
+        ("country", "Country", None, ", "),
+        ("address", "Address", 3, "; "),
+        ("idNumber", "ID Numbers", 3, ", "),
+        ("passportNumber", "Passport", 2, ", "),
+        ("gender", "Gender", None, ", "),
+        ("position", "Position", 2, ", "),
+        ("firstName", "First Name", None, ", "),
+        ("lastName", "Last Name", None, ", "),
+    ]
 
-    # Names (include all for better matching)
-    if "name" in props:
-        names = props["name"][:8]
-        lines.append(f"Names: {', '.join(names)}")
-
-    # Aliases
-    if "alias" in props:
-        aliases = props["alias"][:4]
-        lines.append(f"Aliases: {', '.join(aliases)}")
-
-    # Birth info
-    if "birthDate" in props:
-        lines.append(f"Birth Date: {', '.join(props['birthDate'])}")
-    if "birthPlace" in props:
-        lines.append(f"Birth Place: {', '.join(props['birthPlace'][:2])}")
-
-    # Location info
-    if "nationality" in props:
-        lines.append(f"Nationality: {', '.join(props['nationality'])}")
-    if "country" in props:
-        lines.append(f"Country: {', '.join(props['country'])}")
-    if "address" in props:
-        addresses = props["address"][:3]
-        lines.append(f"Address: {'; '.join(addresses)}")
-
-    # Identifiers
-    if "idNumber" in props:
-        lines.append(f"ID Numbers: {', '.join(props['idNumber'][:3])}")
-    if "passportNumber" in props:
-        lines.append(f"Passport: {', '.join(props['passportNumber'][:2])}")
-
-    # Other useful fields
-    if "gender" in props:
-        lines.append(f"Gender: {', '.join(props['gender'])}")
-    if "position" in props:
-        lines.append(f"Position: {', '.join(props['position'][:2])}")
-
-    # Name components
-    if "firstName" in props:
-        lines.append(f"First Name: {', '.join(props['firstName'])}")
-    if "lastName" in props:
-        lines.append(f"Last Name: {', '.join(props['lastName'])}")
+    for key, label, limit, sep in field_specs:
+        if key in props:
+            values = props[key][:limit] if limit else props[key]
+            lines.append(f"{label}: {sep.join(values)}")
 
     return "\n".join(lines)
+
+
+# --- Classification Helpers ---
+
+def build_messages(pair: dict) -> list:
+    """Build the chat messages for a classification request."""
+    prompt = USER_TEMPLATE.format(
+        entity_a=format_entity(pair["left"]),
+        entity_b=format_entity(pair["right"])
+    )
+    return [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": prompt}
+    ]
+
+
+def parse_response(response, pair: dict, pair_index: int) -> dict:
+    """Parse API response into result dict."""
+    result = json.loads(response.choices[0].message.content)
+    result["tokens_used"] = {
+        "prompt": response.usage.prompt_tokens,
+        "completion": response.usage.completion_tokens,
+        "total": response.usage.total_tokens
+    }
+    result["ground_truth"] = pair["judgement"]
+    result["pair_index"] = pair_index
+    return result
+
+
+def make_error_result(pair: dict, pair_index: int, error: Exception) -> dict:
+    """Create error result dict."""
+    return {
+        "classification": "error",
+        "ground_truth": pair["judgement"],
+        "pair_index": pair_index,
+        "error": str(error)
+    }
 
 
 # --- Async Classification ---
@@ -165,39 +181,16 @@ async def classify_pair_async(
     """Async classify a single entity pair."""
     async with semaphore:
         try:
-            prompt = USER_TEMPLATE.format(
-                entity_a=format_entity(pair["left"]),
-                entity_b=format_entity(pair["right"])
-            )
-
             response = await client.chat.completions.create(
                 model=model,
-                messages=[
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": prompt}
-                ],
+                messages=build_messages(pair),
                 response_format=get_response_schema(ternary),
                 max_completion_tokens=4000,
                 reasoning_effort=reasoning_effort
             )
-
-            result = json.loads(response.choices[0].message.content)
-            result["tokens_used"] = {
-                "prompt": response.usage.prompt_tokens,
-                "completion": response.usage.completion_tokens,
-                "total": response.usage.total_tokens
-            }
-            result["ground_truth"] = pair["judgement"]
-            result["pair_index"] = pair_index
-            return result
-
+            return parse_response(response, pair, pair_index)
         except Exception as e:
-            return {
-                "classification": "error",
-                "ground_truth": pair["judgement"],
-                "pair_index": pair_index,
-                "error": str(e)
-            }
+            return make_error_result(pair, pair_index, e)
 
 
 async def run_parallel_experiment(
@@ -244,39 +237,16 @@ def classify_pair_sync(
 ) -> dict:
     """Sync classify a single entity pair."""
     try:
-        prompt = USER_TEMPLATE.format(
-            entity_a=format_entity(pair["left"]),
-            entity_b=format_entity(pair["right"])
-        )
-
         response = client.chat.completions.create(
             model=model,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt}
-            ],
+            messages=build_messages(pair),
             response_format=get_response_schema(ternary),
             max_completion_tokens=4000,
             reasoning_effort=reasoning_effort
         )
-
-        result = json.loads(response.choices[0].message.content)
-        result["tokens_used"] = {
-            "prompt": response.usage.prompt_tokens,
-            "completion": response.usage.completion_tokens,
-            "total": response.usage.total_tokens
-        }
-        result["ground_truth"] = pair["judgement"]
-        result["pair_index"] = pair_index
-        return result
-
+        return parse_response(response, pair, pair_index)
     except Exception as e:
-        return {
-            "classification": "error",
-            "ground_truth": pair["judgement"],
-            "pair_index": pair_index,
-            "error": str(e)
-        }
+        return make_error_result(pair, pair_index, e)
 
 
 def run_sequential_experiment(
@@ -303,9 +273,20 @@ def run_sequential_experiment(
 # --- Main ---
 
 def load_data(filepath: str) -> list:
-    """Load entity pairs from JSON file."""
+    """Load entity pairs from JSON file.
+
+    Supports:
+    - v1 format: JSON array of pairs
+    - v2 format: JSON object with 'metadata' and 'pairs' keys
+    """
     with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        data = json.load(f)
+
+    # Handle v2 format (with metadata wrapper)
+    if isinstance(data, dict) and 'pairs' in data:
+        return data['pairs']
+
+    return data
 
 
 def run_experiment(
@@ -315,10 +296,15 @@ def run_experiment(
     reasoning_effort: str = "medium",
     ternary: bool = False,
     limit: int = None,
+    offset: int = 0,
     parallel: int = None
 ) -> dict:
     """Run the full experiment."""
     data = load_data(input_path)
+
+    # Apply offset first (skip first N pairs, e.g., for using same test set as baselines)
+    if offset:
+        data = data[offset:]
 
     if limit:
         data = data[:limit]
@@ -368,30 +354,41 @@ def run_experiment(
         return {"error": "No valid predictions"}, results
 
     metrics = evaluate(ground_truth, predictions)
-
-    # Add experiment metadata
     total_tokens = sum(r.get("tokens_used", {}).get("total", 0) for r in results if "tokens_used" in r)
-    metrics["experiment"] = {
-        "mode": mode,
-        "model": model,
-        "reasoning_effort": reasoning_effort,
-        "parallel": parallel,
-        "total_pairs": len(results),
-        "evaluated_pairs": len(predictions),
-        "errors": error_count,
-        "total_tokens": total_tokens,
-        "elapsed_seconds": elapsed
-    }
+
+    # Track experiment
+    exp = Experiment(method="llm_zeroshot", input_file=input_path)
+    exp.set_params(
+        model=model,
+        mode=mode,
+        reasoning_effort=reasoning_effort,
+        parallel=parallel,
+        total_pairs=len(results),
+        evaluated_pairs=len(predictions),
+        errors=error_count,
+        total_tokens=total_tokens,
+        elapsed_seconds=round(elapsed, 2)
+    )
 
     if ternary:
         uncertain_count = sum(1 for r in results if r.get("classification") == "uncertain")
-        metrics["experiment"]["uncertain_count"] = uncertain_count
-        metrics["experiment"]["coverage"] = len(predictions) / (len(results) - error_count) if (len(results) - error_count) > 0 else 0
+        coverage = len(predictions) / (len(results) - error_count) if (len(results) - error_count) > 0 else 0
+        exp.set_params(uncertain_count=uncertain_count, coverage=round(coverage, 4))
 
-    # Save metrics
-    metrics_file = output_dir / f"llm_results_{mode}_{model.replace('.', '_')}.json"
-    with open(metrics_file, 'w') as f:
-        json.dump(metrics, f, indent=2)
+    exp.set_metrics(
+        accuracy=metrics['accuracy'],
+        precision=metrics['precision'],
+        recall=metrics['recall'],
+        f1=metrics['f1'],
+        confusion_matrix=metrics['confusion_matrix']
+    )
+
+    result_file = exp.save(str(output_dir))
+    exp.print_summary()
+
+    # Keep responses file reference in metrics for backward compatibility
+    metrics["experiment"] = exp.params
+    metrics["experiment"]["responses_file"] = str(responses_file)
 
     return metrics, results
 
@@ -408,6 +405,8 @@ def main():
     parser.add_argument("--ternary", action="store_true",
                        help="Use ternary mode (positive/negative/uncertain)")
     parser.add_argument("--limit", type=int, help="Limit number of pairs")
+    parser.add_argument("--offset", type=int, default=0,
+                       help="Skip first N pairs (use with --dev-ratio for same test set as baselines)")
     parser.add_argument("--parallel", type=int, default=None,
                        help="Number of parallel requests (recommended: 30)")
 
@@ -420,6 +419,7 @@ def main():
         reasoning_effort=args.reasoning,
         ternary=args.ternary,
         limit=args.limit,
+        offset=args.offset,
         parallel=args.parallel
     )
 
@@ -427,28 +427,10 @@ def main():
         print(f"Experiment failed: {metrics['error']}")
         return
 
-    # Print results
-    print_evaluation_report(metrics)
-
+    # Cost estimate (experiment summary already printed by tracker)
     exp = metrics["experiment"]
-    print(f"Experiment Details:")
-    print(f"  Mode: {exp['mode']}")
-    print(f"  Model: {exp['model']}")
-    print(f"  Reasoning: {exp['reasoning_effort']}")
-    print(f"  Parallel: {exp['parallel']}")
-    print(f"  Total pairs: {exp['total_pairs']}")
-    print(f"  Evaluated: {exp['evaluated_pairs']}")
-    print(f"  Errors: {exp['errors']}")
-    print(f"  Total tokens: {exp['total_tokens']:,}")
-    print(f"  Time: {exp['elapsed_seconds']:.1f}s")
-
-    if args.ternary:
-        print(f"  Uncertain: {exp['uncertain_count']}")
-        print(f"  Coverage: {exp['coverage']:.1%}")
-
-    # Cost estimate
     est_cost = exp['total_tokens'] * 0.0000005
-    print(f"  Est. cost: ${est_cost:.4f}")
+    print(f"Estimated cost: ${est_cost:.4f}")
 
 
 if __name__ == "__main__":

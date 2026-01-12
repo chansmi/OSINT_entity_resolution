@@ -23,6 +23,7 @@ import sys
 # Add parent directory to path to import evaluation metrics
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate
+from scripts.experiment import Experiment
 
 def normalize_text(text: str) -> str:
     """Lowercase and simple normalization."""
@@ -206,15 +207,27 @@ def main():
         
     # Use the project's standard evaluation script
     results = evaluate(test_ground_truth, test_preds)
-    
-    print("\n" + "="*50)
-    print(f"BASELINE RESULTS (Threshold: {best_threshold})")
-    print("="*50)
-    print(f"Accuracy:  {results['accuracy']:.4f}")
-    print(f"Precision: {results['precision']:.4f}")
-    print(f"Recall:    {results['recall']:.4f}")
-    print(f"F1 Score:  {results['f1']:.4f}")
-    print("="*50)
+
+    # Track experiment
+    exp = Experiment(method="simple_fuzzy", input_file=args.input)
+    exp.set_params(
+        threshold=best_threshold,
+        split_ratio=args.split_ratio,
+        seed=args.seed,
+        dev_pairs=len(dev_set),
+        test_pairs=len(test_set)
+    )
+    exp.set_metrics(
+        accuracy=results['accuracy'],
+        precision=results['precision'],
+        recall=results['recall'],
+        f1=results['f1'],
+        confusion_matrix=results['confusion_matrix']
+    )
+
+    result_file = exp.save()
+    exp.print_summary()
+    print(f"Results saved to: {result_file}")
 
 if __name__ == "__main__":
     main()
