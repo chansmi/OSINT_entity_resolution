@@ -1,35 +1,33 @@
 {
-  "accuracy": 0.7515683814303639,
-  "precision": 0.9928400954653938,
-  "recall": 0.6808510638297872,
-  "f1": 0.8077669902912621,
+  "accuracy": 0.8463878326996198,
+  "precision": 0.9935691318327974,
+  "recall": 0.8254674977738201,
+  "f1": 0.9017509727626459,
   "confusion_matrix": {
-    "true_negative": 183,
-    "false_positive": 3,
-    "false_negative": 195,
-    "true_positive": 416
+    "true_negative": 186,
+    "false_positive": 6,
+    "false_negative": 196,
+    "true_positive": 927
   },
   "per_class": {
     "positive": {
-      "precision": 0.9928400954653938,
-      "recall": 0.6808510638297872,
-      "f1": 0.8077669902912621
+      "precision": 0.9935691318327974,
+      "recall": 0.8254674977738201,
+      "f1": 0.9017509727626459
     },
     "negative": {
-      "precision": 0.48412698412698413,
-      "recall": 0.9838709677419355,
-      "f1": 0.648936170212766
+      "precision": 0.4869109947643979,
+      "recall": 0.96875,
+      "f1": 0.6480836236933798
     }
   },
   "experiment": {
     "mode": "binary",
     "model": "gpt-5-nano",
     "reasoning_effort": "medium",
-    "parallel": 30,
-    "total_pairs": 800,
-    "evaluated_pairs": 797,
-    "errors": 3,
-    "total_tokens": 1760660,
-    "elapsed_seconds": 477.30716276168823
+    "total_pairs": 1319,
+    "evaluated_pairs": 1315,
+    "errors": 4,
+    "total_tokens": 3109363
   }
 }
