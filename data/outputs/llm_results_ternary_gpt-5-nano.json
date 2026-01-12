@@ -1,0 +1,37 @@
+{
+  "accuracy": 0.9940239043824701,
+  "precision": 0.9938080495356038,
+  "recall": 0.9968944099378882,
+  "f1": 0.9953488372093023,
+  "confusion_matrix": {
+    "true_negative": 178,
+    "false_positive": 2,
+    "false_negative": 1,
+    "true_positive": 321
+  },
+  "per_class": {
+    "positive": {
+      "precision": 0.9938080495356038,
+      "recall": 0.9968944099378882,
+      "f1": 0.9953488372093023
+    },
+    "negative": {
+      "precision": 0.994413407821229,
+      "recall": 0.9888888888888889,
+      "f1": 0.9916434540389972
+    }
+  },
+  "experiment": {
+    "mode": "ternary",
+    "model": "gpt-5-nano",
+    "reasoning_effort": "medium",
+    "parallel": 30,
+    "total_pairs": 800,
+    "evaluated_pairs": 502,
+    "errors": 1,
+    "total_tokens": 1559767,
+    "elapsed_seconds": 418.36240220069885,
+    "uncertain_count": 297,
+    "coverage": 0.6282853566958698
+  }
+}
