@@ -1,255 +1,125 @@
-# Baseline Entity Resolution Methods: Comparison
+# Baseline Entity Resolution: Experimental Comparison
 
-This document compares two baseline approaches for pairwise entity resolution on OSINT sanctions data.
+This document compares two pairwise entity resolution baselines on OSINT sanctions data, with analysis of how sampling strategy affects results.
 
-## Results Summary
+## Key Finding: Sampling Bias
 
-| Method | Sample Size | Threshold | Accuracy | Precision | Recall | F1 Score |
-|--------|-------------|-----------|----------|-----------|--------|----------|
-| Simple Fuzzy | 1,000 | 0.60 | 0.9240 | 0.9543 | 0.9587 | 0.9565 |
-| Simple Fuzzy | 10,000 | 0.45 | 0.9600 | 0.9798 | 0.9786 | **0.9792** |
-| Nomenklatura RegressionV1 | 1,000 | 0.60 | 0.9460 | 0.9534 | 0.9862 | 0.9696 |
-| Nomenklatura RegressionV1 | 10,000 | 0.15 | **0.9736** | 0.9734 | **0.9998** | **0.9864** |
+> [!WARNING]
+> **Unshuffled samples are severely biased and inflate performance metrics.**
 
-### Key Observations
+The source data file has a non-random ordering. Taking the "first N" records produces samples with artificially high positive rates:
 
-1. **Nomenklatura achieves higher F1** on both sample sizes (+1.3% on N=1k, +0.7% on N=10k)
-2. **Nomenklatura has near-perfect recall** (99.98%) at the cost of slightly lower precision
-3. **Simple Fuzzy is more balanced** between precision and recall
-4. **Threshold varies significantly** — Nomenklatura drops to 0.15 on larger data, suggesting its scores are more spread out
+| Sample | Positive Rate | Negative Rate | Representative? |
+|--------|---------------|---------------|-----------------|
+| **Full dataset** | 76.9% | 23.1% | ✅ Ground truth |
+| 1k Unshuffled | 85.5% | 14.5% | ❌ Biased |
+| 10k Unshuffled | 95.9% | 4.1% | ❌ **Severely biased** |
+| 1k Shuffled | 76.6% | 23.4% | ✅ Representative |
+| 10k Shuffled | 76.2% | 23.8% | ✅ Representative |
 
----
-
-## Data Schema
-
-Each entity pair in the dataset follows the [FollowTheMoney](https://followthemoney.tech/) schema:
-
-```json
-{
-  "judgement": "positive" | "negative",
-  "left": { /* Entity */ },
-  "right": { /* Entity */ }
-}
-```
-
-### Entity Structure
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier (e.g., `eu-fsf-eu-3298-47`) |
-| `caption` | string | Display name |
-| `schema` | string | Entity type (e.g., `Person`, `Company`) |
-| `datasets` | array | Source datasets (e.g., `eu_fsf`, `un_sc_sanctions`) |
-| `properties` | object | Key-value attributes (see below) |
-
-### Person Properties (used for matching)
-
-| Property | Example | Used by Simple Fuzzy | Used by RegressionV1 |
-|----------|---------|---------------------|---------------------|
-| `name` | `["John Smith", "Smith, John"]` | ✅ Primary (70%) | ✅ Multiple features |
-| `firstName` | `["John"]` | ❌ | ✅ `first_name_match` |
-| `lastName` | `["Smith"]` | ❌ | ✅ `family_name_match` |
-| `birthDate` | `["1969-06-16", "1969"]` | ✅ (+10-20%) | ✅ `dob_matches`, `dob_year_matches` |
-| `country` | `["iq", "eg"]` | ✅ (+10%) | ✅ `country_mismatch` |
-| `nationality` | `["iq"]` | ✅ (+10%) | ✅ `country_mismatch` |
-| `gender` | `["male"]` | ❌ | ✅ `gender_mismatch` |
-| `idNumber` | `["1729765"]` | ❌ | ✅ `identifier_match` |
-| `phone` | `["+1234567890"]` | ❌ | ✅ `phone_match` |
-| `email` | `["john@example.com"]` | ❌ | ✅ `email_match` |
-| `address` | `["123 Main St"]` | ❌ | ✅ `address_match` |
+The unshuffled samples contain mostly "easy" positive matches, making resolution trivially accurate.
 
 ---
 
-## Method 1: Simple Fuzzy Match
+## Results: N = 1,000
 
-**File:** [`scripts/baselines/simple_fuzzy.py`](../scripts/baselines/simple_fuzzy.py)
+| Method | Shuffled | Threshold | Accuracy | Precision | Recall | F1 |
+|--------|----------|-----------|----------|-----------|--------|-----|
+| Simple Fuzzy | ❌ No | 0.60 | 0.9240 | 0.9543 | 0.9587 | 0.9565 |
+| Simple Fuzzy | ✅ Yes | 0.65 | 0.5940 | 0.9202 | 0.5131 | **0.6588** |
+| Nomenklatura | ❌ No | 0.60 | 0.9460 | 0.9534 | 0.9862 | 0.9696 |
+| Nomenklatura | ✅ Yes | 0.20 | 0.8640 | 0.8568 | 0.9869 | **0.9173** |
 
-### Scoring Formula
-
-```
-score = (name_similarity × 0.7) + country_bonus + date_bonus
-```
-
-Capped at 1.0.
-
-### Features
-
-#### 1. Name Similarity (max 0.70)
-
-**Algorithm:** Token-sorted sequence matching
-
-```python
-# Tokenize, sort, then compare
-t1 = " ".join(sorted("John Smith".lower().split()))   # → "john smith"
-t2 = " ".join(sorted("Smith, John".lower().split()))  # → "john, smith"
-score = difflib.SequenceMatcher(None, t1, t2).ratio() # → 0.92
-```
-
-**Purpose:** Handles name ordering variations ("First Last" vs "Last, First")
-
-**Properties used:** `properties.name[]`
-
-#### 2. Country/Nationality Match (+0.10)
-
-**Algorithm:** Set intersection
-
-```python
-countries_left = properties.country + properties.nationality
-countries_right = properties.country + properties.nationality
-bonus = 0.1 if intersection(countries_left, countries_right) else 0
-```
-
-**Purpose:** Boosts score when entities share geographic attribution
-
-**Properties used:** `properties.country[]`, `properties.nationality[]`
-
-#### 3. Birth Date Match (+0.10 or +0.20)
-
-**Algorithm:** 
-- Exact date match → +0.20
-- Year-only match (first 4 digits) → +0.10
-
-```python
-if exact_match(birthDate_left, birthDate_right):
-    bonus = 0.2
-elif year_match(birthDate_left, birthDate_right):
-    bonus = 0.1
-```
-
-**Properties used:** `properties.birthDate[]`
-
-### Strengths
-- No external dependencies (uses Python stdlib `difflib`)
-- Fully interpretable scoring
-- Fast execution
-- Handles most common name variations
-
-### Limitations
-- No negative signals (can't penalize mismatches)
-- Ignores structured name components (`firstName`, `lastName`)
-- Ignores identifiers, emails, phones, addresses
+**On representative (shuffled) data:**
+- Nomenklatura achieves **0.92 F1** vs Simple Fuzzy's **0.66 F1** — a 26 percentage point gap
+- Simple Fuzzy has high precision (0.92) but low recall (0.51) — it misses half the true matches
+- Nomenklatura maintains near-perfect recall (0.99) with reasonable precision (0.86)
 
 ---
 
-## Method 2: Nomenklatura RegressionV1
+## Results: N = 10,000
 
-**File:** [`scripts/baselines/nomenklatura_v1.py`](../scripts/baselines/nomenklatura_v1.py)
+| Method | Shuffled | Threshold | Accuracy | Precision | Recall | F1 |
+|--------|----------|-----------|----------|-----------|--------|-----|
+| Simple Fuzzy | ❌ No | 0.45 | 0.9600 | 0.9798 | 0.9786 | 0.9792 |
+| Simple Fuzzy | ✅ Yes | 0.65 | 0.5908 | 0.9378 | 0.5035 | **0.6552** |
+| Nomenklatura | ❌ No | 0.15 | 0.9736 | 0.9734 | 0.9998 | 0.9864 |
+| Nomenklatura | ✅ Yes | 0.20 | 0.8666 | 0.8566 | 0.9935 | **0.9200** |
 
-**Library:** [OpenSanctions Nomenklatura](https://github.com/opensanctions/nomenklatura)
-
-### Scoring Method
-
-**Algorithm:** Logistic regression trained on OpenSanctions manual deduplication decisions
-
-```python
-score = logistic_regression.predict_proba(features)[1]  # probability of match
-```
-
-### Features (18 total)
-
-#### Name Features (6)
-
-| Feature | Description | Signal |
-|---------|-------------|--------|
-| `name_match` | Exact match in any name pair | Strong positive |
-| `name_token_overlap` | Proportion of shared tokens | Positive |
-| `name_levenshtein` | Edit distance as fraction of length | Positive |
-| `name_numbers` | Numeric discrepancy in names (e.g., "Company 1" vs "Company 2") | Negative |
-| `first_name_match` | Match on `firstName` property | Positive |
-| `family_name_match` | Match on `lastName` property | Positive |
-
-#### Date Features (3)
-
-| Feature | Description | Signal |
-|---------|-------------|--------|
-| `dob_matches` | Exact birth date match | Strong positive |
-| `dob_year_matches` | Birth year match | Positive |
-| `dob_year_disjoint` | Birth years don't overlap | **Negative** |
-
-#### Identifier Features (3)
-
-| Feature | Description | Signal |
-|---------|-------------|--------|
-| `identifier_match` | Match on passport, national ID, etc. | Strong positive |
-| `org_identifier_match` | Match on registration/tax numbers | Strong positive |
-| `phone_match` | Phone number match | Strong positive |
-
-#### Contact & Location Features (4)
-
-| Feature | Description | Signal |
-|---------|-------------|--------|
-| `email_match` | Email address match | Strong positive |
-| `address_match` | Address text overlap | Positive |
-| `address_numbers` | Address number discrepancy | Negative |
-| `birth_place` | Birth place match | Positive |
-
-#### Demographic Features (2)
-
-| Feature | Description | Signal |
-|---------|-------------|--------|
-| `gender_mismatch` | Gender fields don't match | **Negative** |
-| `country_mismatch` | Country/nationality mismatch | **Negative** |
-
-### Key Advantages Over Simple Fuzzy
-
-1. **Learned weights** — Coefficients derived from real deduplication data
-2. **Negative signals** — Gender mismatch or birth year disjoint actively reduce score
-3. **Structured name matching** — Uses `firstName`, `lastName` separately
-4. **Identifier matching** — Can use strong ID signals when available
-5. **More features** — 18 vs 3
-
-### Why Near-Perfect Recall?
-
-The threshold of 0.15 on the 10k sample suggests the model is very conservative about rejecting matches. This is intentional for sanctions matching where **false negatives are costly** (missing a match could mean failing to flag a sanctioned entity).
+**On representative (shuffled) data:**
+- Results are consistent with N=1,000 — sampling strategy matters more than sample size
+- Nomenklatura: **0.92 F1** (stable across sample sizes)
+- Simple Fuzzy: **0.66 F1** (stable across sample sizes)
 
 ---
 
-## Threshold Optimization
+## Why Does Shuffling Hurt Performance?
 
-Both methods use the same tuning approach:
+**It doesn't hurt performance — it reveals the true performance.**
 
-1. Split data 50/50 into dev and test sets
-2. On dev set: test thresholds from 0.05 to 0.95
-3. Select threshold that maximizes F1 score
-4. Evaluate on held-out test set
+### The Unshuffled Samples Are "Easy"
 
-```python
-def optimize_threshold(scores, labels):
-    best_f1, best_thresh = 0.0, 0.5
-    for thresh in [i/100.0 for i in range(5, 100, 5)]:
-        predictions = [1 if s >= thresh else 0 for s in scores]
-        f1 = compute_f1(labels, predictions)
-        if f1 > best_f1:
-            best_f1, best_thresh = f1, thresh
-    return best_thresh
-```
+1. **Fewer hard negatives**: With only 4-14% negatives, most pairs are matches. A model that predicts "positive" for everything would score >85% accuracy.
 
----
+2. **Correlated ordering**: The source file groups similar entities together. The first N records may be from the same dataset/source, with more consistent formatting and easier name matching.
 
-## When to Use Each Method
+3. **Threshold overfitting**: With biased dev sets, the tuned threshold works for that distribution but fails on representative data.
 
-| Use Case | Recommended |
-|----------|-------------|
-| Quick prototyping, no dependencies | Simple Fuzzy |
-| Production sanctions screening | Nomenklatura |
-| Maximum recall (minimize false negatives) | Nomenklatura |
-| Balanced precision/recall | Simple Fuzzy |
-| Entities with rich identifier data | Nomenklatura |
-| Name-only matching | Either (similar performance) |
+### The Shuffled Samples Reveal True Difficulty
+
+The dataset contains many **hard negatives** — entity pairs that share names or attributes but refer to different people. With the true 23% negative rate:
+
+- Simple Fuzzy's 3-feature approach can't distinguish these cases
+- Nomenklatura's 18 features (including negative signals like `gender_mismatch`, `dob_year_disjoint`) correctly reject them
 
 ---
 
-## Running the Baselines
+## Method Comparison
+
+### Simple Fuzzy
+**Features (3):**
+- Name similarity (token-sorted, weighted 0.7)
+- Country/nationality match (+0.1)  
+- Birth date/year match (+0.1 or +0.2)
+
+**Limitation:** No negative signals — can only add evidence, never subtract.
+
+### Nomenklatura RegressionV1
+**Features (18):** Includes all of Simple Fuzzy's plus:
+- First/last name matching separately
+- Phone, email, identifier matching
+- **Negative signals**: gender mismatch, birth year disjoint, country mismatch
+
+**Advantage:** Can actively penalize contradictory evidence.
+
+---
+
+## Experimental Setup
+
+| Parameter | Value |
+|-----------|-------|
+| Dev/Test Split | 50/50 |
+| Random Seed | 42 |
+| Threshold Range | 0.05 - 0.95 (step 0.05) |
+| Optimization Metric | F1 on dev set |
+
+### Commands Used
 
 ```bash
-# Simple Fuzzy
-python scripts/baselines/simple_fuzzy.py --input data/samples/sample_1000.json
+# Create samples
+python scripts/load_data.py --n 1000 --output data/samples/sample_1000_unshuffled.json
+python scripts/load_data.py --n 1000 --output data/samples/sample_1000_shuffled.json --shuffle
 
-# Nomenklatura RegressionV1
-python scripts/baselines/nomenklatura_v1.py --input data/samples/sample_1000.json
+# Run baselines
+python scripts/baselines/simple_fuzzy.py --input data/samples/sample_1000_shuffled.json
+python scripts/baselines/nomenklatura_v1.py --input data/samples/sample_1000_shuffled.json
 ```
 
-### Requirements
+---
 
-- **Simple Fuzzy:** Python stdlib only
-- **Nomenklatura:** `pip install "nomenklatura<3.10" followthemoney` (for Python 3.10)
+## Recommendations
+
+1. **Always use shuffled samples** for evaluation — unshuffled results are not representative
+2. **Use Nomenklatura for production** — 0.92 F1 vs 0.66 F1 on real data
+3. **Sample size is less important** than sampling method for these baselines
+4. **Consider precision/recall tradeoffs** — Nomenklatura favors recall (missing fewer matches at cost of some false positives)

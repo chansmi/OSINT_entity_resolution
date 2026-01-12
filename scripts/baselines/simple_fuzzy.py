@@ -144,44 +144,18 @@ def optimize_threshold(scores: List[float], labels: List[str]) -> float:
             
     return best_thresh
 
-def main():
-    parser = argparse.ArgumentParser(description="Run Fuzzy Matching Baseline")
-    parser.add_argument("--input", required=True, help="Path to input JSON/JSONL file")
-    parser.add_argument("--split-ratio", type=float, default=0.5, help="Ratio of data to use for dev/tuning")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    args = parser.parse_args()
-
-    # Load Data
-    data = []
-    path = Path(args.input)
-    if path.name.endswith('.gz'):
-        print("Please uncompress the file or use a .json/.jsonl sample file.")
-        return
-    
-    with open(path, 'r') as f:
-        # Check if it's a list (JSON) or JSONL
-        first_char = f.read(1)
-        f.seek(0)
-        if first_char == '[':
-            data = json.load(f)
-        else:
-            for line in f:
-                if line.strip():
-                    data.append(json.loads(line))
-
-    print(f"Loaded {len(data)} pairs.")
-    
-    # Shuffle and Split
-    random.seed(args.seed)
+def run_single_split(data: List[Dict], split_ratio: float, seed: int):
+    """Run evaluation with a single dev/test split."""
+    random.seed(seed)
     random.shuffle(data)
     
-    split_idx = int(len(data) * args.split_ratio)
+    split_idx = int(len(data) * split_ratio)
     dev_set = data[:split_idx]
     test_set = data[split_idx:]
     
     print(f"Split: {len(dev_set)} dev, {len(test_set)} test.")
     
-    # 1. Tune on Dev Set
+    # Tune on Dev Set
     print("\nTuning threshold on Dev Set...")
     dev_scores = []
     dev_labels = []
@@ -193,7 +167,7 @@ def main():
     best_threshold = optimize_threshold(dev_scores, dev_labels)
     print(f"Optimal Threshold found: {best_threshold}")
     
-    # 2. Evaluate on Test Set
+    # Evaluate on Test Set
     print("\nEvaluating on Test Set...")
     test_preds = []
     test_ground_truth = []
@@ -204,17 +178,124 @@ def main():
         test_preds.append(pred)
         test_ground_truth.append(pair['judgement'])
         
-    # Use the project's standard evaluation script
     results = evaluate(test_ground_truth, test_preds)
+    results['threshold'] = best_threshold
+    return results
+
+
+def run_cross_validation(data: List[Dict], n_folds: int, seed: int):
+    """Run k-fold cross-validation for more robust evaluation."""
+    random.seed(seed)
+    random.shuffle(data)
     
-    print("\n" + "="*50)
-    print(f"BASELINE RESULTS (Threshold: {best_threshold})")
-    print("="*50)
-    print(f"Accuracy:  {results['accuracy']:.4f}")
-    print(f"Precision: {results['precision']:.4f}")
-    print(f"Recall:    {results['recall']:.4f}")
-    print(f"F1 Score:  {results['f1']:.4f}")
-    print("="*50)
+    fold_size = len(data) // n_folds
+    all_results = []
+    all_thresholds = []
+    
+    print(f"\nRunning {n_folds}-fold cross-validation...")
+    print(f"Fold size: ~{fold_size} samples\n")
+    
+    for fold in range(n_folds):
+        # Create fold splits
+        start_idx = fold * fold_size
+        end_idx = start_idx + fold_size if fold < n_folds - 1 else len(data)
+        
+        test_set = data[start_idx:end_idx]
+        dev_set = data[:start_idx] + data[end_idx:]
+        
+        # Tune threshold on dev set (everything except this fold)
+        dev_scores = []
+        dev_labels = []
+        for pair in dev_set:
+            s = compute_similarity_score(pair['left'], pair['right'])
+            dev_scores.append(s)
+            dev_labels.append(pair['judgement'])
+        
+        threshold = optimize_threshold(dev_scores, dev_labels)
+        all_thresholds.append(threshold)
+        
+        # Evaluate on this fold
+        test_preds = []
+        test_ground_truth = []
+        for pair in test_set:
+            s = compute_similarity_score(pair['left'], pair['right'])
+            pred = "positive" if s >= threshold else "negative"
+            test_preds.append(pred)
+            test_ground_truth.append(pair['judgement'])
+        
+        fold_results = evaluate(test_ground_truth, test_preds)
+        all_results.append(fold_results)
+        
+        print(f"Fold {fold+1}/{n_folds}: Threshold={threshold:.2f}, "
+              f"F1={fold_results['f1']:.4f}, Acc={fold_results['accuracy']:.4f}")
+    
+    # Aggregate results
+    avg_results = {
+        'accuracy': sum(r['accuracy'] for r in all_results) / n_folds,
+        'precision': sum(r['precision'] for r in all_results) / n_folds,
+        'recall': sum(r['recall'] for r in all_results) / n_folds,
+        'f1': sum(r['f1'] for r in all_results) / n_folds,
+        'threshold_mean': sum(all_thresholds) / n_folds,
+        'threshold_std': (sum((t - sum(all_thresholds)/n_folds)**2 for t in all_thresholds) / n_folds) ** 0.5,
+        'f1_std': (sum((r['f1'] - sum(r2['f1'] for r2 in all_results)/n_folds)**2 for r in all_results) / n_folds) ** 0.5,
+    }
+    
+    return avg_results, all_results
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Run Fuzzy Matching Baseline")
+    parser.add_argument("--input", required=True, help="Path to input JSON/JSONL file")
+    parser.add_argument("--split-ratio", type=float, default=0.5, help="Ratio of data to use for dev/tuning")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    parser.add_argument("--cv", type=int, default=0, 
+                        help="Number of cross-validation folds (0 = single split, default)")
+    args = parser.parse_args()
+
+    # Load Data
+    data = []
+    path = Path(args.input)
+    if path.name.endswith('.gz'):
+        print("Please uncompress the file or use a .json/.jsonl sample file.")
+        return
+    
+    with open(path, 'r') as f:
+        first_char = f.read(1)
+        f.seek(0)
+        if first_char == '[':
+            data = json.load(f)
+        else:
+            for line in f:
+                if line.strip():
+                    data.append(json.loads(line))
+
+    print(f"Loaded {len(data)} pairs.")
+    
+    if args.cv > 0:
+        # Cross-validation mode
+        avg_results, _ = run_cross_validation(data, args.cv, args.seed)
+        
+        print("\n" + "="*50)
+        print(f"BASELINE RESULTS ({args.cv}-Fold Cross-Validation)")
+        print("="*50)
+        print(f"Accuracy:  {avg_results['accuracy']:.4f}")
+        print(f"Precision: {avg_results['precision']:.4f}")
+        print(f"Recall:    {avg_results['recall']:.4f}")
+        print(f"F1 Score:  {avg_results['f1']:.4f} (±{avg_results['f1_std']:.4f})")
+        print(f"Threshold: {avg_results['threshold_mean']:.2f} (±{avg_results['threshold_std']:.2f})")
+        print("="*50)
+    else:
+        # Single split mode (original behavior)
+        results = run_single_split(data, args.split_ratio, args.seed)
+        
+        print("\n" + "="*50)
+        print(f"BASELINE RESULTS (Threshold: {results['threshold']})")
+        print("="*50)
+        print(f"Accuracy:  {results['accuracy']:.4f}")
+        print(f"Precision: {results['precision']:.4f}")
+        print(f"Recall:    {results['recall']:.4f}")
+        print(f"F1 Score:  {results['f1']:.4f}")
+        print("="*50)
 
 if __name__ == "__main__":
     main()

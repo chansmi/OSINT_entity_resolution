@@ -42,7 +42,8 @@ def load_pairs(filepath: str) -> Iterator[Dict[str, Any]]:
                 yield json.loads(line)
 
 
-def create_sample(input_path: str, output_path: str, n: int = 100):
+def create_sample(input_path: str, output_path: str, n: int = 100, 
+                   shuffle: bool = False, seed: int = 42):
     """
     Create a small sample from the full dataset.
     
@@ -52,20 +53,40 @@ def create_sample(input_path: str, output_path: str, n: int = 100):
         input_path: Path to the full JSON.gz file
         output_path: Path where the sample will be saved (JSON format)
         n: Number of samples to extract
+        shuffle: If True, randomly sample from entire dataset (requires loading all data).
+                 If False, take the first n records (memory efficient).
+        seed: Random seed for reproducibility when shuffle=True
         
     Example:
         >>> create_sample("pairs-20251209.json.gz", "data/sample_100.json", n=100)
+        >>> create_sample("pairs-20251209.json.gz", "data/sample_random.json", n=100, shuffle=True)
     """
+    import random
+    
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    samples = []
-    print(f"Creating sample of {n} pairs...")
-    
-    for i, pair in enumerate(load_pairs(input_path)):
-        if i >= n:
-            break
-        samples.append(pair)
+    if shuffle:
+        # Random sampling: requires loading all data first
+        print(f"Creating random sample of {n} pairs (shuffle=True, seed={seed})...")
+        print("Loading full dataset for random sampling...")
+        all_data = list(tqdm(load_pairs(input_path), desc="Loading"))
+        
+        random.seed(seed)
+        if n >= len(all_data):
+            samples = all_data
+        else:
+            samples = random.sample(all_data, n)
+        print(f"Randomly selected {len(samples)} from {len(all_data)} total pairs")
+    else:
+        # Sequential sampling: memory efficient, takes first n
+        samples = []
+        print(f"Creating sample of {n} pairs (first n, no shuffle)...")
+        
+        for i, pair in enumerate(load_pairs(input_path)):
+            if i >= n:
+                break
+            samples.append(pair)
     
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(samples, f, indent=2, ensure_ascii=False)
@@ -207,6 +228,17 @@ if __name__ == "__main__":
         action='store_true',
         help='Calculate and display dataset statistics'
     )
+    parser.add_argument(
+        '--shuffle',
+        action='store_true',
+        help='Randomly sample from entire dataset (slower, requires loading all data)'
+    )
+    parser.add_argument(
+        '--seed',
+        type=int,
+        default=42,
+        help='Random seed for reproducibility when using --shuffle'
+    )
     
     args = parser.parse_args()
     
@@ -217,4 +249,5 @@ if __name__ == "__main__":
         print(f"  Positive: {stats['positive']:,} ({stats['positive_ratio']:.1%})")
         print(f"  Negative: {stats['negative']:,} ({stats['negative_ratio']:.1%})")
     else:
-        create_sample(args.input, args.output, args.n)
+        create_sample(args.input, args.output, args.n, 
+                      shuffle=args.shuffle, seed=args.seed)
