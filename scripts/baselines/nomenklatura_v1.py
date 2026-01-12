@@ -16,9 +16,6 @@ import random
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 
-# Add vendor directory to path to find nomenklatura
-sys.path.append(str(Path(__file__).parent.parent / "vendor/nomenklatura"))
-
 # Add parent directory to path to import evaluation metrics
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate
