@@ -1,34 +1,36 @@
 {
-  "accuracy": 0.946,
-  "precision": 0.9534368070953437,
-  "recall": 0.9862385321100917,
-  "f1": 0.9695603156708005,
+  "accuracy": 0.84125,
+  "precision": 0.8283783783783784,
+  "recall": 1.0,
+  "f1": 0.9061345158906134,
   "confusion_matrix": {
-    "true_negative": 43,
-    "false_positive": 21,
-    "false_negative": 6,
-    "true_positive": 430
+    "true_negative": 60,
+    "false_positive": 127,
+    "false_negative": 0,
+    "true_positive": 613
   },
   "per_class": {
     "positive": {
-      "precision": 0.9534368070953437,
-      "recall": 0.9862385321100917,
-      "f1": 0.9695603156708005
+      "precision": 0.8283783783783784,
+      "recall": 1.0,
+      "f1": 0.9061345158906134
     },
     "negative": {
-      "precision": 0.8775510204081632,
-      "recall": 0.671875,
-      "f1": 0.7610619469026548
+      "precision": 1.0,
+      "recall": 0.32085561497326204,
+      "f1": 0.48582995951417
     }
   },
   "experiment": {
     "method": "nomenklatura",
     "algorithm": "regression-v1",
-    "threshold": 0.6,
-    "split_ratio": 0.5,
+    "threshold": 0.15,
+    "dev_ratio": 0.2,
     "seed": 42,
-    "dev_pairs": 500,
-    "test_pairs": 500,
-    "total_pairs": 1000
+    "shuffled": false,
+    "dev_pairs": 200,
+    "test_pairs": 800,
+    "total_pairs": 1000,
+    "input_file": "data/samples/sample_1000_v2.json"
   }
 }
