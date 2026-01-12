@@ -107,6 +107,7 @@ def optimize_threshold(scores: List[float], labels: List[str]) -> float:
 def main():
     parser = argparse.ArgumentParser(description="Run Nomenklatura Baseline")
     parser.add_argument("--input", required=True, help="Path to input JSON/JSONL file")
+    parser.add_argument("--output", default="data/outputs", help="Output directory")
     parser.add_argument("--matcher", default="regression-v1", help="Algorithm name (default: regression-v1)")
     parser.add_argument("--split-ratio", type=float, default=0.5, help="Ratio of data to use for dev/tuning")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
@@ -169,7 +170,27 @@ def main():
         test_ground_truth.append(item['judgement'])
         
     results = evaluate(test_ground_truth, test_preds)
-    
+
+    # Add experiment metadata
+    results["experiment"] = {
+        "method": "nomenklatura",
+        "algorithm": Algorithm.NAME,
+        "threshold": best_threshold,
+        "split_ratio": args.split_ratio,
+        "seed": args.seed,
+        "dev_pairs": len(dev_set),
+        "test_pairs": len(test_set),
+        "total_pairs": len(data)
+    }
+
+    # Save results
+    output_dir = Path(args.output)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / f"nomenklatura_results_{args.matcher.replace('-', '_')}.json"
+
+    with open(output_file, 'w') as f:
+        json.dump(results, f, indent=2)
+
     print("\n" + "="*50)
     print(f"NOMENKLATURA RESULTS (Threshold: {best_threshold})")
     print("="*50)
@@ -178,6 +199,7 @@ def main():
     print(f"Recall:    {results['recall']:.4f}")
     print(f"F1 Score:  {results['f1']:.4f}")
     print("="*50)
+    print(f"\nResults saved to: {output_file}")
 
 if __name__ == "__main__":
     main()
