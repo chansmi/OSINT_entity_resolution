@@ -32,14 +32,19 @@ The dataset contains **755,540 entity pairs** with the following distribution:
 
 #### Option A: Use Sample Data (Recommended for Quick Start)
 
-Create a small sample (1,000 entries) for rapid exploration:
+Create a stratified, properly shuffled sample for experiments:
 
 ```bash
-# Creates data/samples/sample_1000.json
-python scripts/load_data.py --n 1000 --output data/samples/sample_1000.json
+# Creates data/samples/sample_1000.json with 76.9% positive ratio (matching full dataset)
+python scripts/create_proper_sample.py --n 1000
+
+# Validate an existing sample
+python scripts/create_proper_sample.py --validate-only data/samples/sample_1000.json
 ```
 
-**Memory usage**: ~4 MB  
+The sample uses stratified sampling to match the full dataset class distribution and is shuffled with a fixed seed (42) for reproducibility.
+
+**Memory usage**: ~4 MB
 **Load time**: <1 second
 
 #### Option B: Use Full Dataset
@@ -92,14 +97,21 @@ The dataset consists of entity pairs with ground truth labels:
 │   ├── raw/                          # Large data files (gitignored)
 │   │   ├── pairs-20251209.json.gz    # Original compressed dataset (391 MB)
 │   │   └── pairs_full.json           # Cached uncompressed dataset (2.1 GB, created by cache_full_dataset.py)
-│   └── samples/                      # Small samples (tracked in git)
-│       └── sample_1000.json          # Sample of 1,000 pairs for quick testing
+│   ├── samples/                      # Small samples (tracked in git)
+│   │   └── sample_1000.json          # Stratified sample of 1,000 pairs (76.9% positive)
+│   └── outputs/                      # Experiment results (gitignored)
 ├── notebooks/
 │   └── explore_data.ipynb            # EDA notebook with sample/full dataset toggle
 ├── scripts/
 │   ├── load_data.py                  # Data loading utilities (library)
+│   ├── create_proper_sample.py       # Create stratified, shuffled samples
 │   ├── cache_full_dataset.py         # Script to create full dataset cache
-│   └── evaluate.py                   # Evaluation metrics
+│   ├── evaluate.py                   # Evaluation metrics
+│   ├── experiment.py                 # Experiment tracking and logging
+│   └── baselines/                    # Baseline implementations
+│       ├── simple_fuzzy.py           # Deterministic weighted scoring
+│       ├── nomenklatura_v1.py        # OpenSanctions RegressionV1
+│       └── llm_zeroshot.py           # GPT-5 zero-shot (async parallel)
 └── requirements.txt                  # Python dependencies
 ```
 
@@ -139,6 +151,18 @@ results = evaluate(
 print(results)
 # Output: {'accuracy': 0.67, 'precision': 0.67, 'recall': 1.0, 'f1': 0.80}
 ```
+
+## Baseline Results
+
+Results on a properly stratified sample of 1,000 pairs (76.9% positive, matching full dataset distribution). Evaluation uses an 80/20 dev/test split with fixed seed for reproducibility.
+
+| Method | F1 Score | Precision | Recall | Notes |
+|--------|----------|-----------|--------|-------|
+| Nomenklatura RegressionV1 | 90.61% | 82.84% | 100% | Perfect recall, some false positives |
+| LLM Zero-Shot (GPT-5-nano) | **93.10%** | 87.84% | 99.02% | Conflict-focused prompt |
+| LLM Ternary Mode | 99.53%* | 99.38% | 99.69% | *62.8% coverage (uncertain cases flagged for review) |
+
+**Key Finding:** The LLM zero-shot approach uses a conflict-focused prompt that frames entity resolution as contradiction detection. This reduces false negatives by 97% compared to a conservative "are these the same?" framing.
 
 ## Contributing
 

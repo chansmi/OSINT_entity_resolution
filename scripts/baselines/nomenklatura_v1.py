@@ -22,6 +22,7 @@ sys.path.append(str(Path(__file__).parent.parent / "vendor/nomenklatura"))
 # Add parent directory to path to import evaluation metrics
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate
+from scripts.experiment import Experiment
 
 try:
     from nomenklatura.matching import get_algorithm, DefaultAlgorithm
@@ -37,10 +38,16 @@ def load_data_as_proxies(filepath: str) -> List[Dict[str, Any]]:
     """
     Load data and convert to EntityProxy objects.
     Returns list of dicts: {'left': Proxy, 'right': Proxy, 'judgement': str}
+
+    Supports:
+    - v1 format: JSON array of pairs
+    - v2 format: JSON object with 'metadata' and 'pairs' keys
+    - JSONL format: One pair per line
+    - Gzipped files
     """
     path = Path(filepath)
     raw_data = []
-    
+
     # Handle both JSON array and JSONL
     if path.name.endswith('.gz'):
         import gzip
@@ -54,6 +61,18 @@ def load_data_as_proxies(filepath: str) -> List[Dict[str, Any]]:
             f.seek(0)
             if first_char == '[':
                 raw_data = json.load(f)
+            elif first_char == '{':
+                # Could be v2 format with metadata wrapper or JSONL
+                content = json.load(f)
+                if 'pairs' in content:
+                    # v2 format
+                    raw_data = content['pairs']
+                else:
+                    # Single object - probably JSONL, re-read
+                    f.seek(0)
+                    for line in f:
+                        if line.strip():
+                            raw_data.append(json.loads(line))
             else:
                 for line in f:
                     if line.strip():
@@ -109,15 +128,18 @@ def main():
     parser.add_argument("--input", required=True, help="Path to input JSON/JSONL file")
     parser.add_argument("--output", default="data/outputs", help="Output directory")
     parser.add_argument("--matcher", default="regression-v1", help="Algorithm name (default: regression-v1)")
-    parser.add_argument("--split-ratio", type=float, default=0.5, help="Ratio of data to use for dev/tuning")
+    parser.add_argument("--dev-ratio", type=float, default=0.2,
+                       help="Ratio of data to use for dev/tuning (default: 0.2)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    parser.add_argument("--no-shuffle", action="store_true",
+                       help="Don't shuffle data (use if input is already shuffled)")
     args = parser.parse_args()
 
     # Load Data
     print(f"Loading data from {args.input}...")
     data = load_data_as_proxies(args.input)
     print(f"Loaded {len(data)} pairs.")
-    
+
     # Initialize Matcher
     Algorithm = get_algorithm(args.matcher)
     if not Algorithm:
@@ -135,15 +157,20 @@ def main():
     print(f"Using Algorithm: {Algorithm.NAME}")
     config = ScoringConfig.defaults()
 
-    # Shuffle and Split
+    # Optionally shuffle (skip if input is already properly shuffled)
     random.seed(args.seed)
-    random.shuffle(data)
-    
-    split_idx = int(len(data) * args.split_ratio)
+    if not args.no_shuffle:
+        random.shuffle(data)
+        print("Data shuffled with seed:", args.seed)
+    else:
+        print("Using data order as-is (--no-shuffle)")
+
+    # Split into dev (for threshold tuning) and test
+    split_idx = int(len(data) * args.dev_ratio)
     dev_set = data[:split_idx]
     test_set = data[split_idx:]
-    
-    print(f"Split: {len(dev_set)} dev, {len(test_set)} test.")
+
+    print(f"Split: {len(dev_set)} dev ({args.dev_ratio:.0%}), {len(test_set)} test ({1-args.dev_ratio:.0%})")
     
     # 1. Tune on Dev Set
     print("\nTuning threshold on Dev Set...")
@@ -171,35 +198,28 @@ def main():
         
     results = evaluate(test_ground_truth, test_preds)
 
-    # Add experiment metadata
-    results["experiment"] = {
-        "method": "nomenklatura",
-        "algorithm": Algorithm.NAME,
-        "threshold": best_threshold,
-        "split_ratio": args.split_ratio,
-        "seed": args.seed,
-        "dev_pairs": len(dev_set),
-        "test_pairs": len(test_set),
-        "total_pairs": len(data)
-    }
+    # Track experiment
+    exp = Experiment(method="nomenklatura", input_file=args.input)
+    exp.set_params(
+        algorithm=Algorithm.NAME,
+        threshold=best_threshold,
+        dev_ratio=args.dev_ratio,
+        seed=args.seed,
+        shuffled=not args.no_shuffle,
+        dev_pairs=len(dev_set),
+        test_pairs=len(test_set)
+    )
+    exp.set_metrics(
+        accuracy=results['accuracy'],
+        precision=results['precision'],
+        recall=results['recall'],
+        f1=results['f1'],
+        confusion_matrix=results['confusion_matrix']
+    )
 
-    # Save results
-    output_dir = Path(args.output)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_file = output_dir / f"nomenklatura_results_{args.matcher.replace('-', '_')}.json"
-
-    with open(output_file, 'w') as f:
-        json.dump(results, f, indent=2)
-
-    print("\n" + "="*50)
-    print(f"NOMENKLATURA RESULTS (Threshold: {best_threshold})")
-    print("="*50)
-    print(f"Accuracy:  {results['accuracy']:.4f}")
-    print(f"Precision: {results['precision']:.4f}")
-    print(f"Recall:    {results['recall']:.4f}")
-    print(f"F1 Score:  {results['f1']:.4f}")
-    print("="*50)
-    print(f"\nResults saved to: {output_file}")
+    result_file = exp.save(args.output)
+    exp.print_summary()
+    print(f"Results saved to: {result_file}")
 
 if __name__ == "__main__":
     main()
