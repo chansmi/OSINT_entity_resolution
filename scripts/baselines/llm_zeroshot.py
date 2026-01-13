@@ -28,6 +28,9 @@ from openai import OpenAI, AsyncOpenAI
 from tqdm import tqdm
 from tqdm.asyncio import tqdm_asyncio
 
+# Models that require the Responses API instead of Chat Completions
+RESPONSES_API_MODELS = {"gpt-5.2-pro", "gpt-5.2-pro-2025-12-11", "gpt-5-pro", "o1-pro", "o3-pro"}
+
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate, print_evaluation_report
@@ -67,7 +70,7 @@ Search for CONTRADICTIONS. If none found, classify as POSITIVE."""
 
 
 def get_response_schema(ternary: bool = False) -> dict:
-    """Return JSON schema for structured output."""
+    """Return JSON schema for structured output (Chat Completions API format)."""
     classification_enum = ["positive", "negative", "uncertain"] if ternary else ["positive", "negative"]
 
     return {
@@ -98,6 +101,48 @@ def get_response_schema(ternary: bool = False) -> dict:
             }
         }
     }
+
+
+def get_responses_api_schema(ternary: bool = False) -> dict:
+    """Return JSON schema for structured output (Responses API format).
+
+    The Responses API uses text.format instead of response_format.
+    """
+    classification_enum = ["positive", "negative", "uncertain"] if ternary else ["positive", "negative"]
+
+    return {
+        "format": {
+            "type": "json_schema",
+            "name": "entity_match_result",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "classification": {
+                        "type": "string",
+                        "enum": classification_enum,
+                        "description": "Whether entities are the same (positive), different (negative), or uncertain"
+                    },
+                    "confidence": {
+                        "type": "string",
+                        "enum": ["high", "medium", "low"],
+                        "description": "Confidence level in the classification"
+                    },
+                    "reasoning": {
+                        "type": "string",
+                        "description": "Detailed explanation of the decision including key matching/mismatching factors"
+                    }
+                },
+                "required": ["classification", "confidence", "reasoning"],
+                "additionalProperties": False
+            }
+        }
+    }
+
+
+def uses_responses_api(model: str) -> bool:
+    """Check if model requires the Responses API instead of Chat Completions."""
+    return model in RESPONSES_API_MODELS
 
 
 def format_entity(entity: dict) -> str:
@@ -133,7 +178,7 @@ def format_entity(entity: dict) -> str:
 # --- Classification Helpers ---
 
 def build_messages(pair: dict) -> list:
-    """Build the chat messages for a classification request."""
+    """Build the chat messages for a classification request (Chat Completions API)."""
     prompt = USER_TEMPLATE.format(
         entity_a=format_entity(pair["left"]),
         entity_b=format_entity(pair["right"])
@@ -144,12 +189,43 @@ def build_messages(pair: dict) -> list:
     ]
 
 
+def build_responses_api_input(pair: dict) -> list:
+    """Build the input for a classification request (Responses API).
+
+    The Responses API uses 'developer' role instead of 'system' for instructions.
+    """
+    prompt = USER_TEMPLATE.format(
+        entity_a=format_entity(pair["left"]),
+        entity_b=format_entity(pair["right"])
+    )
+    return [
+        {"role": "developer", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": prompt}
+    ]
+
+
 def parse_response(response, pair: dict, pair_index: int) -> dict:
-    """Parse API response into result dict."""
+    """Parse Chat Completions API response into result dict."""
     result = json.loads(response.choices[0].message.content)
     result["tokens_used"] = {
         "prompt": response.usage.prompt_tokens,
         "completion": response.usage.completion_tokens,
+        "total": response.usage.total_tokens
+    }
+    result["ground_truth"] = pair["judgement"]
+    result["pair_index"] = pair_index
+    return result
+
+
+def parse_responses_api_response(response, pair: dict, pair_index: int) -> dict:
+    """Parse Responses API response into result dict.
+
+    The Responses API returns output_text directly and has different usage structure.
+    """
+    result = json.loads(response.output_text)
+    result["tokens_used"] = {
+        "prompt": response.usage.input_tokens,
+        "completion": response.usage.output_tokens,
         "total": response.usage.total_tokens
     }
     result["ground_truth"] = pair["judgement"]
@@ -181,14 +257,26 @@ async def classify_pair_async(
     """Async classify a single entity pair."""
     async with semaphore:
         try:
-            response = await client.chat.completions.create(
-                model=model,
-                messages=build_messages(pair),
-                response_format=get_response_schema(ternary),
-                max_completion_tokens=4000,
-                reasoning_effort=reasoning_effort
-            )
-            return parse_response(response, pair, pair_index)
+            if uses_responses_api(model):
+                # Use Responses API for gpt-5.2-pro and similar models
+                response = await client.responses.create(
+                    model=model,
+                    input=build_responses_api_input(pair),
+                    text=get_responses_api_schema(ternary),
+                    reasoning={"effort": reasoning_effort},
+                    max_output_tokens=4000
+                )
+                return parse_responses_api_response(response, pair, pair_index)
+            else:
+                # Use Chat Completions API for other models
+                response = await client.chat.completions.create(
+                    model=model,
+                    messages=build_messages(pair),
+                    response_format=get_response_schema(ternary),
+                    max_completion_tokens=4000,
+                    reasoning_effort=reasoning_effort
+                )
+                return parse_response(response, pair, pair_index)
         except Exception as e:
             return make_error_result(pair, pair_index, e)
 
@@ -237,14 +325,26 @@ def classify_pair_sync(
 ) -> dict:
     """Sync classify a single entity pair."""
     try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=build_messages(pair),
-            response_format=get_response_schema(ternary),
-            max_completion_tokens=4000,
-            reasoning_effort=reasoning_effort
-        )
-        return parse_response(response, pair, pair_index)
+        if uses_responses_api(model):
+            # Use Responses API for gpt-5.2-pro and similar models
+            response = client.responses.create(
+                model=model,
+                input=build_responses_api_input(pair),
+                text=get_responses_api_schema(ternary),
+                reasoning={"effort": reasoning_effort},
+                max_output_tokens=4000
+            )
+            return parse_responses_api_response(response, pair, pair_index)
+        else:
+            # Use Chat Completions API for other models
+            response = client.chat.completions.create(
+                model=model,
+                messages=build_messages(pair),
+                response_format=get_response_schema(ternary),
+                max_completion_tokens=4000,
+                reasoning_effort=reasoning_effort
+            )
+            return parse_response(response, pair, pair_index)
     except Exception as e:
         return make_error_result(pair, pair_index, e)
 
@@ -315,8 +415,10 @@ def run_experiment(
     mode = "ternary" if ternary else "binary"
     responses_file = output_dir / f"llm_responses_{mode}_{model.replace('.', '_')}.jsonl"
 
+    api_type = "Responses API" if uses_responses_api(model) else "Chat Completions API"
     print(f"\nRunning {mode} classification on {len(data)} pairs...")
     print(f"Model: {model}")
+    print(f"API: {api_type}")
     print(f"Reasoning effort: {reasoning_effort}")
     print(f"Parallel: {parallel if parallel else 'No (sequential)'}")
     print(f"Output: {responses_file}\n")

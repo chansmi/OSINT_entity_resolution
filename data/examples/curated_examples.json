@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "description": "Curated examples for in-context learning",
+    "created": "2026-01-12",
+    "notes": "Hand-picked examples covering diverse patterns. To be populated after analyzing dev set."
+  },
+  "selection_criteria": {
+    "positive_examples": [
+      "Name transliteration (Arabic to English)",
+      "Missing fields (sparse vs rich record)",
+      "Different data sources (OFAC vs UK HMT)",
+      "Alias matching",
+      "Organization with slight name variation"
+    ],
+    "negative_examples": [
+      "Same name, different birth date",
+      "Same name, different country",
+      "Similar names, conflicting identifiers"
+    ]
+  },
+  "examples": []
+}

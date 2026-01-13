@@ -1,0 +1,36 @@
+{
+  "run_id": "llm_fewshot_20260113_144308",
+  "timestamp": "2026-01-13T14:43:08.969648",
+  "method": "llm_fewshot",
+  "input_file": "data/samples/sample_1000.json",
+  "git": {
+    "commit": "f9fcfec",
+    "branch": "chandler"
+  },
+  "params": {
+    "model": "gpt-5.2-pro",
+    "mode": "binary",
+    "reasoning_effort": "medium",
+    "n_examples": 4,
+    "example_strategy": "diverse",
+    "parallel": 5,
+    "total_pairs": 10,
+    "evaluated_pairs": 10,
+    "errors": 0,
+    "total_tokens": 16051,
+    "elapsed_seconds": 43.21
+  },
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": {
+      "true_negative": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "true_positive": 10
+    }
+  },
+  "notes": ""
+}
