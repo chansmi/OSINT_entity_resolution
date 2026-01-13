@@ -1,0 +1,34 @@
+{
+  "run_id": "llm_zeroshot_20260113_133623",
+  "timestamp": "2026-01-13T13:36:23.813903",
+  "method": "llm_zeroshot",
+  "input_file": "data/samples/sample_1000.json",
+  "git": {
+    "commit": "f9fcfec",
+    "branch": "chandler"
+  },
+  "params": {
+    "model": "gpt-5-nano",
+    "mode": "binary",
+    "reasoning_effort": "low",
+    "parallel": 20,
+    "total_pairs": 800,
+    "evaluated_pairs": 799,
+    "errors": 1,
+    "total_tokens": 615452,
+    "elapsed_seconds": 159.23
+  },
+  "metrics": {
+    "accuracy": 0.9198998748435544,
+    "precision": 0.9176829268292683,
+    "recall": 0.9836601307189542,
+    "f1": 0.9495268138801262,
+    "confusion_matrix": {
+      "true_negative": 133,
+      "false_positive": 54,
+      "false_negative": 10,
+      "true_positive": 602
+    }
+  },
+  "notes": ""
+}
