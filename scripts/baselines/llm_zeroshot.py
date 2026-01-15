@@ -1,27 +1,30 @@
 #!/usr/bin/env python3
 """
-LLM Zero-Shot Entity Resolution Baseline
+LLM Entity Resolution Baseline (Zero-Shot and Few-Shot)
 
-Uses GPT-5 models to classify entity pairs as same/different entities.
-Supports parallel execution for ~30x speedup.
+Uses GPT models to classify entity pairs as same/different entities.
+Supports parallel execution for ~30x speedup and few-shot prompting.
 
 Usage:
-    # Sequential (slow)
-    python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json
-
-    # Parallel (fast, recommended)
+    # Zero-shot (default)
     python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30
 
-    # With options
-    python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30 --model gpt-5.2 --reasoning high
+    # Few-shot prompting (4 or 8 examples)
+    python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30 --shots 4
+    python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30 --shots 8
+
+    # With reasoning effort
+    python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30 --model gpt-4.1-2025-04-14 --reasoning high
 """
 
 import argparse
 import asyncio
 import json
+import random
 import sys
 import time
 from pathlib import Path
+from typing import List, Dict, Any, Optional
 
 from dotenv import load_dotenv
 from openai import OpenAI, AsyncOpenAI
@@ -54,6 +57,137 @@ Decision Process:
 3. Only NEGATIVE if explicit conflicts exist
 
 The DEFAULT is POSITIVE unless you find proof of difference."""
+
+# Few-shot examples template
+FEW_SHOT_EXAMPLE_TEMPLATE = """Example {num}:
+=== ENTITY A ===
+{entity_a}
+
+=== ENTITY B ===
+{entity_b}
+
+Classification: {classification}
+Reasoning: {reasoning}
+---"""
+
+# Global storage for few-shot examples (set at runtime)
+FEW_SHOT_EXAMPLES: List[Dict[str, Any]] = []
+
+
+def select_few_shot_examples(
+    data: List[Dict[str, Any]],
+    n_shots: int,
+    seed: int = 42,
+    exclude_indices: Optional[set] = None
+) -> List[Dict[str, Any]]:
+    """
+    Select balanced few-shot examples from the data.
+
+    Ensures equal representation of positive and negative examples.
+
+    Args:
+        data: List of entity pairs with 'judgement' field
+        n_shots: Number of examples to select (will be balanced)
+        seed: Random seed for reproducibility
+        exclude_indices: Set of indices to exclude from selection
+
+    Returns:
+        List of selected examples with reasoning added
+    """
+    random.seed(seed)
+    exclude_indices = exclude_indices or set()
+
+    # Separate positives and negatives
+    positives = [(i, p) for i, p in enumerate(data)
+                 if p.get('judgement') == 'positive' and i not in exclude_indices]
+    negatives = [(i, p) for i, p in enumerate(data)
+                 if p.get('judgement') == 'negative' and i not in exclude_indices]
+
+    # Balance the selection
+    n_pos = n_shots // 2
+    n_neg = n_shots - n_pos
+
+    random.shuffle(positives)
+    random.shuffle(negatives)
+
+    selected = []
+
+    # Add positive examples with reasoning
+    for _, pair in positives[:n_pos]:
+        example = pair.copy()
+        example['reasoning'] = _generate_positive_reasoning(pair)
+        selected.append(example)
+
+    # Add negative examples with reasoning
+    for _, pair in negatives[:n_neg]:
+        example = pair.copy()
+        example['reasoning'] = _generate_negative_reasoning(pair)
+        selected.append(example)
+
+    # Shuffle to mix positives and negatives
+    random.shuffle(selected)
+
+    return selected
+
+
+def _generate_positive_reasoning(pair: Dict[str, Any]) -> str:
+    """Generate reasoning for a positive example."""
+    left = pair.get('left', {}).get('properties', {})
+    right = pair.get('right', {}).get('properties', {})
+
+    matches = []
+    if left.get('name') and right.get('name'):
+        matches.append("names match or are variations")
+    if left.get('birthDate') and right.get('birthDate'):
+        if set(left['birthDate']) & set(right['birthDate']):
+            matches.append("birth dates match")
+    if left.get('nationality') and right.get('nationality'):
+        if set(left['nationality']) & set(right['nationality']):
+            matches.append("nationalities match")
+
+    if matches:
+        return f"No contradictions found. {', '.join(matches).capitalize()}. Same entity."
+    return "No contradictory evidence found. Default to POSITIVE."
+
+
+def _generate_negative_reasoning(pair: Dict[str, Any]) -> str:
+    """Generate reasoning for a negative example."""
+    left = pair.get('left', {}).get('properties', {})
+    right = pair.get('right', {}).get('properties', {})
+
+    conflicts = []
+    if left.get('birthDate') and right.get('birthDate'):
+        if not (set(left['birthDate']) & set(right['birthDate'])):
+            conflicts.append("different birth dates")
+    if left.get('nationality') and right.get('nationality'):
+        if not (set(left['nationality']) & set(right['nationality'])):
+            conflicts.append("different nationalities")
+    if left.get('gender') and right.get('gender'):
+        if not (set(left['gender']) & set(right['gender'])):
+            conflicts.append("different genders")
+
+    if conflicts:
+        return f"Contradictions found: {', '.join(conflicts)}. Different entities."
+    return "Explicit conflicts in identifying attributes. Different entities."
+
+
+def format_few_shot_examples(examples: List[Dict[str, Any]]) -> str:
+    """Format few-shot examples into a string for the prompt."""
+    if not examples:
+        return ""
+
+    formatted = ["Here are some examples:\n"]
+    for i, ex in enumerate(examples, 1):
+        formatted.append(FEW_SHOT_EXAMPLE_TEMPLATE.format(
+            num=i,
+            entity_a=format_entity(ex['left']),
+            entity_b=format_entity(ex['right']),
+            classification=ex['judgement'],
+            reasoning=ex.get('reasoning', 'Based on available evidence.')
+        ))
+    formatted.append("\nNow classify this pair:")
+    return "\n".join(formatted)
+
 
 USER_TEMPLATE = """Compare these two entities:
 
@@ -132,15 +266,32 @@ def format_entity(entity: dict) -> str:
 
 # --- Classification Helpers ---
 
-def build_messages(pair: dict) -> list:
-    """Build the chat messages for a classification request."""
-    prompt = USER_TEMPLATE.format(
+def build_messages(pair: dict, few_shot_examples: Optional[List[Dict[str, Any]]] = None) -> list:
+    """Build the chat messages for a classification request.
+
+    Args:
+        pair: The entity pair to classify
+        few_shot_examples: Optional list of few-shot examples to include
+
+    Returns:
+        List of chat messages for the API
+    """
+    # Format the current pair
+    current_pair_prompt = USER_TEMPLATE.format(
         entity_a=format_entity(pair["left"]),
         entity_b=format_entity(pair["right"])
     )
+
+    # Build user content with optional few-shot examples
+    if few_shot_examples:
+        few_shot_text = format_few_shot_examples(few_shot_examples)
+        user_content = f"{few_shot_text}\n\n{current_pair_prompt}"
+    else:
+        user_content = current_pair_prompt
+
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": prompt}
+        {"role": "user", "content": user_content}
     ]
 
 
@@ -176,14 +327,15 @@ async def classify_pair_async(
     semaphore: asyncio.Semaphore,
     model: str,
     reasoning_effort: str,
-    ternary: bool
+    ternary: bool,
+    few_shot_examples: Optional[List[Dict[str, Any]]] = None
 ) -> dict:
     """Async classify a single entity pair."""
     async with semaphore:
         try:
             response = await client.chat.completions.create(
                 model=model,
-                messages=build_messages(pair),
+                messages=build_messages(pair, few_shot_examples),
                 response_format=get_response_schema(ternary),
                 max_completion_tokens=4000,
                 reasoning_effort=reasoning_effort
@@ -199,7 +351,8 @@ async def run_parallel_experiment(
     reasoning_effort: str,
     ternary: bool,
     max_concurrent: int,
-    output_file: Path
+    output_file: Path,
+    few_shot_examples: Optional[List[Dict[str, Any]]] = None
 ) -> list:
     """Run classification on all pairs in parallel."""
     client = AsyncOpenAI()
@@ -207,7 +360,7 @@ async def run_parallel_experiment(
 
     # Create tasks
     tasks = [
-        classify_pair_async(client, pair, i, semaphore, model, reasoning_effort, ternary)
+        classify_pair_async(client, pair, i, semaphore, model, reasoning_effort, ternary, few_shot_examples)
         for i, pair in enumerate(data)
     ]
 
@@ -233,13 +386,14 @@ def classify_pair_sync(
     pair_index: int,
     model: str,
     reasoning_effort: str,
-    ternary: bool
+    ternary: bool,
+    few_shot_examples: Optional[List[Dict[str, Any]]] = None
 ) -> dict:
     """Sync classify a single entity pair."""
     try:
         response = client.chat.completions.create(
             model=model,
-            messages=build_messages(pair),
+            messages=build_messages(pair, few_shot_examples),
             response_format=get_response_schema(ternary),
             max_completion_tokens=4000,
             reasoning_effort=reasoning_effort
@@ -254,7 +408,8 @@ def run_sequential_experiment(
     model: str,
     reasoning_effort: str,
     ternary: bool,
-    output_file: Path
+    output_file: Path,
+    few_shot_examples: Optional[List[Dict[str, Any]]] = None
 ) -> list:
     """Run classification sequentially (slow but simple)."""
     client = OpenAI()
@@ -262,7 +417,7 @@ def run_sequential_experiment(
 
     with open(output_file, 'w') as f:
         for i, pair in enumerate(tqdm(data, desc="Classifying (sequential)")):
-            result = classify_pair_sync(client, pair, i, model, reasoning_effort, ternary)
+            result = classify_pair_sync(client, pair, i, model, reasoning_effort, ternary, few_shot_examples)
             results.append(result)
             f.write(json.dumps(result) + "\n")
             f.flush()
@@ -297,9 +452,24 @@ def run_experiment(
     ternary: bool = False,
     limit: int = None,
     offset: int = 0,
-    parallel: int = None
+    parallel: int = None,
+    n_shots: int = 0,
+    examples_file: str = None
 ) -> dict:
-    """Run the full experiment."""
+    """Run the full experiment.
+
+    Args:
+        input_path: Path to input JSON file
+        output_dir: Directory to save outputs
+        model: Model name (e.g., gpt-4.1-2025-04-14)
+        reasoning_effort: OpenAI reasoning effort level
+        ternary: Use ternary mode (positive/negative/uncertain)
+        limit: Limit number of pairs to evaluate
+        offset: Skip first N pairs
+        parallel: Number of parallel requests
+        n_shots: Number of few-shot examples (0 for zero-shot)
+        examples_file: Optional file for few-shot examples (defaults to input_path)
+    """
     data = load_data(input_path)
 
     # Apply offset first (skip first N pairs, e.g., for using same test set as baselines)
@@ -309,15 +479,35 @@ def run_experiment(
     if limit:
         data = data[:limit]
 
+    # Prepare few-shot examples if requested
+    few_shot_examples = None
+    if n_shots > 0:
+        # Load examples from file (default to input_path)
+        examples_source = examples_file or input_path
+        examples_data = load_data(examples_source)
+
+        # Create set of indices being evaluated (to exclude from few-shot)
+        eval_indices = set(range(offset, offset + len(data)))
+
+        few_shot_examples = select_few_shot_examples(
+            examples_data,
+            n_shots=n_shots,
+            seed=42,
+            exclude_indices=eval_indices
+        )
+        print(f"Selected {len(few_shot_examples)} few-shot examples (balanced positive/negative)")
+
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     mode = "ternary" if ternary else "binary"
-    responses_file = output_dir / f"llm_responses_{mode}_{model.replace('.', '_')}.jsonl"
+    shot_label = f"{n_shots}shot" if n_shots > 0 else "0shot"
+    responses_file = output_dir / f"llm_responses_{mode}_{model.replace('.', '_').replace('-', '_')}_{shot_label}.jsonl"
 
     print(f"\nRunning {mode} classification on {len(data)} pairs...")
     print(f"Model: {model}")
     print(f"Reasoning effort: {reasoning_effort}")
+    print(f"Few-shot: {n_shots} examples" if n_shots > 0 else "Zero-shot")
     print(f"Parallel: {parallel if parallel else 'No (sequential)'}")
     print(f"Output: {responses_file}\n")
 
@@ -325,11 +515,11 @@ def run_experiment(
 
     if parallel:
         results = asyncio.run(run_parallel_experiment(
-            data, model, reasoning_effort, ternary, parallel, responses_file
+            data, model, reasoning_effort, ternary, parallel, responses_file, few_shot_examples
         ))
     else:
         results = run_sequential_experiment(
-            data, model, reasoning_effort, ternary, responses_file
+            data, model, reasoning_effort, ternary, responses_file, few_shot_examples
         )
 
     elapsed = time.time() - start_time
@@ -357,11 +547,13 @@ def run_experiment(
     total_tokens = sum(r.get("tokens_used", {}).get("total", 0) for r in results if "tokens_used" in r)
 
     # Track experiment
-    exp = Experiment(method="llm_zeroshot", input_file=input_path)
+    method_name = f"llm_{n_shots}shot" if n_shots > 0 else "llm_zeroshot"
+    exp = Experiment(method=method_name, input_file=input_path)
     exp.set_params(
         model=model,
         mode=mode,
         reasoning_effort=reasoning_effort,
+        n_shots=n_shots,
         parallel=parallel,
         total_pairs=len(results),
         evaluated_pairs=len(predictions),
@@ -394,11 +586,11 @@ def run_experiment(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="LLM Zero-Shot Entity Resolution")
+    parser = argparse.ArgumentParser(description="LLM Entity Resolution (Zero-Shot and Few-Shot)")
     parser.add_argument("--input", required=True, help="Path to input JSON file")
     parser.add_argument("--output", default="data/outputs", help="Output directory")
     parser.add_argument("--model", default="gpt-5-nano",
-                       help="GPT model: gpt-5-nano, gpt-5, gpt-5.2, gpt-5.2-pro")
+                       help="GPT model: gpt-4.1-2025-04-14, gpt-5-nano, gpt-5, gpt-5.2")
     parser.add_argument("--reasoning", default="medium",
                        choices=["none", "low", "medium", "high", "xhigh"],
                        help="Reasoning effort level")
@@ -409,6 +601,10 @@ def main():
                        help="Skip first N pairs (use with --dev-ratio for same test set as baselines)")
     parser.add_argument("--parallel", type=int, default=None,
                        help="Number of parallel requests (recommended: 30)")
+    parser.add_argument("--shots", type=int, default=0, choices=[0, 4, 8],
+                       help="Number of few-shot examples (0=zero-shot, 4, or 8)")
+    parser.add_argument("--examples-file", type=str, default=None,
+                       help="Optional file for few-shot examples (defaults to input file)")
 
     args = parser.parse_args()
 
@@ -420,7 +616,9 @@ def main():
         ternary=args.ternary,
         limit=args.limit,
         offset=args.offset,
-        parallel=args.parallel
+        parallel=args.parallel,
+        n_shots=args.shots,
+        examples_file=args.examples_file
     )
 
     if "error" in metrics:
