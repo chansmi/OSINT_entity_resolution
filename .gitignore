@@ -13,9 +13,13 @@ ENV/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Data files - track samples but ignore raw data
+# Data files - track samples but ignore raw data and outputs
 data/raw/
+data/outputs/
 !data/samples/
+
+# Paper drafts
+paper/
 
 # IDE
 .vscode/
