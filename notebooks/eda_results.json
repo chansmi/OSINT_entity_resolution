@@ -1,0 +1,1712 @@
+{
+  "main_stats": {
+    "total_pairs": 755540,
+    "unique_entities": 1002093,
+    "class_balance": {
+      "positive": 581149,
+      "negative": 174391,
+      "positive_ratio": 0.7692,
+      "negative_ratio": 0.2308
+    },
+    "entity_descriptives": {
+      "datasets_per_entity": {
+        "mean": 1.32,
+        "median": 1,
+        "max": 28,
+        "min": 1
+      },
+      "aliases_per_entity": {
+        "mean": 1.11,
+        "median": 0,
+        "max": 304,
+        "min": 0
+      },
+      "nationalities_per_entity": {
+        "mean": 0.07,
+        "median": 0,
+        "max": 5,
+        "min": 0
+      },
+      "addresses_per_entity": {
+        "mean": 0.17,
+        "median": 0,
+        "max": 59,
+        "min": 0
+      }
+    },
+    "dataset_coverage": {
+      "num_datasets": 293,
+      "top_20_datasets": [
+        [
+          "wd_categories",
+          317305
+        ],
+        [
+          "wd_peps",
+          282262
+        ],
+        [
+          "ann_pep_positions",
+          114942
+        ],
+        [
+          "wikidata",
+          106068
+        ],
+        [
+          "ext_ru_egrul",
+          97462
+        ],
+        [
+          "fr_maires",
+          56359
+        ],
+        [
+          "everypolitician",
+          44848
+        ],
+        [
+          "us_trade_csl",
+          23109
+        ],
+        [
+          "ua_nsdc_sanctions",
+          19587
+        ],
+        [
+          "us_ofac_sdn",
+          19544
+        ],
+        [
+          "us_hhs_exclusions",
+          14918
+        ],
+        [
+          "iso9362_bic",
+          8919
+        ],
+        [
+          "us_cia_world_leaders",
+          6994
+        ],
+        [
+          "ch_seco_sanctions",
+          6681
+        ],
+        [
+          "us_ca_med_exclusions",
+          6664
+        ],
+        [
+          "fr_tresor_gels_avoir",
+          6338
+        ],
+        [
+          "ext_gleif",
+          6178
+        ],
+        [
+          "eu_fsf",
+          6110
+        ],
+        [
+          "gb_fcdo_sanctions",
+          6101
+        ],
+        [
+          "mc_fund_freezes",
+          6001
+        ]
+      ],
+      "datasets_by_country": {
+        "Other/International": 118,
+        "United States": 74,
+        "European Union": 10,
+        "Russia": 8,
+        "United Kingdom": 6,
+        "France": 6,
+        "Brazil": 6,
+        "Poland": 5,
+        "Canada": 5,
+        "Japan": 4,
+        "Israel": 4,
+        "Germany": 4,
+        "South Africa": 4,
+        "Netherlands": 4,
+        "Turkey": 3,
+        "Ukraine": 3,
+        "Switzerland": 3,
+        "Australia": 3,
+        "India": 3,
+        "Mexico": 3,
+        "United Nations": 2,
+        "China": 2,
+        "Argentina": 2,
+        "Singapore": 2,
+        "New Zealand": 2,
+        "Hong Kong": 2,
+        "Belgium": 1,
+        "Kazakhstan": 1,
+        "UAE": 1,
+        "Qatar": 1,
+        "North Korea": 1
+      }
+    },
+    "entity_fields": [
+      "address",
+      "addressEntity",
+      "agent",
+      "alias",
+      "amount",
+      "amountUsd",
+      "appearance",
+      "asset",
+      "associate",
+      "balance",
+      "bikCode",
+      "birthCountry",
+      "birthDate",
+      "birthPlace",
+      "buildDate",
+      "callSign",
+      "citizenship",
+      "classification",
+      "client",
+      "country",
+      "createdAt",
+      "currency",
+      "date",
+      "deadweightTonnage",
+      "deathDate",
+      "declarationDate",
+      "description",
+      "director",
+      "dissolutionDate",
+      "document",
+      "dunsCode",
+      "education",
+      "email",
+      "employee",
+      "employer",
+      "endDate",
+      "entity",
+      "ethnicity",
+      "eyeColor",
+      "fatherName",
+      "figiCode",
+      "firstName",
+      "flag",
+      "gender",
+      "giiNumber",
+      "grossRegisteredTonnage",
+      "hairColor",
+      "height",
+      "holder",
+      "icijId",
+      "idNumber",
+      "imoNumber",
+      "inceptionDate",
+      "incorporationDate",
+      "innCode",
+      "isin",
+      "issueDate",
+      "issuer",
+      "jurisdiction",
+      "keywords",
+      "kppCode",
+      "lastName",
+      "legalForm",
+      "leiCode",
+      "mainCountry",
+      "maturityDate",
+      "middleName",
+      "mmsi",
+      "model",
+      "modifiedAt",
+      "motherName",
+      "name",
+      "nameSuffix",
+      "nationality",
+      "notes",
+      "npiCode",
+      "object",
+      "ogrnCode",
+      "okpoCode",
+      "opencorporatesUrl",
+      "organization",
+      "owner",
+      "passportNumber",
+      "pastFlags",
+      "percentage",
+      "permId",
+      "person",
+      "phone",
+      "political",
+      "position",
+      "post",
+      "predecessor",
+      "previousName",
+      "program",
+      "programId",
+      "publicKey",
+      "publisher",
+      "recordId",
+      "registrationNumber",
+      "relationship",
+      "relative",
+      "religion",
+      "ricCode",
+      "role",
+      "secondName",
+      "sector",
+      "serialNumber",
+      "sharesCount",
+      "sharesValue",
+      "socialSecurityNumber",
+      "sourceUrl",
+      "spokenLanguage",
+      "startDate",
+      "status",
+      "subject",
+      "subnationalArea",
+      "successor",
+      "summary",
+      "swiftBic",
+      "taxNumber",
+      "ticker",
+      "title",
+      "tonnage",
+      "topics",
+      "type",
+      "uscCode",
+      "vatCode",
+      "weakAlias",
+      "website",
+      "weight",
+      "wikidataId"
+    ],
+    "field_lengths": {
+      "description": {
+        "mean": 307.7,
+        "median": 136,
+        "max": 5705,
+        "min": 2
+      },
+      "notes": {
+        "mean": 245.75,
+        "median": 92,
+        "max": 8725,
+        "min": 1
+      },
+      "summary": {
+        "mean": 141.77,
+        "median": 19.0,
+        "max": 7018,
+        "min": 18
+      },
+      "program": {
+        "mean": 68.88,
+        "median": 72.0,
+        "max": 403,
+        "min": 7
+      },
+      "sourceUrl": {
+        "mean": 67.11,
+        "median": 60.0,
+        "max": 349,
+        "min": 19
+      },
+      "position": {
+        "mean": 55.28,
+        "median": 44.0,
+        "max": 928,
+        "min": 2
+      },
+      "address": {
+        "mean": 53.72,
+        "median": 52.0,
+        "max": 250,
+        "min": 1
+      },
+      "appearance": {
+        "mean": 49.58,
+        "median": 10,
+        "max": 260,
+        "min": 10
+      },
+      "opencorporatesUrl": {
+        "mean": 48.9,
+        "median": 48.0,
+        "max": 61,
+        "min": 42
+      },
+      "document": {
+        "mean": 48,
+        "median": 48.0,
+        "max": 48,
+        "min": 48
+      },
+      "entity": {
+        "mean": 48,
+        "median": 48.0,
+        "max": 48,
+        "min": 48
+      },
+      "employer": {
+        "mean": 47,
+        "median": 47.0,
+        "max": 47,
+        "min": 47
+      },
+      "employee": {
+        "mean": 47,
+        "median": 47.0,
+        "max": 47,
+        "min": 47
+      },
+      "addressEntity": {
+        "mean": 45,
+        "median": 45.0,
+        "max": 45,
+        "min": 45
+      },
+      "publisher": {
+        "mean": 43.77,
+        "median": 40,
+        "max": 233,
+        "min": 1
+      }
+    }
+  },
+  "appendix_stats": {
+    "missing_values_by_field": {
+      "address": 67.69,
+      "addressEntity": 78.74,
+      "agent": 100.0,
+      "alias": 66.65,
+      "amount": 99.76,
+      "amountUsd": 99.89,
+      "appearance": 99.97,
+      "asset": 99.68,
+      "associate": 100.0,
+      "balance": 99.89,
+      "bikCode": 99.73,
+      "birthCountry": 93.46,
+      "birthDate": 68.45,
+      "birthPlace": 83.07,
+      "buildDate": 99.56,
+      "callSign": 99.55,
+      "citizenship": 82.06,
+      "classification": 90.19,
+      "client": 100.0,
+      "country": 49.59,
+      "createdAt": 81.45,
+      "currency": 99.86,
+      "date": 99.99,
+      "deadweightTonnage": 99.71,
+      "deathDate": 99.28,
+      "declarationDate": 100.0,
+      "description": 97.91,
+      "director": 99.72,
+      "dissolutionDate": 99.03,
+      "document": 100.0,
+      "dunsCode": 99.98,
+      "education": 93.94,
+      "email": 95.06,
+      "employee": 100.0,
+      "employer": 100.0,
+      "endDate": 90.7,
+      "entity": 100.0,
+      "ethnicity": 99.58,
+      "eyeColor": 99.76,
+      "fatherName": 91.73,
+      "figiCode": 99.95,
+      "firstName": 70.47,
+      "flag": 99.26,
+      "gender": 73.7,
+      "giiNumber": 99.68,
+      "grossRegisteredTonnage": 99.68,
+      "hairColor": 99.75,
+      "height": 99.81,
+      "holder": 71.75,
+      "icijId": 99.77,
+      "idNumber": 90.74,
+      "imoNumber": 98.34,
+      "inceptionDate": 99.91,
+      "incorporationDate": 88.77,
+      "innCode": 89.94,
+      "isin": 99.78,
+      "issueDate": 100.0,
+      "issuer": 99.78,
+      "jurisdiction": 88.13,
+      "keywords": 99.99,
+      "kppCode": 93.07,
+      "lastName": 72.24,
+      "legalForm": 90.72,
+      "leiCode": 98.78,
+      "mainCountry": 99.6,
+      "maturityDate": 100.0,
+      "middleName": 90.42,
+      "mmsi": 99.58,
+      "model": 99.99,
+      "modifiedAt": 77.32,
+      "motherName": 99.3,
+      "name": 34.15,
+      "nameSuffix": 100.0,
+      "nationality": 84.44,
+      "notes": 70.77,
+      "npiCode": 99.25,
+      "object": 99.95,
+      "ogrnCode": 92.19,
+      "okpoCode": 99.9,
+      "opencorporatesUrl": 99.53,
+      "organization": 99.72,
+      "owner": 99.49,
+      "passportNumber": 96.1,
+      "pastFlags": 99.79,
+      "percentage": 99.93,
+      "permId": 93.97,
+      "person": 99.7,
+      "phone": 94.64,
+      "political": 99.28,
+      "position": 77.31,
+      "post": 71.75,
+      "predecessor": 95.55,
+      "previousName": 98.84,
+      "program": 99.44,
+      "programId": 63.24,
+      "publicKey": 99.89,
+      "publisher": 99.21,
+      "recordId": 100.0,
+      "registrationNumber": 89.31,
+      "relationship": 99.7,
+      "relative": 99.7,
+      "religion": 98.37,
+      "ricCode": 99.47,
+      "role": 99.51,
+      "secondName": 93.8,
+      "sector": 97.44,
+      "serialNumber": 99.99,
+      "sharesCount": 99.94,
+      "sharesValue": 100.0,
+      "socialSecurityNumber": 99.98,
+      "sourceUrl": 68.76,
+      "spokenLanguage": 99.94,
+      "startDate": 80.4,
+      "status": 64.91,
+      "subject": 99.95,
+      "subnationalArea": 97.16,
+      "successor": 95.55,
+      "summary": 99.83,
+      "swiftBic": 98.5,
+      "taxNumber": 91.24,
+      "ticker": 99.41,
+      "title": 97.17,
+      "tonnage": 99.96,
+      "topics": 38.18,
+      "type": 99.18,
+      "uscCode": 99.97,
+      "vatCode": 99.84,
+      "weakAlias": 93.15,
+      "website": 91.18,
+      "weight": 99.88,
+      "wikidataId": 82.75
+    },
+    "full_dataset_list": [
+      {
+        "dataset": "wd_categories",
+        "count": 317305
+      },
+      {
+        "dataset": "wd_peps",
+        "count": 282262
+      },
+      {
+        "dataset": "ann_pep_positions",
+        "count": 114942
+      },
+      {
+        "dataset": "wikidata",
+        "count": 106068
+      },
+      {
+        "dataset": "ext_ru_egrul",
+        "count": 97462
+      },
+      {
+        "dataset": "fr_maires",
+        "count": 56359
+      },
+      {
+        "dataset": "everypolitician",
+        "count": 44848
+      },
+      {
+        "dataset": "us_trade_csl",
+        "count": 23109
+      },
+      {
+        "dataset": "ua_nsdc_sanctions",
+        "count": 19587
+      },
+      {
+        "dataset": "us_ofac_sdn",
+        "count": 19544
+      },
+      {
+        "dataset": "us_hhs_exclusions",
+        "count": 14918
+      },
+      {
+        "dataset": "iso9362_bic",
+        "count": 8919
+      },
+      {
+        "dataset": "us_cia_world_leaders",
+        "count": 6994
+      },
+      {
+        "dataset": "ch_seco_sanctions",
+        "count": 6681
+      },
+      {
+        "dataset": "us_ca_med_exclusions",
+        "count": 6664
+      },
+      {
+        "dataset": "fr_tresor_gels_avoir",
+        "count": 6338
+      },
+      {
+        "dataset": "ext_gleif",
+        "count": 6178
+      },
+      {
+        "dataset": "eu_fsf",
+        "count": 6110
+      },
+      {
+        "dataset": "gb_fcdo_sanctions",
+        "count": 6101
+      },
+      {
+        "dataset": "mc_fund_freezes",
+        "count": 6001
+      },
+      {
+        "dataset": "permid",
+        "count": 5813
+      },
+      {
+        "dataset": "gb_hmt_sanctions",
+        "count": 5607
+      },
+      {
+        "dataset": "de_bundestag",
+        "count": 5605
+      },
+      {
+        "dataset": "be_fod_sanctions",
+        "count": 5356
+      },
+      {
+        "dataset": "ann_graph_topics",
+        "count": 4697
+      },
+      {
+        "dataset": "ca_dfatd_sema_sanctions",
+        "count": 4697
+      },
+      {
+        "dataset": "gb_coh_disqualified",
+        "count": 4147
+      },
+      {
+        "dataset": "us_plural_legislators",
+        "count": 4121
+      },
+      {
+        "dataset": "eu_travel_bans",
+        "count": 3940
+      },
+      {
+        "dataset": "ua_war_sanctions",
+        "count": 3910
+      },
+      {
+        "dataset": "ru_myrotvorets_wagner",
+        "count": 3813
+      },
+      {
+        "dataset": "eu_journal_sanctions",
+        "count": 3529
+      },
+      {
+        "dataset": "au_dfat_sanctions",
+        "count": 3514
+      },
+      {
+        "dataset": "ru_acf_bribetakers",
+        "count": 3503
+      },
+      {
+        "dataset": "ext_us_irs_ffi",
+        "count": 3309
+      },
+      {
+        "dataset": "ext_icij_offshoreleaks",
+        "count": 3279
+      },
+      {
+        "dataset": "jp_mof_sanctions",
+        "count": 2935
+      },
+      {
+        "dataset": "pk_proscribed_persons",
+        "count": 2854
+      },
+      {
+        "dataset": "shu_uyghur_companies",
+        "count": 2767
+      },
+      {
+        "dataset": "br_pep",
+        "count": 2659
+      },
+      {
+        "dataset": "tokyo_mou_detention",
+        "count": 2616
+      },
+      {
+        "dataset": "wd_curated",
+        "count": 2292
+      },
+      {
+        "dataset": "de_abgeordnetenwatch",
+        "count": 1945
+      },
+      {
+        "dataset": "nz_russia_sanctions",
+        "count": 1924
+      },
+      {
+        "dataset": "ge_declarations",
+        "count": 1884
+      },
+      {
+        "dataset": "fr_assemblee",
+        "count": 1867
+      },
+      {
+        "dataset": "tr_fcib",
+        "count": 1827
+      },
+      {
+        "dataset": "eu_sanctions_map",
+        "count": 1640
+      },
+      {
+        "dataset": "ext_gb_coh_psc",
+        "count": 1535
+      },
+      {
+        "dataset": "us_pa_med_exclusions",
+        "count": 1531
+      },
+      {
+        "dataset": "us_occ_enfact",
+        "count": 1479
+      },
+      {
+        "dataset": "us_nj_med_exclusions",
+        "count": 1384
+      },
+      {
+        "dataset": "ext_tokyo_mou_psc",
+        "count": 1342
+      },
+      {
+        "dataset": "at_parlament",
+        "count": 1342
+      },
+      {
+        "dataset": "gem_energy_ownership",
+        "count": 1333
+      },
+      {
+        "dataset": "at_meine_abgeordneten",
+        "count": 1272
+      },
+      {
+        "dataset": "worldbank_debarred",
+        "count": 1234
+      },
+      {
+        "dataset": "us_ny_med_exclusions",
+        "count": 1225
+      },
+      {
+        "dataset": "eu_esma_saris",
+        "count": 1223
+      },
+      {
+        "dataset": "us_oh_med_exclusions",
+        "count": 1216
+      },
+      {
+        "dataset": "adb_sanctions",
+        "count": 1169
+      },
+      {
+        "dataset": "us_congress",
+        "count": 1118
+      },
+      {
+        "dataset": "iadb_sanctions",
+        "count": 1056
+      },
+      {
+        "dataset": "tr_wanted",
+        "count": 1054
+      },
+      {
+        "dataset": "un_sc_sanctions",
+        "count": 1046
+      },
+      {
+        "dataset": "ebrd_ineligible",
+        "count": 1046
+      },
+      {
+        "dataset": "ua_sfms_blacklist",
+        "count": 1019
+      },
+      {
+        "dataset": "za_fic_sanctions",
+        "count": 1008
+      },
+      {
+        "dataset": "afdb_sanctions",
+        "count": 948
+      },
+      {
+        "dataset": "in_sansad",
+        "count": 940
+      },
+      {
+        "dataset": "kp_rusi_reports",
+        "count": 928
+      },
+      {
+        "dataset": "fr_senat",
+        "count": 917
+      },
+      {
+        "dataset": "c4ads_xinjiang",
+        "count": 898
+      },
+      {
+        "dataset": "ng_join_dots",
+        "count": 894
+      },
+      {
+        "dataset": "us_la_med_exclusions",
+        "count": 864
+      },
+      {
+        "dataset": "ch_parlament",
+        "count": 860
+      },
+      {
+        "dataset": "qa_nctc_sanctions",
+        "count": 842
+      },
+      {
+        "dataset": "il_mod_terrorists",
+        "count": 791
+      },
+      {
+        "dataset": "ext_cy_companies",
+        "count": 786
+      },
+      {
+        "dataset": "kz_afmrk_sanctions",
+        "count": 756
+      },
+      {
+        "dataset": "ru_nsd_isin",
+        "count": 754
+      },
+      {
+        "dataset": "interpol_red_notices",
+        "count": 733
+      },
+      {
+        "dataset": "us_ar_med_exclusions",
+        "count": 720
+      },
+      {
+        "dataset": "jp_shugiin",
+        "count": 710
+      },
+      {
+        "dataset": "md_terror_sanctions",
+        "count": 703
+      },
+      {
+        "dataset": "us_md_med_exclusions",
+        "count": 694
+      },
+      {
+        "dataset": "jp_meti_eul",
+        "count": 691
+      },
+      {
+        "dataset": "jp_meti_ru",
+        "count": 688
+      },
+      {
+        "dataset": "kg_fiu_national",
+        "count": 673
+      },
+      {
+        "dataset": "ar_repet",
+        "count": 624
+      },
+      {
+        "dataset": "us_sc_med_exclusions",
+        "count": 611
+      },
+      {
+        "dataset": "za_pmg_legislators",
+        "count": 604
+      },
+      {
+        "dataset": "dk_pep",
+        "count": 582
+      },
+      {
+        "dataset": "us_bis_denied",
+        "count": 573
+      },
+      {
+        "dataset": "black_sea_mou_detention",
+        "count": 571
+      },
+      {
+        "dataset": "us_cftc_enforcement_actions",
+        "count": 546
+      },
+      {
+        "dataset": "us_ofac_cons",
+        "count": 510
+      },
+      {
+        "dataset": "id_dttot",
+        "count": 508
+      },
+      {
+        "dataset": "pl_finanse_sanctions",
+        "count": 499
+      },
+      {
+        "dataset": "ru_cbr_banks",
+        "count": 483
+      },
+      {
+        "dataset": "bg_omnio_poi",
+        "count": 479
+      },
+      {
+        "dataset": "il_knesset_members",
+        "count": 465
+      },
+      {
+        "dataset": "pl_sejm",
+        "count": 450
+      },
+      {
+        "dataset": "sg_gov_dir",
+        "count": 449
+      },
+      {
+        "dataset": "es_parliament",
+        "count": 421
+      },
+      {
+        "dataset": "us_mi_med_exclusions",
+        "count": 404
+      },
+      {
+        "dataset": "ee_international_sanctions",
+        "count": 392
+      },
+      {
+        "dataset": "ext_ua_edr",
+        "count": 387
+      },
+      {
+        "dataset": "pl_mswia_sanctions",
+        "count": 384
+      },
+      {
+        "dataset": "ng_chipper_peps",
+        "count": 384
+      },
+      {
+        "dataset": "us_cuba_sanctions",
+        "count": 368
+      },
+      {
+        "dataset": "cn_peoples_congress_wikipedia",
+        "count": 358
+      },
+      {
+        "dataset": "us_de_med_exclusions",
+        "count": 355
+      },
+      {
+        "dataset": "ext_eu_esma_firds",
+        "count": 348
+      },
+      {
+        "dataset": "es_mayors_councillors",
+        "count": 345
+      },
+      {
+        "dataset": "eu_meps",
+        "count": 339
+      },
+      {
+        "dataset": "lt_magnitsky_amendments",
+        "count": 300
+      },
+      {
+        "dataset": "us_plum_book",
+        "count": 290
+      },
+      {
+        "dataset": "ru_mfa_sanctions",
+        "count": 284
+      },
+      {
+        "dataset": "ir_sanctions",
+        "count": 273
+      },
+      {
+        "dataset": "ca_commons",
+        "count": 258
+      },
+      {
+        "dataset": "si_zvezoskop",
+        "count": 255
+      },
+      {
+        "dataset": "ro_onpcsb_sanctions",
+        "count": 248
+      },
+      {
+        "dataset": "ext_gb_fca_firds",
+        "count": 247
+      },
+      {
+        "dataset": "ir_uani_business_registry",
+        "count": 246
+      },
+      {
+        "dataset": "il_wmd_sanctions",
+        "count": 238
+      },
+      {
+        "dataset": "openfigi",
+        "count": 229
+      },
+      {
+        "dataset": "md_rise_profiles",
+        "count": 226
+      },
+      {
+        "dataset": "iq_aml_list",
+        "count": 222
+      },
+      {
+        "dataset": "us_fbi_most_wanted",
+        "count": 218
+      },
+      {
+        "dataset": "ext_abuja_mou_psc",
+        "count": 217
+      },
+      {
+        "dataset": "us_klepto_hr_visa",
+        "count": 215
+      },
+      {
+        "dataset": "ext_ror",
+        "count": 201
+      },
+      {
+        "dataset": "us_fdic_failed_banks",
+        "count": 197
+      },
+      {
+        "dataset": "eu_esma_sanctions",
+        "count": 194
+      },
+      {
+        "dataset": "ext_cz_business_register",
+        "count": 182
+      },
+      {
+        "dataset": "ar_parliament",
+        "count": 178
+      },
+      {
+        "dataset": "de_bundesrat",
+        "count": 175
+      },
+      {
+        "dataset": "am_hetq_officials",
+        "count": 173
+      },
+      {
+        "dataset": "ca_named_research_orgs",
+        "count": 167
+      },
+      {
+        "dataset": "us_special_leg",
+        "count": 156
+      },
+      {
+        "dataset": "co_funcion_publica",
+        "count": 155
+      },
+      {
+        "dataset": "nl_house_of_representatives",
+        "count": 150
+      },
+      {
+        "dataset": "wd_oligarchs",
+        "count": 144
+      },
+      {
+        "dataset": "ae_local_terrorists",
+        "count": 140
+      },
+      {
+        "dataset": "nl_senate",
+        "count": 139
+      },
+      {
+        "dataset": "us_dod_chinese_milcorps",
+        "count": 138
+      },
+      {
+        "dataset": "us_nv_med_exclusions",
+        "count": 134
+      },
+      {
+        "dataset": "br_ceis",
+        "count": 133
+      },
+      {
+        "dataset": "eu_cor_members",
+        "count": 131
+      },
+      {
+        "dataset": "co_join_dots",
+        "count": 128
+      },
+      {
+        "dataset": "mt_parlament",
+        "count": 128
+      },
+      {
+        "dataset": "no_nbim_exclusions",
+        "count": 122
+      },
+      {
+        "dataset": "us_ga_med_exclusions",
+        "count": 122
+      },
+      {
+        "dataset": "abuja_mou_detention",
+        "count": 122
+      },
+      {
+        "dataset": "us_ofac_enforcement_actions",
+        "count": 117
+      },
+      {
+        "dataset": "sk_public_officials",
+        "count": 116
+      },
+      {
+        "dataset": "lt_seimas",
+        "count": 115
+      },
+      {
+        "dataset": "lv_fiu_sanctions",
+        "count": 115
+      },
+      {
+        "dataset": "us_co_med_exclusions",
+        "count": 104
+      },
+      {
+        "dataset": "mx_governors",
+        "count": 103
+      },
+      {
+        "dataset": "us_dhs_uflpa",
+        "count": 102
+      },
+      {
+        "dataset": "pl_senate",
+        "count": 102
+      },
+      {
+        "dataset": "cn_sanctions",
+        "count": 100
+      },
+      {
+        "dataset": "ru_dossier_center_poi",
+        "count": 98
+      },
+      {
+        "dataset": "us_state_terrorist_orgs",
+        "count": 95
+      },
+      {
+        "dataset": "ru_billionaires_2021",
+        "count": 94
+      },
+      {
+        "dataset": "ext_ge_company_registry",
+        "count": 91
+      },
+      {
+        "dataset": "us_ky_med_exclusions",
+        "count": 90
+      },
+      {
+        "dataset": "ransomwhere",
+        "count": 89
+      },
+      {
+        "dataset": "at_nbter_sanctions",
+        "count": 87
+      },
+      {
+        "dataset": "ca_listed_terrorists",
+        "count": 86
+      },
+      {
+        "dataset": "mx_senators",
+        "count": 85
+      },
+      {
+        "dataset": "lv_saeima",
+        "count": 85
+      },
+      {
+        "dataset": "us_ms_med_exclusions",
+        "count": 85
+      },
+      {
+        "dataset": "th_designated_person",
+        "count": 83
+      },
+      {
+        "dataset": "us_wv_med_exclusions",
+        "count": 83
+      },
+      {
+        "dataset": "thesentry_atlas",
+        "count": 82
+      },
+      {
+        "dataset": "us_ia_med_exclusions",
+        "count": 80
+      },
+      {
+        "dataset": "ext_lv_business_register",
+        "count": 74
+      },
+      {
+        "dataset": "br_tcu_debarred",
+        "count": 74
+      },
+      {
+        "dataset": "lt_illegal_gambling",
+        "count": 72
+      },
+      {
+        "dataset": "ph_amlc_sanctions",
+        "count": 71
+      },
+      {
+        "dataset": "paris_mou_banned",
+        "count": 71
+      },
+      {
+        "dataset": "us_mo_med_exclusions",
+        "count": 69
+      },
+      {
+        "dataset": "cl_info_probidad",
+        "count": 66
+      },
+      {
+        "dataset": "np_mha_sanctions",
+        "count": 64
+      },
+      {
+        "dataset": "pl_wanted",
+        "count": 62
+      },
+      {
+        "dataset": "ky_parliament",
+        "count": 61
+      },
+      {
+        "dataset": "un_1718_vessels",
+        "count": 61
+      },
+      {
+        "dataset": "in_mha_banned",
+        "count": 59
+      },
+      {
+        "dataset": "is_althingi",
+        "count": 58
+      },
+      {
+        "dataset": "ps_ohchr_settlement",
+        "count": 57
+      },
+      {
+        "dataset": "us_nc_med_exclusions",
+        "count": 57
+      },
+      {
+        "dataset": "us_ks_med_exclusions",
+        "count": 57
+      },
+      {
+        "dataset": "us_dea_fugitives",
+        "count": 55
+      },
+      {
+        "dataset": "us_ne_med_exclusions",
+        "count": 53
+      },
+      {
+        "dataset": "ext_md_companies",
+        "count": 51
+      },
+      {
+        "dataset": "lv_magnitsky_list",
+        "count": 49
+      },
+      {
+        "dataset": "cy_parliament",
+        "count": 48
+      },
+      {
+        "dataset": "cu_inventario_legislatura",
+        "count": 46
+      },
+      {
+        "dataset": "ve_asamblea_nacional",
+        "count": 46
+      },
+      {
+        "dataset": "us_nk_jointventures",
+        "count": 44
+      },
+      {
+        "dataset": "cz_terrorists",
+        "count": 44
+      },
+      {
+        "dataset": "br_tcu_disqualified",
+        "count": 43
+      },
+      {
+        "dataset": "gb_proscribed_orgs",
+        "count": 43
+      },
+      {
+        "dataset": "us_ma_med_exclusions",
+        "count": 43
+      },
+      {
+        "dataset": "de_bka_wanted",
+        "count": 42
+      },
+      {
+        "dataset": "us_nd_med_exclusions",
+        "count": 41
+      },
+      {
+        "dataset": "eu_public_functions",
+        "count": 40
+      },
+      {
+        "dataset": "nl_terrorism_list",
+        "count": 39
+      },
+      {
+        "dataset": "us_state_terrorist_exclusion",
+        "count": 39
+      },
+      {
+        "dataset": "mx_deputies",
+        "count": 37
+      },
+      {
+        "dataset": "us_mn_med_exclusions",
+        "count": 37
+      },
+      {
+        "dataset": "us_wy_med_exclusions",
+        "count": 36
+      },
+      {
+        "dataset": "lt_pep_declarations",
+        "count": 34
+      },
+      {
+        "dataset": "us_in_med_exclusions",
+        "count": 34
+      },
+      {
+        "dataset": "ru_navalny35",
+        "count": 33
+      },
+      {
+        "dataset": "us_mt_med_exclusions",
+        "count": 32
+      },
+      {
+        "dataset": "my_moha_sanctions",
+        "count": 30
+      },
+      {
+        "dataset": "research",
+        "count": 29
+      },
+      {
+        "dataset": "il_mod_crypto",
+        "count": 29
+      },
+      {
+        "dataset": "ext_ee_ariregister",
+        "count": 28
+      },
+      {
+        "dataset": "us_finra_actions",
+        "count": 28
+      },
+      {
+        "dataset": "mk_officials",
+        "count": 27
+      },
+      {
+        "dataset": "si_conflicts",
+        "count": 27
+      },
+      {
+        "dataset": "us_wa_med_exclusions",
+        "count": 27
+      },
+      {
+        "dataset": "us_nh_med_exclusions",
+        "count": 25
+      },
+      {
+        "dataset": "au_listed_terrorist_orgs",
+        "count": 25
+      },
+      {
+        "dataset": "lt_fiu_freezes",
+        "count": 24
+      },
+      {
+        "dataset": "ee_riigikogu",
+        "count": 23
+      },
+      {
+        "dataset": "us_sec_harmed_investors",
+        "count": 23
+      },
+      {
+        "dataset": "id_regional_2018",
+        "count": 22
+      },
+      {
+        "dataset": "nz_designated_terrorists",
+        "count": 22
+      },
+      {
+        "dataset": "bg_jud_declarations",
+        "count": 21
+      },
+      {
+        "dataset": "tr_parliament",
+        "count": 20
+      },
+      {
+        "dataset": "cz_national_sanctions",
+        "count": 20
+      },
+      {
+        "dataset": "hk_legco",
+        "count": 19
+      },
+      {
+        "dataset": "us_al_med_exclusions",
+        "count": 17
+      },
+      {
+        "dataset": "eu_europol_wanted",
+        "count": 16
+      },
+      {
+        "dataset": "gr_parliament",
+        "count": 16
+      },
+      {
+        "dataset": "au_abf_sanctioned_sponsors",
+        "count": 16
+      },
+      {
+        "dataset": "ext_kz_companies",
+        "count": 13
+      },
+      {
+        "dataset": "lu_administrative_sanctions",
+        "count": 13
+      },
+      {
+        "dataset": "gb_hmt_invbans",
+        "count": 12
+      },
+      {
+        "dataset": "eiti_soe",
+        "count": 12
+      },
+      {
+        "dataset": "ng_nigsac_sanctions",
+        "count": 11
+      },
+      {
+        "dataset": "hk_principal_officials",
+        "count": 10
+      },
+      {
+        "dataset": "my_investor_alert_list",
+        "count": 10
+      },
+      {
+        "dataset": "md_interdictie",
+        "count": 10
+      },
+      {
+        "dataset": "nl_most_wanted",
+        "count": 10
+      },
+      {
+        "dataset": "us_cbp_forced_labor",
+        "count": 10
+      },
+      {
+        "dataset": "us_ddtc_enforcements",
+        "count": 8
+      },
+      {
+        "dataset": "uy_pep",
+        "count": 8
+      },
+      {
+        "dataset": "us_ss_wanted",
+        "count": 8
+      },
+      {
+        "dataset": "us_sec_pause",
+        "count": 8
+      },
+      {
+        "dataset": "sg_terrorists",
+        "count": 7
+      },
+      {
+        "dataset": "my_consumer_alert_list",
+        "count": 7
+      },
+      {
+        "dataset": "us_ice_wanted",
+        "count": 7
+      },
+      {
+        "dataset": "us_hi_med_exclusions",
+        "count": 7
+      },
+      {
+        "dataset": "ca_facfoa",
+        "count": 6
+      },
+      {
+        "dataset": "hr_public_officials",
+        "count": 6
+      },
+      {
+        "dataset": "az_fiu_sanctions",
+        "count": 6
+      },
+      {
+        "dataset": "ch_finma_warnings",
+        "count": 6
+      },
+      {
+        "dataset": "us_fcc_covered_list",
+        "count": 5
+      },
+      {
+        "dataset": "eg_terrorists",
+        "count": 5
+      },
+      {
+        "dataset": "fr_amf_regulatory_sanctions",
+        "count": 5
+      },
+      {
+        "dataset": "za_wanted",
+        "count": 4
+      },
+      {
+        "dataset": "us_ak_med_exclusions",
+        "count": 4
+      },
+      {
+        "dataset": "us_state_dept",
+        "count": 3
+      },
+      {
+        "dataset": "us_fincen_special_measures",
+        "count": 3
+      },
+      {
+        "dataset": "in_nse_debarred",
+        "count": 3
+      },
+      {
+        "dataset": "us_fda_restricted",
+        "count": 3
+      },
+      {
+        "dataset": "me_acp_peps",
+        "count": 3
+      },
+      {
+        "dataset": "us_az_med_exclusions",
+        "count": 3
+      },
+      {
+        "dataset": "ge_ot_list",
+        "count": 2
+      },
+      {
+        "dataset": "za_mm_officials",
+        "count": 2
+      },
+      {
+        "dataset": "fr_illegal_financial_services",
+        "count": 2
+      },
+      {
+        "dataset": "us_bis_oac",
+        "count": 2
+      },
+      {
+        "dataset": "ps_local_freezing",
+        "count": 1
+      },
+      {
+        "dataset": "gb_nca_most_wanted",
+        "count": 1
+      },
+      {
+        "dataset": "ie_unlawful_organizations",
+        "count": 1
+      },
+      {
+        "dataset": "ph_most_wanted",
+        "count": 1
+      },
+      {
+        "dataset": "us_fbi_lazarus_crypto",
+        "count": 1
+      },
+      {
+        "dataset": "es_cnp_wanted",
+        "count": 1
+      },
+      {
+        "dataset": "im_disqualified_directors",
+        "count": 1
+      },
+      {
+        "dataset": "us_dc_exclusions",
+        "count": 1
+      },
+      {
+        "dataset": "th_cabinet",
+        "count": 1
+      },
+      {
+        "dataset": "br_slavery",
+        "count": 1
+      },
+      {
+        "dataset": "us_tn_med_exclusions",
+        "count": 1
+      },
+      {
+        "dataset": "us_me_med_exclusions",
+        "count": 1
+      },
+      {
+        "dataset": "br_bcb_disqualified_persons",
+        "count": 1
+      },
+      {
+        "dataset": "us_navy",
+        "count": 1
+      }
+    ],
+    "schema_distribution": {
+      "Occupancy": 422942,
+      "Person": 320580,
+      "Succession": 67142,
+      "Company": 48266,
+      "Position": 47468,
+      "Organization": 47261,
+      "LegalEntity": 25711,
+      "Vessel": 7320,
+      "Ownership": 4765,
+      "Family": 4562,
+      "Directorship": 4045,
+      "Security": 1113,
+      "UnknownLink": 726,
+      "CryptoWallet": 116,
+      "Airplane": 34,
+      "Representation": 14,
+      "Documentation": 12,
+      "Employment": 8,
+      "PublicBody": 6,
+      "Associate": 2
+    }
+  }
+}
