@@ -1,0 +1,32 @@
+{
+  "prompts": [
+    {
+      "prompt_id": "default_conflict_focused_v1",
+      "model": "all",
+      "description": "Default conflict-focused prompt - works across all models",
+      "path": "default/conflict_focused_v1.json",
+      "is_default": true,
+      "created_date": "2026-01-16",
+      "provenance": {
+        "source": "manual",
+        "notes": "Baseline conflict-focused prompt strategy from llm_zeroshot.py"
+      }
+    },
+    {
+      "prompt_id": "llama-8b_bootstrap_20260116_v1",
+      "model": "llama-8b",
+      "description": "DSPy bootstrap optimized prompt for llama-8b",
+      "path": "llama-8b/bootstrap_20260116_v1.json",
+      "created_date": "2026-01-16",
+      "provenance": {
+        "optimizer": "bootstrap",
+        "dev_f1": 0.9411764705882353
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-01-16",
+    "description": "Registry of optimized prompts for entity resolution"
+  }
+}

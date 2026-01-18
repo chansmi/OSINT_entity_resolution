@@ -34,6 +34,7 @@ from typing import List, Optional
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.baselines.llm_zeroshot import SYSTEM_PROMPT, format_entity, USER_TEMPLATE
+from scripts.load_data import load_sample
 
 
 MASTER_SEED = 42
@@ -209,17 +210,6 @@ def create_sharegpt_format(pair: dict) -> dict:
     }
 
 
-def load_data(input_path: str) -> List[dict]:
-    """Load entity pairs from JSON file."""
-    with open(input_path, encoding="utf-8") as f:
-        data = json.load(f)
-
-    # Handle both formats
-    if isinstance(data, dict) and "pairs" in data:
-        return data["pairs"]
-    return data
-
-
 def stratified_sample(
     pairs: List[dict],
     n: int,
@@ -279,7 +269,7 @@ def prepare_dataset(
     random.seed(seed)
 
     # Load data
-    pairs = load_data(input_path)
+    pairs = load_sample(input_path)
     print(f"Loaded {len(pairs)} pairs from {input_path}")
 
     # Use first portion as training pool (don't overlap with test set)
@@ -417,7 +407,7 @@ def preview_examples(input_path: str, n: int = 3) -> None:
         input_path: Path to input sample JSON
         n: Number of examples to preview
     """
-    pairs = load_data(input_path)[:n]
+    pairs = load_sample(input_path)[:n]
 
     print(f"\nPreviewing {n} training examples:\n")
 
