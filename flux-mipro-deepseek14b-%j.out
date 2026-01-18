@@ -1,0 +1,14 @@
+=== MIPROv2 Optimization for deepseek-14b ===
+Start time: Fri Jan 16 09:30:33 PST 2026
+Hostname: tioga19
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/__init__.py", line 27, in <module>
+    from .signatures import (
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/signatures.py", line 10, in <module>
+    import dspy
+ModuleNotFoundError: No module named 'dspy'
+
+End time: Fri Jan 16 09:30:33 PST 2026

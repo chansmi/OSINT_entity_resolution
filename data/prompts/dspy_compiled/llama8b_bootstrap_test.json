@@ -1,0 +1,65 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Siarhei DZIK\nBirth Date: 1956-03-10\nFirst Name: Siarhei\nLast Name: DZIK",
+        "entity_b": "Type: Person\nNames: Дик, Сергей Константинович, Сяргей Канстанцінавіч Дзік\nAliases: Сяргей Дзік\nBirth Date: 1956-03-10\nBirth Place: Žodzina\nCountry: by\nGender: male\nPosition: member of the House of Representatives of Belarus",
+        "reasoning": "The entities have different names and birth places, but the birth dates match. However, the differences in names and birth places are likely due to variations in transliteration and formatting, which are common for entities with non-English names. There is no contradictory evidence to suggest they are different entities.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Oleg Valerjevitj KOVAL, Oleg KOVAL, Oleh Valerijovytj KOVAL, Олег Валерьевич КОВАЛЬ, Коваль Олег Валерійович, Oleg Valerievich KOVAL, Koval Oleg Valeryevich, Koval Oleg\nAliases: Koval Oleh Valeriiovych, Oleg Valerievich KOVAL, Олег Валерьевич КОВАЛЬ, Олег Валерiйович КОВАЛЬ\nBirth Date: 1974, 1974-09-29\nCountry: ua\nAddress: 9 Square Of Heroes Of The Great Patriotic War, Luhansk, Ukraine; 9 Square of Heroes of the Great Patriotic War, Luhansk; 9 Square of Heroes of the Great Patriotic War, Luhansk, Ukraine\nGender: male\nPosition: Deputy Chairman of the so-called “People’s Council” of the so-called “Luhansk People’s Republic”, «депутат народної ради» незаконного збройного формування «ЛНР»\nFirst Name: Oleg Valeryevich, Oleg, Олег\nLast Name: Koval, KOVAL, КОВАЛЬ",
+        "entity_b": "Type: Person\nNames: Ivaninskiy Oleg Ivanovich, Іванінський Олег Іванович, 奥列格·伊万宁斯基, Oleg Ivanovich Ivaninskiy, Oleg Ivanovitj IVANINSKIJ, Олег Иванович ИВАНИНСКИЙ, オレグ・イヴァニンスキー, ИВАНИНСКИЙ ОЛЕГ ИВАНОВИЧ\nAliases: Иванинский, Олег Иванович, Иванинский Олег Иванович, Ivaninskiy Oleg Ivanovich, Ivaninskyi Oleh Ivanovych\nBirth Date: 1966-06-05, 1966\nBirth Place: Novosibirsk\nRussia, Російська Федерація, м. Новосибірськ\nNationality: ru\nCountry: ru\nAddress: 1 Okhotny Ryad str, Russia, 103265; 1 Okhotny Ryad str, 103265; 1 Okhotny Ryad Str, Russia, 103265\nGender: male\nPosition: Members of Parliament and Senate, Депутаты и сенаторы\nFirst Name: Oleg Ivanovich, Oleg, Олег\nLast Name: IVANINSKY, Ivaninskiy, IVANINSKIY, Иванинский, Ivaninsky, ИВАНИНСКИЙ",
+        "reasoning": "The entities have different names, birth dates, birth places, and positions, indicating they are likely different individuals.",
+        "classification": "negative"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Saad JOUINI\nBirth Date: 1986-09-05\nBirth Place: Nîmes : FRANCE\nGender: male\nFirst Name: Saad\nLast Name: JOUINI",
+        "entity_b": "Type: Person\nNames: Saad JOUINI\nBirth Date: 1986-09-05\nBirth Place: NIMES\nNationality: fr\nCountry: fr\nGender: male\nFirst Name: Saad\nLast Name: JOUINI",
+        "reasoning": "The entities have the same name, birth date, and gender, but entity_a has a birth place of \"Nîmes : FRANCE\" while entity_b has a birth place of \"NIMES\" and different nationality and country. However, the difference in birth place is likely due to a minor formatting variation, and the other attributes match exactly. Therefore, the entities are likely the same person.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Company\nNames: ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"ВАША ТОПЛИВНАЯ КОМПАНИЯ\"\nAddress: УЛ. ПРОФЕССОРА КАЧАЛОВА Д.14 ЛИТЕР А, Г.САНКТ-ПЕТЕРБУРГ, 192019",
+        "entity_b": "Type: Organization\nNames: Vasha Toplivnaya Kompaniya LLC, Общество с ограниченной ответственностью \"Ваша топливная компания\", Товариство з обмеженою відповідальністю \"Ваша паливна компанія\", VTK\nAliases: Tovarystvo z obmezhenoiu vidpovidalnistiu \"Vasha palyvna kompaniia\"\nAddress: 192019, Російська Федерація, м. Санкт-Петербург, вул. Професора Качалова, буд. 14 літера А",
+        "reasoning": "The addresses appear to be slightly different, with variations in formatting and language. However, the core information (street, building number, city) seems to be the same. The differences are likely due to transliteration and formatting differences.",
+        "classification": "positive"
+      }
+    ],
+    "signature": {
+      "instructions": "Determine if two entity records refer to the same real-world entity.\n\nPrimary task: Identify CONFLICTS, not similarities.\n- Name variations (transliterations, nicknames, titles) are common\n- Missing fields are normal - absence of data is NOT evidence of difference\n- Same entity often appears across multiple sources with variations\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.",
+      "fields": [
+        {
+          "prefix": "Entity A:",
+          "description": "First entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Entity B:",
+          "description": "Second entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Brief explanation of decision, focusing on conflicts or lack thereof"
+        },
+        {
+          "prefix": "Classification:",
+          "description": "positive if same entity, negative if different entities"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.1.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

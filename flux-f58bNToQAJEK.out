@@ -1,0 +1,32 @@
+=== DeepSeek-14b Zero-shot ===
+Started: Sun Jan 18 14:34:28 PST 2026
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 2048
+  DeepSeek R1 mode: enabled (will extract answer from <think> tags)
+
+============================================================
+Running Zero-Shot Evaluation
+============================================================
+Model: deepseek-14b
+Module: cot
+Test examples: 800
+Evaluating:   0%|          | 0/800 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:13, 24.47s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:49<00:49, 24.62s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:10<00:23, 23.20s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:19<00:00, 17.47s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:19<00:00, 19.84s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Evaluating:   0%|          | 1/800 [02:47<37:10:49, 167.52s/it]Evaluating:   0%|          | 2/800 [03:11<18:25:22, 83.11s/it] Evaluating:   0%|          | 3/800 [04:14<16:23:39, 74.05s/it]Evaluating:   0%|          | 4/800 [04:44<12:31:54, 56.68s/it]Evaluating:   1%|          | 5/800 [06:11<14:53:33, 67.44s/it]Evaluating:   1%|          | 6/800 [06:35<11:37:16, 52.69s/it]Evaluating:   1%|          | 7/800 [08:17<15:09:55, 68.85s/it]Jan 18 14:43:54.535179 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f58bNToQAJEK/script Terminated (rc=143) 566.2s

@@ -1,0 +1,1252 @@
+==============================================
+DeepSeek-R1-14B Fine-Tuning with Multi-Node DDP
+Configuration: 4 nodes, 32 GPUs (MI250X)
+Started: Tue Jan 13 14:51:38 PST 2026
+Hostname: tioga28
+==============================================
+Python: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python
+Working directory: /usr/WS1/smith585/codebases/OSINT_entity_resolution
+WANDB_PROJECT: osint-entity-resolution
+HF_HOME: /p/vast1/smith585/caches/hf_home
+MASTER_ADDR: tioga28
+MASTER_PORT: 29501
+
+Starting multi-node distributed training...
+Using 4 nodes × 8 GPUs = 32 processes with data parallelism
+
+Node 0: tioga28 starting accelerate launch...
+Node 1: tioga29 starting accelerate launch...
+Node 2: tioga30 starting accelerate launch...
+Node 3: tioga31 starting accelerate launch...
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+WandB project: osint-entity-resolution
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/deepseek-14b_20260113_145320
+Quick mode: False
+
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.58it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.55it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.53it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.49it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.41it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.47it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.43it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.47it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.47it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.47it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.42it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.47it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.19it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.78it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.48it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.41it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.38it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.41it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.39it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.41it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.41it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.41it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.37it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.95it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.99it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.59it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.32it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.40it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.68it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.77it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.40it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.42it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.50it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.56it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.16it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.16it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.62it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.45it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.46it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.26it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.32it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.32it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.30it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.31it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.31it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.31it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.31it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.08it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.22it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.07it/s]
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.73it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.20it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.24it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.93it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.92it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.91it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.89it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.87it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.89it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.29it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.88it/s]
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.82it/s]
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.95it/s]
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.75it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.88it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.42it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.39it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.38it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.51it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.48it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.75it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.60it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.48it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.29it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.06it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.41it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.24it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.65it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.58it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.40it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.41it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.46it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.44it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.39it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.99it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.08it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.10it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.97it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.40it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.64it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.28it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.42it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.98it/s]
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.57it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.16it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.47it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.51it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.44it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.74it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.68it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.79it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.51it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.48it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.44it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.60it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.46it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.57it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.28it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.68it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.06it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.03it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.13it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.53it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.07it/s]
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+  Model loaded (device placement handled by accelerate)
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+
+Trainable parameters:
+
+Trainable parameters:
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+
+Trainable parameters:
+
+Trainable parameters:
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    training_args = SFTConfig(
+                  trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+  ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+         Traceback (most recent call last):
+    File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+         ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+
+Trainable parameters:
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+
+Trainable parameters:
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+
+Trainable parameters:
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+
+Trainable parameters:
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+
+Trainable parameters:
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+
+Trainable parameters:
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+
+Trainable parameters:
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+
+Trainable parameters:
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+
+Trainable parameters:
+
+Trainable parameters:
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+trainable params: 275,251,200 || all params: 15,045,284,864 || trainable%: 1.8295
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 443, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 439, in main
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 288, in train
+    training_args = SFTConfig(
+                    ^^^^^^^^^^
+  File "<string>", line 153, in __init__
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 278, in __post_init__
+    super().__post_init__()
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/training_args.py", line 1747, in __post_init__
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu.
+W0113 14:56:33.170000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138932 closing signal SIGTERM
+W0113 14:56:33.171000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138933 closing signal SIGTERM
+W0113 14:56:33.172000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138934 closing signal SIGTERM
+W0113 14:56:33.172000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138935 closing signal SIGTERM
+W0113 14:56:33.172000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138936 closing signal SIGTERM
+W0113 14:56:33.172000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138937 closing signal SIGTERM
+W0113 14:56:33.173000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1138939 closing signal SIGTERM
+W0113 14:56:33.393000 1075104 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1075132 closing signal SIGTERM
+W0113 14:56:33.394000 1075104 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1075135 closing signal SIGTERM
+W0113 14:56:33.394000 1075104 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1075137 closing signal SIGTERM
+W0113 14:56:33.395000 1075104 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1075139 closing signal SIGTERM
+E0113 14:56:33.591000 1138905 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 6 (pid: 1138938) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga30.llnl.gov
+  rank      : 22 (local_rank: 6)
+  exitcode  : 1 (pid: 1138938)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+W0113 14:56:33.707000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829116 closing signal SIGTERM
+W0113 14:56:33.709000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829117 closing signal SIGTERM
+W0113 14:56:33.709000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829118 closing signal SIGTERM
+W0113 14:56:33.709000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829120 closing signal SIGTERM
+W0113 14:56:33.709000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829121 closing signal SIGTERM
+W0113 14:56:33.710000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829122 closing signal SIGTERM
+W0113 14:56:33.710000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 829123 closing signal SIGTERM
+E0113 14:56:33.768000 1075104 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 1075133) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga28.llnl.gov
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 1075134)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga28.llnl.gov
+  rank      : 4 (local_rank: 4)
+  exitcode  : 1 (pid: 1075136)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga28.llnl.gov
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 1075138)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga28.llnl.gov
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1075133)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+E0113 14:56:34.130000 829088 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 3 (pid: 829119) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_14:56:33
+  host      : tioga31.llnl.gov
+  rank      : 27 (local_rank: 3)
+  exitcode  : 1 (pid: 829119)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+W0113 14:56:34.798000 961832 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 961859 closing signal SIGTERM
+W0113 14:56:34.800000 961832 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 961864 closing signal SIGTERM
+E0113 14:56:35.070000 961832 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 961860) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 10 (local_rank: 2)
+  exitcode  : 1 (pid: 961861)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 11 (local_rank: 3)
+  exitcode  : 1 (pid: 961862)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 12 (local_rank: 4)
+  exitcode  : 1 (pid: 961863)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[4]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 14 (local_rank: 6)
+  exitcode  : 1 (pid: 961865)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[5]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 15 (local_rank: 7)
+  exitcode  : 1 (pid: 961866)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_14:56:34
+  host      : tioga29.llnl.gov
+  rank      : 9 (local_rank: 1)
+  exitcode  : 1 (pid: 961860)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+flux-job: task(s) exited with exit code 1
+Jan 13 14:56:36.535633 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f57cumzdfKp3/script Exited (rc=1) 298.0s

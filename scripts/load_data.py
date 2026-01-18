@@ -75,16 +75,26 @@ def create_sample(input_path: str, output_path: str, n: int = 100):
 
 def load_sample(filepath: str) -> list:
     """
-    Load a sample JSON file.
-    
+    Load entity pairs from a JSON sample file.
+
+    Handles both formats:
+    - v1: JSON array of pairs
+    - v2: JSON object with 'metadata' and 'pairs' keys
+
     Args:
         filepath: Path to the sample JSON file
-        
+
     Returns:
         list: List of entity pairs
     """
     with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        data = json.load(f)
+
+    # Handle v2 format (with metadata wrapper)
+    if isinstance(data, dict) and 'pairs' in data:
+        return data['pairs']
+
+    return data
 
 
 def load_full_dataset(

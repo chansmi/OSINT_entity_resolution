@@ -1,0 +1,38 @@
+{
+  "created": "2026-01-12T10:05:17.731342",
+  "input_file": "data/raw/pairs-20251209.json.gz",
+  "seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.05,
+    "test": 0.25000000000000006
+  },
+  "splits": {
+    "train": {
+      "file": "data/processed/train.jsonl",
+      "n_examples": 697210
+    },
+    "val": {
+      "file": "data/processed/val.jsonl",
+      "n_examples": 3714
+    },
+    "test": {
+      "file": "data/processed/test.jsonl",
+      "n_examples": 54616
+    },
+    "test_pairs": {
+      "file": "data/processed/test_pairs.json",
+      "n_pairs": 54616
+    }
+  },
+  "total_pairs": 755540,
+  "test_set_checksum": "d4166c918b07e9d707e8ca8bd1886bcfbeacdb9c298ee1da406607bd638b32d0",
+  "entity_counts": {
+    "train_entities": 701465,
+    "val_entities": 50104,
+    "test_entities": 250524,
+    "overlap_train_val": 0,
+    "overlap_train_test": 0,
+    "overlap_val_test": 0
+  }
+}

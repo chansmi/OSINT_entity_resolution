@@ -1,0 +1,89 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Jean-Michel HUPFER\nBirth Date: 1953-05-14\nCountry: fr\nGender: male\nFirst Name: Jean-Michel\nLast Name: HUPFER",
+        "entity_b": "Type: Person\nNames: Jean-Michel Hupfer\nBirth Date: 1953-05-14\nGender: male\nPosition: conseiller municipal de Lagesse (2020-), conseiller communautaire du Chaourçois et du Val d'Armance (2017-)\nFirst Name: Jean-Michel\nLast Name: Hupfer",
+        "reasoning": "The entities have the same first and last name, and the same birth date, indicating a high likelihood of being the same person. The difference in position is not a strong indicator of a different person, as it is a common attribute that can change over time.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "reasoning": "No information is provided for entity_a and entity_b, making it impossible to determine if they refer to the same real-world entity.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Arif Umer, Arif QASMANI, מחמד עריף קאסמאני, Baba Ji, Arif Qasmani, محمد عريف قاسماني, Memon Baba, Muhammad Arif Qasmani\nAliases: Arif Umer, Baba Ji, Mohammad Arif QASMANI, MUHAMMAD ‘ARIF QASMANI\nBirth Date: 1944\nBirth Place: Pakistan, パキスタン\nNationality: pk\nCountry: pk\nAddress: House Number 136, KDA Scheme No. 1, Tipu Sultan Road, Karachi; Karachi, Pakistan; House Number 136, KDA Scheme N° 1, Tipu Sultan Road, Karachi\nID Numbers: 4220123932869\nGender: male\nFirst Name: Mohammad Arif, Qasmani, Muhammad Arif, Arif, عارف, Mohammad, ARIF, Baba, Muhammad 'Arif, Memon, Muhammad\nLast Name: Qasmani, قسماني, QASMANI, Baba, Ji, Umer",
+        "entity_b": "Type: Person\nNames: Songyan Ji, JI, Songyan\nBirth Date: 1994-10-15\nNationality: cn\nCountry: cn\nID Numbers: 310230199410154380\nFirst Name: Songyan\nLast Name: Ji",
+        "reasoning": "The entities have different birth dates and nationalities, indicating they are likely different individuals.",
+        "classification": "negative"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: MICHEL SAMAHA, SAMAHA, MICHEL\nAliases: Saadah Al-Naib Mishal Fuad SAMAHAH, Mishal Fuad SAMAHAH\nBirth Date: 1948-09-09\nBirth Place: Jouar, Lebanon\nNationality: ca\nCountry: lb, ca\nPassport: PE385243, 7012003\nFirst Name: Saadah, MICHEL, Mishal\nLast Name: SAMAHAH, SAMAHA",
+        "entity_b": "Type: Person\nNames: ميشال سماحه, Miszal Samaha, মিশেল সামাহা, Мишель Самах, Michel Samaha, ميشال سماحة\nAliases: ميشيل سماحة, Michel Fuad Samaha\nBirth Date: 1948-09-09\nBirth Place: Lebanon\nCountry: lb\nGender: male\nPosition: Member of the Parliament of Lebanon\nFirst Name: Michel",
+        "reasoning": "The entities have different last names (SAMAHAH vs SAMAHA), but the birth dates and birth places match. However, the first names also have variations (MICHEL vs Michel), but this is not a strong enough reason to consider them different entities. The main difference is in the last name, but it's possible that SAMAHAH and SAMAHA are variations of the same name.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: أبو سفيان بن قمو, SOFIANE BEN GOUMO, ספיאן בן ע'ומו, Abu Sufian Ibrahim Ahmed Hamuda Bin QUMU, Sofiane Ben Goumo, Sufyan bin Qumu, QUMU, Abu Sufian Ibrahim Ahmed Hamuda Bin, Sofiane BEN GOUMO\nAliases: Abou Farai al Libi, Abu Sufian Ibrahim Ahmed Hamuda Bin Qumu, Sufyan bin Qumu, Sufian bin QUMU\nBirth Date: 1959, 1959-06-26\nBirth Place: Derna : LIBYE, Derna,Libya\nNationality: ly\nCountry: ly\nAddress: Darnah; リビア; LIBYE\nGender: male\nPosition: dirigeant de Ansar al Charia Derna, Leader of Ansar al Charia Derna\nFirst Name: Sufian, Sofiane, Sufyan, Abu, SOFIANE, Abou, سفيان\nLast Name: al Libi, BEN GOUMO, bin Qumu, Ben Goumo, بن غومو, QUMU, QHUMU",
+        "entity_b": "Type: Person\nNames: أبو سفيان بن قمو, SOFIANE BEN GOUMO, ספיאן בן ע'ומו, Abu Sufian Ibrahim Ahmed Hamuda Bin QUMU, Sofiane Ben Goumo, Sufyan bin Qumu, QUMU, Abu Sufian Ibrahim Ahmed Hamuda Bin, Sofiane BEN GOUMO\nAliases: Abou Farai al Libi, Abu Sufian Ibrahim Ahmed Hamuda Bin Qumu, Sufyan bin Qumu, Sufian bin QUMU\nBirth Date: 1959, 1959-06-26\nBirth Place: Derna : LIBYE, Derna,Libya\nNationality: ly\nCountry: ly\nAddress: Darnah; リビア; LIBYE\nGender: male\nPosition: dirigeant de Ansar al Charia Derna, Leader of Ansar al Charia Derna\nFirst Name: Sufian, Sofiane, Sufyan, Abu, SOFIANE, Abou, سفيان\nLast Name: BEN GOUMO, al Libi, bin Qumu, Ben Goumo, بن غومو, QUMU, QHUMU",
+        "reasoning": "The entities have identical names, aliases, birth dates, birth places, nationalities, countries, and addresses, indicating a high degree of similarity. However, the position fields are slightly different, with entity_a listing \"dirigeant de Ansar al Charia Derna\" and entity_b listing \"Leader of Ansar al Charia Derna\". Despite this difference, the positions appear to be referring to the same role, and the difference in wording is likely due to translation or formatting variations.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Company\nNames: GNO Investment OOD, GNO INVESTMENT LTD OOD, GNO Investment LTD OOD\nCountry: bg\nAddress: r-n Krasno selo, ul. Ami Bue No 40, et. 2, ap. 3, SOFIA, SOFIA, 1606, Bulgaria; 40, Ami Bue Street/Boulevard, Krasno Selo District, Floor 2, Apartment 3 Sofia, 1606, Stolichna\nID Numbers: 205319107",
+        "entity_b": "Type: Organization\nNames: EUROFOOTBALL OOD, ЕВРОФУТБОЛ - ООД\nAliases: Eurofootball Ltd\nCountry: bg\nAddress: 126, Tsar Boris Iiiti blvd., Krasno Selo Distr., 1612 Sofia",
+        "reasoning": "The entities have different types, with entity_a being a Company and entity_b being an Organization. This suggests that they may not be the same entity, but it's not a definitive proof of difference. However, the addresses and names also show some differences, which could indicate that they are not the same entity.",
+        "classification": "negative"
+      },
+      {
+        "entity_a": "Type: Person\nNames: Andrey Olegovich KONDRASHOV\nBirth Date: 1973-06-30\nBirth Place: Alma-Ata : KAZAKHSTAN\nNationality: ru\nGender: male\nPosition: ancien premier directeur général adjoint de la All-Russia Television and Radio Broadcasting Company (VGTRK);\ndirecteur général de l’agence de presse russe TASS\nFirst Name: Andrey Olegovich\nLast Name: KONDRASHOV",
+        "entity_b": "Type: Person\nNames: Andrei Olegovich KONDRASHOV, Andrej Olegovič KONDRAŠOV, Кондрашов Андрій Олегович, Andreï Kondrachov, Andrei Olegowitsch Kondraschow, Андрей Олегович Кондрашов, Andrey Olegovich KONDRASHOV, Andrej Kondrašov\nAliases: Kondrashov Andrii Olehovych, Andrey Olegovich Kondrashov, Андрей Олегович Кондрашов, Andrei Olegovich Kondrashov\nBirth Date: 1973-06-30, 1973\nBirth Place: KAZAKHSTAN, Alma-Ata, Alma-Ata\nNationality: ru\nCountry: ru, kz\nGender: male\nPosition: Directeur général de l'agence de presse russe TASS, Propagandists\nFirst Name: Andrey, Andrei Olegovich, Andrej, Andrey Olegovich, Андрей\nLast Name: Kondrashov, КОНДРАШОВ, KONDRASJOV, KONDRASHOV, Kondrašov, KONDRAŠOV",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Person\nNames: AL-ASSAD, Bushra, بشرى الاسد, Bushra Al-Assad\nAliases: Bushra Shawkat\nBirth Date: 1960-10-24\nBirth Place: Egypt\nNationality: sy\nCountry: ae\nAddress: Dubai\nGender: female\nFirst Name: بشرى, Bushra\nLast Name: الاسد, Shawkat, Al-Assad",
+        "entity_b": "Type: Person\nNames: بشرى الأسد, Bushra Shawkat, Bushra AL-ASSAD, Bouchra Al Assad\nAliases: Bushra Shawkat, Bouchra Al Assad\nBirth Date: 1960-10-24, 1960\nGender: female\nPosition: Member of the Assad family; sister of President Bashar al‐Assad.\nFirst Name: Bouchra, Bushra\nLast Name: AL-ASSAD, Shawkat, Al Assad",
+        "classification": "positive"
+      }
+    ],
+    "signature": {
+      "instructions": "Resolve a high-stakes entity conflict to prevent a cybersecurity breach: Determine if two entity records refer to the same malicious hacker, who is suspected of infiltrating a major corporation's database. The entity records are:\nEntity A:\n Names: John Doe\nAliases: JD, John D, JDoe\nEmail: johndoe@example.com\nPosition: System Administrator\nEntity B:\n Names: John Doe\nAliases: JD, John D\nEmail: johndoe2@example.com\nPosition: Senior Network Engineer\nClassify the entities as the same or different, and provide a clear explanation for the decision.\n\nThe primary task is to identify conflicts, not similarities. Name variations are common, and missing fields are normal. The same entity often appears across multiple sources with variations.\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.\n\nThis scenario requires high accuracy to prevent a potential security breach. The model should demonstrate its ability to handle entity variations, missing fields, and conflicting information to make a reliable decision.",
+      "fields": [
+        {
+          "prefix": "Entity A:",
+          "description": "First entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Entity B:",
+          "description": "Second entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Brief explanation of decision, focusing on conflicts or lack thereof"
+        },
+        {
+          "prefix": "Classification:",
+          "description": "positive if same entity, negative if different entities"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.1.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

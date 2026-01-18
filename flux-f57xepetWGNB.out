@@ -1,0 +1,17 @@
+==============================================
+GPT-4.1 Entity Resolution Evaluation Suite
+Started: Thu Jan 15 08:43:11 PST 2026
+Hostname: tioga19
+==============================================
+Input file: data/samples/sample_1000.json
+Model: gpt-4.1-2025-04-14
+Parallel requests: 30
+
+==============================================
+[1/4] Zero-Shot with Medium Reasoning
+==============================================
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/llm_zeroshot.py", line 30, in <module>
+    from openai import OpenAI, AsyncOpenAI
+ModuleNotFoundError: No module named 'openai'
+Jan 15 08:43:13.422200 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f57xepetWGNB/script Exited (rc=1) 1.9s

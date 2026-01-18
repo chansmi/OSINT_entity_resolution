@@ -1,0 +1,47 @@
+=== Parallel Eval Chunk 7/8 ===
+Run ID: 20260118_144411
+Range: 700 to 800
+Started: Sun Jan 18 14:44:22 PST 2026
+
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+Evaluating chunk: 700 to 800 (100 examples)
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+  Model name: llama-8b
+  Temperature: 0.0
+  Max new tokens: 512
+Loaded compiled module from data/prompts/llama-8b/mipro_20260116.json
+Evaluating:   0%|          | 0/100 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:25<01:15, 25.17s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [01:02<01:04, 32.09s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:28<00:29, 29.47s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:32<00:00, 19.59s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:32<00:00, 23.23s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Evaluating:   1%|          | 1/100 [02:27<4:03:02, 147.29s/it]Evaluating:   2%|▏         | 2/100 [02:38<1:50:12, 67.47s/it] Evaluating:   3%|▎         | 3/100 [02:46<1:05:14, 40.36s/it]Evaluating:   4%|▍         | 4/100 [02:52<42:42, 26.69s/it]  Evaluating:   5%|▌         | 5/100 [02:55<28:52, 18.23s/it]Evaluating:   6%|▌         | 6/100 [03:01<21:34, 13.77s/it]Evaluating:   7%|▋         | 7/100 [03:06<16:56, 10.92s/it]Evaluating:   8%|▊         | 8/100 [03:16<16:41, 10.89s/it]Evaluating:   9%|▉         | 9/100 [03:22<13:46,  9.08s/it]Evaluating:  10%|█         | 10/100 [03:29<13:02,  8.69s/it]Evaluating:  11%|█         | 11/100 [03:36<11:54,  8.03s/it]Evaluating:  12%|█▏        | 12/100 [03:41<10:25,  7.11s/it]Evaluating:  13%|█▎        | 13/100 [03:47<09:46,  6.74s/it]Evaluating:  14%|█▍        | 14/100 [03:53<09:17,  6.48s/it]Evaluating:  15%|█▌        | 15/100 [03:58<08:35,  6.07s/it]Evaluating:  16%|█▌        | 16/100 [04:03<08:05,  5.78s/it]Evaluating:  17%|█▋        | 17/100 [04:23<13:58, 10.10s/it]Evaluating:  18%|█▊        | 18/100 [04:34<13:58, 10.23s/it]Evaluating:  19%|█▉        | 19/100 [04:39<11:46,  8.72s/it]Evaluating:  20%|██        | 20/100 [04:44<10:18,  7.73s/it]Evaluating:  21%|██        | 21/100 [04:53<10:47,  8.19s/it]Evaluating:  22%|██▏       | 22/100 [04:58<09:04,  6.98s/it]Evaluating:  23%|██▎       | 23/100 [05:03<08:13,  6.41s/it]Evaluating:  24%|██▍       | 24/100 [05:09<08:05,  6.38s/it]Evaluating:  25%|██▌       | 25/100 [05:14<07:29,  6.00s/it]Evaluating:  26%|██▌       | 26/100 [05:19<07:04,  5.73s/it]Evaluating:  27%|██▋       | 27/100 [05:26<07:17,  5.99s/it]Evaluating:  28%|██▊       | 28/100 [05:31<06:52,  5.73s/it]Evaluating:  29%|██▉       | 29/100 [05:36<06:26,  5.44s/it]Evaluating:  30%|███       | 30/100 [05:41<06:11,  5.30s/it]Evaluating:  31%|███       | 31/100 [05:46<06:02,  5.25s/it]Evaluating:  32%|███▏      | 32/100 [05:50<05:33,  4.90s/it]Evaluating:  33%|███▎      | 33/100 [06:19<13:40, 12.25s/it]Evaluating:  34%|███▍      | 34/100 [06:23<10:37,  9.65s/it]Evaluating:  35%|███▌      | 35/100 [06:28<08:58,  8.29s/it]Evaluating:  36%|███▌      | 36/100 [06:38<09:17,  8.71s/it]Evaluating:  37%|███▋      | 37/100 [06:48<09:48,  9.34s/it]Evaluating:  38%|███▊      | 38/100 [06:52<07:56,  7.68s/it]Evaluating:  39%|███▉      | 39/100 [06:57<07:01,  6.91s/it]Evaluating:  40%|████      | 40/100 [07:01<06:00,  6.00s/it]Evaluating:  41%|████      | 41/100 [07:05<05:16,  5.36s/it]Evaluating:  42%|████▏     | 42/100 [07:11<05:13,  5.40s/it]Evaluating:  43%|████▎     | 43/100 [07:23<06:58,  7.34s/it]Evaluating:  44%|████▍     | 44/100 [07:28<06:26,  6.90s/it]Evaluating:  45%|████▌     | 45/100 [08:03<13:48, 15.06s/it]Evaluating:  46%|████▌     | 46/100 [08:08<10:52, 12.08s/it]Evaluating:  47%|████▋     | 47/100 [08:13<08:49,  9.99s/it]Evaluating:  48%|████▊     | 48/100 [08:20<07:52,  9.08s/it]Evaluating:  49%|████▉     | 49/100 [08:26<06:53,  8.12s/it]Evaluating:  50%|█████     | 50/100 [08:56<12:14, 14.68s/it]Evaluating:  51%|█████     | 51/100 [09:04<10:28, 12.82s/it]Evaluating:  52%|█████▏    | 52/100 [09:09<08:24, 10.51s/it]Evaluating:  53%|█████▎    | 53/100 [09:15<07:06,  9.08s/it]Evaluating:  54%|█████▍    | 54/100 [09:23<06:47,  8.85s/it]Evaluating:  55%|█████▌    | 55/100 [09:28<05:48,  7.74s/it]Evaluating:  56%|█████▌    | 56/100 [09:35<05:19,  7.26s/it]Evaluating:  57%|█████▋    | 57/100 [09:39<04:42,  6.58s/it]Evaluating:  58%|█████▊    | 58/100 [09:45<04:17,  6.14s/it]Evaluating:  59%|█████▉    | 59/100 [09:50<03:58,  5.82s/it]Evaluating:  60%|██████    | 60/100 [10:00<04:40,  7.02s/it]Evaluating:  61%|██████    | 61/100 [10:05<04:11,  6.45s/it]Evaluating:  62%|██████▏   | 62/100 [10:18<05:22,  8.49s/it]Evaluating:  63%|██████▎   | 63/100 [10:23<04:36,  7.48s/it]Evaluating:  64%|██████▍   | 64/100 [10:28<04:03,  6.77s/it]Evaluating:  65%|██████▌   | 65/100 [10:34<03:48,  6.54s/it]Evaluating:  66%|██████▌   | 66/100 [10:37<03:07,  5.51s/it]Evaluating:  67%|██████▋   | 67/100 [10:47<03:39,  6.65s/it]Evaluating:  68%|██████▊   | 68/100 [10:52<03:17,  6.18s/it]Evaluating:  69%|██████▉   | 69/100 [10:58<03:16,  6.33s/it]Evaluating:  70%|███████   | 70/100 [11:02<02:47,  5.60s/it]Evaluating:  71%|███████   | 71/100 [11:06<02:29,  5.16s/it]Evaluating:  72%|███████▏  | 72/100 [11:36<05:48, 12.44s/it]Evaluating:  73%|███████▎  | 73/100 [11:41<04:36, 10.24s/it]Evaluating:  74%|███████▍  | 74/100 [11:46<03:46,  8.70s/it]Evaluating:  75%|███████▌  | 75/100 [11:50<03:05,  7.42s/it]Evaluating:  76%|███████▌  | 76/100 [11:56<02:46,  6.96s/it]Evaluating:  77%|███████▋  | 77/100 [12:27<05:24, 14.09s/it]Evaluating:  78%|███████▊  | 78/100 [12:32<04:10, 11.40s/it]Evaluating:  79%|███████▉  | 79/100 [12:54<05:05, 14.53s/it]Evaluating:  80%|████████  | 80/100 [13:04<04:25, 13.30s/it]Evaluating:  81%|████████  | 81/100 [13:10<03:30, 11.08s/it]Evaluating:  82%|████████▏ | 82/100 [13:15<02:47,  9.29s/it]Evaluating:  83%|████████▎ | 83/100 [13:18<02:01,  7.17s/it]Evaluating:  84%|████████▍ | 84/100 [13:23<01:44,  6.52s/it]Evaluating:  85%|████████▌ | 85/100 [13:29<01:36,  6.47s/it]Evaluating:  86%|████████▌ | 86/100 [13:35<01:28,  6.29s/it]Evaluating:  87%|████████▋ | 87/100 [13:40<01:17,  5.94s/it]Evaluating:  88%|████████▊ | 88/100 [14:10<02:38, 13.19s/it]Evaluating:  89%|████████▉ | 89/100 [14:16<02:02, 11.14s/it]Evaluating:  90%|█████████ | 90/100 [14:22<01:33,  9.33s/it]Evaluating:  91%|█████████ | 91/100 [14:28<01:16,  8.46s/it]Evaluating:  92%|█████████▏| 92/100 [14:33<00:58,  7.33s/it]Evaluating:  93%|█████████▎| 93/100 [14:39<00:49,  7.11s/it]Evaluating:  94%|█████████▍| 94/100 [14:44<00:39,  6.51s/it]Evaluating:  95%|█████████▌| 95/100 [14:49<00:29,  5.80s/it]Evaluating:  96%|█████████▌| 96/100 [14:54<00:22,  5.71s/it]Evaluating:  97%|█████████▋| 97/100 [14:59<00:16,  5.61s/it]Evaluating:  98%|█████████▊| 98/100 [15:04<00:10,  5.46s/it]Evaluating:  99%|█████████▉| 99/100 [15:10<00:05,  5.56s/it]Evaluating: 100%|██████████| 100/100 [15:15<00:00,  5.33s/it]Evaluating: 100%|██████████| 100/100 [15:15<00:00,  9.16s/it]
+Model loaded successfully on cuda:0
+Saved results to data/outputs/parallel_eval/20260118_144411/chunk_07.json
+
+==================================================
+Chunk 7 Results
+==================================================
+  Accuracy:  0.9400
+  Precision: 0.9398
+  Recall:    0.9873
+  F1 Score:  0.9630
+  Evaluated: 100
+  Errors:    0
+
+Confusion Matrix:
+  True Negatives:  16
+  False Positives: 5
+  False Negatives: 1
+  True Positives:  78
+==================================================
+
+Completed: Sun Jan 18 15:00:01 PST 2026

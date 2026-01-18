@@ -1,0 +1,14 @@
+{
+  "prompt_id": "default_conflict_focused_v1",
+  "model": "all",
+  "description": "Default conflict-focused prompt - works across all models",
+  "system_prompt": "You are an expert entity resolution system. Your task is to determine if two entity records refer to the same real-world entity.\n\nPrimary task: Identify CONFLICTS, not similarities.\n- Name variations (transliterations, nicknames, titles) are common\n- Missing fields are normal - absence of data is NOT evidence of difference\n- Same entity often appears across multiple sources with variations\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.",
+  "user_template": "Determine if these two entity records refer to the same real-world entity.\n\n=== Entity A ===\n{entity_a}\n\n=== Entity B ===\n{entity_b}\n\nClassify as:\n- POSITIVE: Same entity (no conflicts found)\n- NEGATIVE: Different entities (explicit conflicts exist)\n\nRespond with a JSON object containing:\n- \"classification\": \"positive\" or \"negative\"\n- \"reasoning\": Brief explanation focusing on conflicts or lack thereof",
+  "demonstrations": [],
+  "provenance": {
+    "source": "manual",
+    "strategy": "conflict_focused",
+    "notes": "Baseline prompt from llm_zeroshot.py that achieved 94.95% F1 on GPT-5-nano",
+    "created_date": "2026-01-16"
+  }
+}

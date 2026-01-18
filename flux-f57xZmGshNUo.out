@@ -1,0 +1,49 @@
+Starting model download job...
+Hostname: tioga18
+Date: Thu Jan 15 08:32:05 PST 2026
+Loading .env file...
+HF_TOKEN is set ✓
+/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+============================================================
+Model Download Script
+============================================================
+
+Download directory: /p/vast1/smith585/models/pretrained
+HF_TOKEN found, logging in...
+
+============================================================
+Downloading: deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+To: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+============================================================
+Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/huggingface_hub/file_download.py:982: UserWarning: `local_dir_use_symlinks` parameter is deprecated and will be ignored. The process to download files to a local folder has been updated and do not rely on symlinks anymore. You only need to pass a destination folder as`local_dir`.
+For more details, check out https://huggingface.co/docs/huggingface_hub/main/en/guides/download#download-files-to-local-folder.
+  warnings.warn(
+Fetching 13 files:   8%|▊         | 1/13 [00:01<00:12,  1.04s/it]Fetching 13 files:  15%|█▌        | 2/13 [00:01<00:06,  1.60it/s]Fetching 13 files:  54%|█████▍    | 7/13 [01:17<01:14, 12.44s/it]Fetching 13 files:  69%|██████▉   | 9/13 [01:23<00:37,  9.46s/it]Fetching 13 files: 100%|██████████| 13/13 [01:23<00:00,  6.43s/it]
+✓ Downloaded deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+
+Verifying /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+✓ Found 4 safetensor files
+✓ Total size: 29.54 GB
+
+============================================================
+Downloading: meta-llama/Llama-3.1-8B-Instruct
+To: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Fetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]Fetching 17 files:   6%|▌         | 1/17 [00:00<00:04,  3.65it/s]Fetching 17 files:  18%|█▊        | 3/17 [00:00<00:01,  8.78it/s]Fetching 17 files:  18%|█▊        | 3/17 [00:16<00:01,  8.78it/s]Fetching 17 files:  41%|████      | 7/17 [00:55<01:33,  9.32s/it]Fetching 17 files:  71%|███████   | 12/17 [01:36<00:43,  8.71s/it]Fetching 17 files: 100%|██████████| 17/17 [01:36<00:00,  5.65s/it]
+✓ Downloaded meta-llama/Llama-3.1-8B-Instruct
+
+Verifying /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+✓ Found 4 safetensor files
+✓ Total size: 16.06 GB
+
+============================================================
+Download complete!
+============================================================
+
+Downloaded models:
+  ✓ deepseek-ai--DeepSeek-R1-Distill-Qwen-14B: 4 weight files
+  ✓ meta-llama--Llama-3.1-8B-Instruct: 4 weight files
+
+Download job complete: Thu Jan 15 08:35:56 PST 2026

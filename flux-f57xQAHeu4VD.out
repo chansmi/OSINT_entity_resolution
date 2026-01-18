@@ -1,0 +1,62 @@
+==============================================
+Local LLM Entity Resolution Evaluation Suite
+Started: Thu Jan 15 08:11:01 PST 2026
+Hostname: tioga22
+==============================================
+Input file: data/samples/sample_1000.json
+Python: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python
+
+GPU Status:
+rocm-smi not available
+
+==============================================
+[1/6] Llama-8B: Zero-Shot
+==============================================
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/llm_local.py", line 365, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/llm_local.py", line 351, in main
+    metrics, results = run_experiment(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/llm_local.py", line 275, in run_experiment
+    model, tokenizer, model_name = load_model(model_key)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/llm_local.py", line 176, in load_model
+    tokenizer = AutoTokenizer.from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 1089, in from_pretrained
+    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 921, in get_tokenizer_config
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py", line 531, in cached_files
+    resolved_files = [
+                     ^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py", line 532, in <listcomp>
+    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision, repo_type)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/utils/hub.py", line 143, in _get_cache_file_to_return
+    resolved_file = try_to_load_from_cache(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct'. Use `repo_type` argument if needed.
+flux-job: task(s) exited with exit code 1
+Jan 15 08:11:56.328011 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f57xQAHeu4VD/script Exited (rc=1) 54.5s

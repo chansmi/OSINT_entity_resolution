@@ -1,0 +1,476 @@
+=== MIPROv2 Optimization for deepseek-14b ===
+Start time: Fri Jan 16 10:00:25 PST 2026
+Hostname: tioga20
+
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+2026/01/16 10:00:50 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/01/16 10:00:50 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/01/16 10:00:50 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=15 sets of demonstrations...
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 512
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: deepseek-14b
+Dev examples: 200
+Candidates: 15
+Running MIPROv2 optimization (num_candidates=15, num_trials=22)...
+  trainset: 160 examples
+  valset: 40 examples
+Bootstrapping set 1/15
+Bootstrapping set 2/15
+Bootstrapping set 3/15
+  0%|          | 0/160 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:30<01:31, 30.64s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [01:02<01:03, 31.56s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:35<00:32, 32.10s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:50<00:00, 25.45s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:50<00:00, 27.71s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+2026/01/16 10:05:02 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: علی اصغر نوروزی, Aliasghar Norouzi, NOROUZI, Aliasghar\nAliases: Ali Asghar Norowzi\nBirth Date: 1962-11-11\nNationality: ir\nCountry: ir\nID Numbers: 4591967573\nPassport: Y53914915\nGender: male\nFirst Name: Aliasghar, Ali, علی اصغر\nLast Name: Norowzi, نوروزی, Norouzi', 'entity_b': 'Type: Person\nNames: Ali Asghar Nourouzi\nAliases: علی اصغر نوروزی, Ali Asghar Norouzi\nBirth Date: 1962-11-11\nBirth Place: Dashtestan, Bushehr Province\nNationality: ir\nCountry: ir\nAddress: Unit 29 5th Floor, Talaieh Block - B1, Elahiyeh Complex 1 Number 0, Alley 2- Shahid Sajjad Rushanai, Rabbaninejad Street, Zein Aldin Municipality, Qom, 3739144673\nPassport: Y53914915\nGender: male\nPosition: Chairman of the Board of Directors of the Islamic Revolutionary Guard Corps (IRGC) Cooperative Foundation\nFirst Name: Ali\nLast Name: Nourouzi, Norouzi', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, let's tackle this problem step by step. I need to determine if the two entity records refer to the same real-world entity. The primary task is to look for contradictions or conflicts between the two records. If there are no contradictions, I should classify them as the same entity (positive). Only if there are explicit conflicts should I classify them as different entities (negative).
+
+First, I'll examine the details provided for each entity.
+
+**Entity A:**
+- **Type:** Person
+- **Names:** علی اصغر نوروزی, Aliasghar Norouzi, NOROUZI, Aliasghar
+- **Aliases:** Ali Asghar Norowzi
+- **Birth Date:** 1962-11-11
+- **Nationality:** ir
+- **Country:** ir
+- **ID Numbers:** 4591967573
+- **Passport:** Y53914915
+- **Gender:** male
+- **First Name:** Aliasghar, Ali, علی اصغر
+- **Last Name:** Norowzi, نوروزی, Norouzi
+
+**Entity B:**
+- **Type:** Person
+- **Names:** Ali Asghar Nourouzi
+- **Aliases:** علی اصغر نوروزی, Ali Asghar Norouzi
+- **Birth Date:** 1962-11-11
+- **Birth Place:** Dashtestan, Bushehr Province
+- **Nationality:** ir
+- **Country:** ir
+- **Address:** Unit 29 5th Floor, Talaieh Block - B1, Elahiyeh Complex 1 Number 0, Alley 2- Shahid Sajjad Rushanai, Rabbaninejad Street, Zein Aldin Municipality, Qom, 3739144673
+- **Passport:** Y53914915
+- **Gender:** male
+- **Position:** Chairman of the Board of Directors of the Islamic Revolutionary Guard Corps (IRGC) Cooperative Foundation
+- **First Name:** Ali
+- **Last Name:** Nourouzi, Norouzi
+
+**Step 1: Compare Names and Aliases**
+
+The names provided in both entities are variations of the same individual. Entity A lists names like علی اصغر نوروزی 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  1%|          | 1/160 [04:12<11:09:38, 252.69s/it]2026/01/16 10:06:28 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: Viktor Alexeevich ZUBKOV\nAliases: Viktor Alekseyevich ZUBKOV, Зубков Виктор Алексеевич\nBirth Date: 1941-09-15\nBirth Place: Kushva\nNationality: ru\nGender: male\nPosition: Former Deputy Prime Minister, Chairman of the Board of Directors at Gazprom\nFirst Name: Viktor\nLast Name: ZUBKOV', 'entity_b': 'Type: Person\nNames: ヴィクトル・ズブコフ, 빅토르 줍코프, Wiktor Zubkow, Viktor Zubkov, Віктор Зубков, Βίκτορ Ζουμπκόφ, Wiktor Alexejewitsch Subkow, Viktor Alekszejevics Zubkov\nAliases: Wiktor Aleksiejewicz Zubkow, В. А. Зубков, Víctor Zubkov, Зубков Виктор Алексеевич\nBirth Date: 1941-09-15\nBirth Place: Arbat\nCountry: ru\nGender: male\nPosition: Deputy Chairman of the Government of the Russian Federation (2008-2012), Руководители госкомпаний\nFirst Name: Viktor\nLast Name: Zubkov', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same real-world person. Let's break it down step by step.
+
+First, I'll look at the names. Entity A has the name "Viktor Alexeevich ZUBKOV," and Entity B has a bunch of variations like "Wiktor Zubkow," "Віктор Зубков," and others. The first thing I notice is that the first name is spelled differently in some cases—like "Viktor" versus "Wiktor." But I know that sometimes names can have transliterations depending on the language, so that's not necessarily a conflict.
+
+Next, the last name is consistently "Zubkov" across both entities, just with different spellings in different languages. That seems pretty consistent. So the core name parts match up.
+
+Now, looking at aliases. Entity A has "Viktor Alekseyevich ZUBKOV," and Entity B has "Wiktor Aleksiejewicz Zubkow" and others. Again, similar patterns with slight spelling differences, which I think are just language-based variations.
+
+Moving on to birth details. Both entities list the birth date as "1941-09-15." That's a perfect match. The birth place is where things get a bit tricky. Entity A says "Kushva," while Entity B says "Arbat." At first glance, that seems like a conflict. But I should check if these are the same place or if there's a possibility of a misspelling or different naming conventions. Maybe "Arbat" is another name for "Kushva" or a nearby location. I'm not entirely sure, but without more information, it's hard to say if this is a real conflict or just a variation.
+
+Nationality is listed as "ru" for both, which means Russian. That's consistent, so no issues there.
+
+Gender is male for both, which matches.
+
+Positions are slightly different. Entity A mentions "Former Deputy Prime Minister, Chairman of the Board of Directors at Gazprom," while Entity B lists "Deputy Chairman of the Government of the Russian Federation (2008-2012), Руководители госкомпаний." These roles sound similar but are phrased differently. I think this is because of translation differences rather than actual conflicts in roles. Both positions indicate high-ranking government and corporate roles, which aligns with the same person. 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  1%|▏         | 2/160 [05:38<6:47:23, 154.70s/it] 2026/01/16 10:07:53 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: Siarhei DZIK\nBirth Date: 1956-03-10\nFirst Name: Siarhei\nLast Name: DZIK', 'entity_b': 'Type: Person\nNames: Дик, Сергей Константинович, Сяргей Канстанцінавіч Дзік\nAliases: Сяргей Дзік\nBirth Date: 1956-03-10\nBirth Place: Žodzina\nCountry: by\nGender: male\nPosition: member of the House of Representatives of Belarus', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, let's tackle this problem step by step. I need to determine if the two entity records refer to the same real-world entity. The primary task is to look for contradictions or conflicts between the two records. If there are no contradictions, I should classify them as 'positive' (same entity). Only if there are explicit conflicts should I classify them as 'negative' (different entities).
+
+First, I'll examine the details provided for each entity.
+
+**Entity A:**
+- **Type:** Person
+- **Names:** Siarhei DZIK
+- **Birth Date:** 1956-03-10
+- **First Name:** Siarhei
+- **Last Name:** DZIK
+
+**Entity B:**
+- **Type:** Person
+- **Names:** Дик, Сергей Константинович, Сяргей Канstantinavich Дзік
+- **Aliases:** Сяргей Дзік
+- **Birth Date:** 1956-03-10
+- **Birth Place:** Žodzina
+- **Country:** by
+- **Gender:** male
+- **Position:** member of the House of Representatives of Belarus
+
+Now, I'll compare the information.
+
+1. **Names and Aliases:**
+   - Entity A's name is "Siarhei DZIK."
+   - Entity B has multiple names: "Дик," "Сергей Константинович," and "Сяргей Канstantinavich Дзік." There's also an alias: "Сяргей Дзік."
+   - The first names "Siarhei" and "Сяргей" are variations of the same name in different languages (Belarusian/Russian). "DZIK" and "Дик" are transliterations of the same surname.
+   - The alias "Сяргей Дзік" matches the first name and surname from Entity A when considering transliterations.
+
+2. **Birth Date:**
+   - Both entities share the same birth date: "1956-03-10."
+
+3. **Birth Place:**
+   - Entity A doesn't specify a birth place.
+   - Entity B's birth place is "Žodzina," which is a city in Belarus.
+
+4. **Country:**
+   - Entity A doesn't specify a country.
+   - Entity B's country is "by 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  2%|▏         | 3/160 [07:03<5:21:33, 122.89s/it]  2%|▎         | 4/160 [07:30<3:40:52, 84.95s/it] 2026/01/16 10:09:49 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: Oleg Valerjevitj KOVAL, Oleg KOVAL, Oleh Valerijovytj KOVAL, Олег Валерьевич КОВАЛЬ, Коваль Олег Валерійович, Oleg Valerievich KOVAL, Koval Oleg Valeryevich, Koval Oleg\nAliases: Koval Oleh Valeriiovych, Oleg Valerievich KOVAL, Олег Валерьевич КОВАЛЬ, Олег Валерiйович КОВАЛЬ\nBirth Date: 1974, 1974-09-29\nCountry: ua\nAddress: 9 Square Of Heroes Of The Great Patriotic War, Luhansk, Ukraine; 9 Square of Heroes of the Great Patriotic War, Luhansk; 9 Square of Heroes of the Great Patriotic War, Luhansk, Ukraine\nGender: male\nPosition: Deputy Chairman of the so-called “People’s Council” of the so-called “Luhansk People’s Republic”, «депутат народної ради» незаконного збройного формування «ЛНР»\nFirst Name: Oleg Valeryevich, Oleg, Олег\nLast Name: Koval, KOVAL, КОВАЛЬ', 'entity_b': 'Type: Person\nNames: Ivaninskiy Oleg Ivanovich, Іванінський Олег Іванович, 奥列格·伊万宁斯基, Oleg Ivanovich Ivaninskiy, Oleg Ivanovitj IVANINSKIJ, Олег Иванович ИВАНИНСКИЙ, オレグ・イヴァニンスキー, ИВАНИНСКИЙ ОЛЕГ ИВАНОВИЧ\nAliases: Иванинский, Олег Иванович, Иванинский Олег Иванович, Ivaninskiy Oleg Ivanovich, Ivaninskyi Oleh Ivanovych\nBirth Date: 1966-06-05, 1966\nBirth Place: Novosibirsk\nRussia, Російська Федерація, м. Новосибірськ\nNationality: ru\nCountry: ru\nAddress: 1 Okhotny Ryad str, Russia, 103265; 1 Okhotny Ryad str, 103265; 1 Okhotny Ryad Str, Russia, 103265\nGender: male\nPosition: Members of Parliament and Senate, Депутаты и сенаторы\nFirst Name: Oleg Ivanovich, Oleg, Олег\nLast Name: IVANINSKY, Ivaninskiy, IVANINSKIY, Иванинский, Ivaninsky, ИВАНИНСКИЙ', 'classification': 'negative'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same real-world person. Let's break it down step by step.
+
+First, I'll look at the names. Entity A has names like Oleg Valerjevitj KOVAL, Oleg KOVAL, and various other transliterations. Entity B has names such as Ivaninskiy Oleg Ivanovich, with different spellings and transliterations. The first names are Oleg for both, but the last names are KOVAL vs. IVANINSKY. That's a big difference. KOVAL and IVANINSKY don't seem related at all.
+
+Next, I'll check the birth dates. Entity A was born in 1974, while Entity B was born in 1966. That's a 10-year difference. If they were the same person, the birth years should match, right? Unless there's a typo, but I don't see any indication of that.
+
+Looking at the birth places, Entity A is from Luhansk, Ukraine, and Entity B is from Novosibirsk, Russia. These are different countries and regions, so that's another point of conflict.
+
+Nationalities are also different. Entity A is from Ukraine (ua), and Entity B is from Russia (ru). Different nationalities usually mean different people unless there's a dual citizenship, but even then, the other details don't align.
+
+The addresses are another point. Entity A's address is in Luhansk, Ukraine, while Entity B's is in Russia. Different locations mean they're likely not the same person.
+
+Positions are different too. Entity A is a Deputy Chairman of the so-called “People’s Council” of the so-called “Luhansk People’s Republic”, which suggests involvement in a specific regional governance. Entity B is a Member of Parliament and Senate, indicating a different political role and possibly different political affiliations.
+
+Looking at the aliases, Entity A has variations of KOVAL, while Entity B has variations of IVANINSKY. No overlap there.
+
+ID numbers aren't provided for either, so I can't compare those. But the other conflicting information is enough to conclude they're different.
+
+So, putting it all together: different last names, different birth years, different birth places, different nationalities, different addresses, different positions. All these factors point to them being different entities. There's no overlapping information that would suggest they're the same person. Therefore, the classification should be negative.
+</think> 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  3%|▎         | 5/160 [08:58<3:42:35, 86.17s/it]2026/01/16 10:11:13 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: Saad JOUINI\nBirth Date: 1986-09-05\nBirth Place: Nîmes : FRANCE\nGender: male\nFirst Name: Saad\nLast Name: JOUINI', 'entity_b': 'Type: Person\nNames: Saad JOUINI\nBirth Date: 1986-09-05\nBirth Place: NIMES\nNationality: fr\nCountry: fr\nGender: male\nFirst Name: Saad\nLast Name: JOUINI', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same real-world person. Let's break it down step by step.
+
+First, I'll look at the basic information provided for both entities. Both are of type "Person," which is a good start because they're in the same category. 
+
+Looking at the names, both entity_a and entity_b have the exact same full name: "Saad JOUINI." That's a strong indicator that they might be the same person. Usually, if two records have the same name, there's a high chance they're referring to the same individual, especially if there are no conflicting details.
+
+Next, I'll check the birth dates. Entity_a has a birth date of "1986-09-05," and entity_b also has the same exact date: "1986-09-05." Matching birth dates further support the idea that these are the same person. Birth dates are pretty specific, so if they match, it's a good sign.
+
+Now, let's look at the birth places. Entity_a lists the birth place as "Nîmes : FRANCE," while entity_b simply says "NIMES." At first glance, these might seem different, but I know that "Nîmes" and "NIMES" are just different spellings of the same city in France. The colon after "Nîmes" in entity_a might be a formatting difference, but it doesn't change the fact that both are referring to Nimes, France. So, the birth places are essentially the same.
+
+Moving on to nationality and country. Entity_a doesn't specify nationality or country, but entity_b lists both as "fr," which stands for France. Since entity_a's birth place is in France, it's safe to assume that the nationality and country would also be French. The absence of this information in entity_a isn't a red flag because, as per the instructions, missing fields don't indicate a difference.
+
+Gender is another point to consider. Both entities are marked as male, which aligns perfectly. Consistent gender information is another positive sign that we're dealing with the same person.
+
+Looking at the first and last names, both entities have "Saad" as the first name and "JOUINI" as the last name. There are no variations or alternative names provided in either record, which means there's no confusion about the name structure.
+
+I also notice that there are no aliases or 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  4%|▍         | 6/160 [10:23<3:40:03, 85.74s/it]  4%|▍         | 7/160 [10:50<2:49:28, 66.46s/it]2026/01/16 10:13:06 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Company\nNames: ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ВАША ТОПЛИВНАЯ КОМПАНИЯ"\nAddress: УЛ. ПРОФЕССОРА КАЧАЛОВА Д.14 ЛИТЕР А, Г.САНКТ-ПЕТЕРБУРГ, 192019', 'entity_b': 'Type: Organization\nNames: Vasha Toplivnaya Kompaniya LLC, Общество с ограниченной ответственностью "Ваша топливная компания", Товариство з обмеженою відповідальністю "Ваша паливна компанія", VTK\nAliases: Tovarystvo z obmezhenoiu vidpovidalnistiu "Vasha palyvna kompaniia"\nAddress: 192019, Російська Федерація, м. Санкт-Петербург, вул. Професора Качалова, буд. 14 літера А', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, let's tackle this problem step by step. I have two entity records here, both of which are organizations. My goal is to determine if they refer to the same real-world entity. 
+
+First, I'll look at the names provided for each entity. Entity A is named "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕРТСТВЕННОСТЬЮ 'ВАША ТОПЛИВНАЯ КОМПАНИЯ'". Translating this from Russian, it means "Limited Liability Company 'Your Fuel Company'". Entity B has several names listed, including "Vasha Toplivnaya Kompaniya LLC", "Общество с ограниченной ответственностью 'Ваша топливная компания'", and others in different languages. The primary name here also translates to "Your Fuel Company LLC". 
+
+The names are almost identical, just written in different languages and with slight variations in the structure. This suggests that they might be the same company, just represented in multiple languages or formats.
+
+Next, I'll examine the addresses. Entity A's address is "УЛ. ПРОФЕССОРА КАЧАЛОВА Д.14 ЛИТЕР А, Г.САНКТ-ПЕТЕРБУРГ, 192019". This translates to "Professor Kachalov Street, Building 14, Liter A, Saint Petersburg, 192019". Entity B's address is "192019, Російська Федерація, м. Санкт-Петербург, вул. Професора Качалова, буд. 14 літера А". Translating this, it's "192019, Russian Federation, Saint Petersburg, Professor Kachalov Street, Building 14, Liter A". 
+
+Both addresses are in Saint Petersburg, on the same street and building. The only difference is the formatting and the inclusion of the country name in Entity B's address. This consistency in the address strongly indicates that both entities are referring to the same physical location, which supports the idea that they are the same company.
+
+Looking at the types, both are classified as organizations, which aligns with the nature of a company. There's no conflicting information in the types that would suggest they are different entities 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  5%|▌         | 8/160 [12:16<3:03:58, 72.62s/it]2026/01/16 10:14:32 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': "Type: Person\nNames: Mohamed Atta Elmoula Abbas, Mohamed Atta Emoula Abbas, ABBAS, Mohamed Atta Emoula\nAliases: Mohamed Atta Emoula, Mohamed Atta Emoula Abbas, Mohamed Atta Al-Mawla, محمد عطا المولى عباس\nBirth Date: 1957-04-27\nBirth Place: Khartoum, Sudan\nNationality: sd\nCountry: sd\nAddress: Kafouri 9, Khartoum\nPassport: D025725\nGender: male\nFirst Name: Mohamed Atta Elmoula, Muhammad, Mohamed\nLast Name: 'Abbas, al-Mawla, Abbas", 'entity_b': "Type: Person\nNames: Mohamed Atta Elmoula Abbas, Mohamed Atta Emoula Abbas, ABBAS, Mohamed Atta Emoula\nAliases: Mohamed Atta Emoula, Mohamed Atta Emoula Abbas, Mohamed Atta Al-Mawla, محمد عطا المولى عباس\nBirth Date: 1957-04-27\nBirth Place: Khartoum, Sudan\nNationality: sd\nCountry: sd\nAddress: Kafouri 9, Khartoum\nPassport: D025725\nGender: male\nFirst Name: Mohamed Atta Elmoula, Muhammad, Mohamed\nLast Name: 'Abbas, al-Mawla, Abbas", 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same person. Let's break it down step by step.
+
+First, I'll look at the types. Both are listed as "Person," which is a good start because they're in the same category. Now, let's dive into the details.
+
+Looking at the names, both entity_a and entity_b have the same primary names: "Mohamed Atta Elmoula Abbas" and "Mohamed Atta Emoula Abbas." The slight variation in "Emoula" vs. "Elmoula" catches my eye. I wonder if that's just a typo or if it's a significant difference. In some cultures, slight name variations can be common, especially with transliterations from one language to another. So, this might not be a red flag.
+
+Next, the aliases. Both have similar aliases like "Mohamed Atta Emoula" and "Mohamed Atta Al-Mawla." The aliases are almost identical, which suggests they're referring to the same person. The Arabic names also match, which is reassuring.
+
+Moving on to the birth details. Both entities share the exact birth date: "1957-04-27." The birth place is also the same—Khartoum, Sudan. Consistent birth information is a strong indicator that these are the same person.
+
+Nationality and country are both listed as "sd," which stands for Sudan. This consistency further supports the idea that they're the same entity.
+
+Address information is another point of comparison. Both have the same address: "Kafouri 9, Khartoum." The exact match here is pretty compelling. If they were different people, especially in the same region, having the exact same address is less likely unless they're related or identical individuals.
+
+Passport number is another critical point. Both entities have the same passport number: "D025725." Identical passport numbers are a strong indicator that they're the same person, as passports are unique identification documents.
+
+Gender is listed as male for both, which aligns perfectly. There's no discrepancy here that would suggest they're different entities.
+
+Looking at the first names, both have "Mohamed Atta Elmoula" and "Muhammad" and "Mohamed." These are variations of the same name, which is common in many cultures, especially Arabic-speaking ones. The slight differences in spelling or structure don't necessarily mean they're different people 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  6%|▌         | 9/160 [13:42<3:13:21, 76.83s/it]  6%|▋         | 10/160 [14:09<2:33:25, 61.37s/it]2026/01/16 10:16:23 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Organization\nNames: AGROECO GROUP VRN LIMITED, ЧАСТНАЯ КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АГРОЭКО ГРУП ВРН ЛИМИТЕД"', 'entity_b': 'Type: Organization\nNames: AGROECO GROUP VRN LIMITED, AGROECO GROUP VRN LIMITED (THE COMPANY), ЧАСТНАЯ КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АГРОЭКО ГРУП ВРН ЛИМИТЕД"\nAddress: АРХ. МАКАРИОУ III, 2-4, КЭПИТАЛ ЦЕНТР, 9 ЭТАЖ, 1065, НИКОСИЯ, КИПР', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two organization records refer to the same real-world entity. Let's break it down step by step.
+
+First, I'll look at the names of both entities. Entity A is named "AGROECO GROUP VRN LIMITED" with the alternative name "ЧАСТНАЯ КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ 'АГРОЭКО ГРУП ВРН ЛИМИТЕД'". Entity B has the same primary name, "AGROECO GROUP VRN LIMITED", and an alternative name that's almost identical: "AGROECO GROUP VRN LIMITED (THE COMPANY)" plus the same Russian name as Entity A. So, the names match exactly, which is a strong indicator they might be the same.
+
+Next, I'll check the aliases. Entity A doesn't have any listed aliases, while Entity B has a few: "HARAKAT ANSAR ALLAH AL-AWFIYA", " حركة أنصار الله الأوفياء", and others. Wait, no, looking back, Entity B's aliases are actually different from what I thought. No, in this case, both entities have the same primary and alternative names in both English and Russian, so no discrepancies there.
+
+Now, looking at the addresses. Entity A doesn't have an address listed, but Entity B provides a detailed address: "АРХ. МАКАРИОУ III, 2-4, КЭПИТАЛ ЦЕНТР, 9 ЭТАЖ, 1065, НИКОСИЯ, КИПР". This address is in Cyprus, which is a common location for companies, especially with limited liability structures. The presence of a specific address doesn't necessarily conflict but adds more detail about the entity's location.
+
+I should also consider the possibility of different branches or subsidiaries. Sometimes, companies have multiple branches with slightly different names or addresses, but they still refer to the same parent company. In this case, the names are identical, which suggests they are the same entity, possibly with different offices or branches.
+
+Another point to consider is the structure of the company names. Both entities are structured as "GROUP VRN LIMITED" and have the same Russian equivalent, which indicates a consistent corporate structure. The inclusion of "LIMITED" in both names also aligns with typical corporate structures 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  7%|▋         | 11/160 [15:33<2:49:29, 68.25s/it]2026/01/16 10:17:46 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'entity_a': 'Type: Person\nNames: Pak Chun Il\nBirth Date: 1954-07-28, 1954\nNationality: kp\nID Numbers: 563410091\nPosition: Served as the DPRK Ambassador to Egypt. Concluded his tour of duty and left Egypt on 15 November 2016.', 'entity_b': 'Type: Person\nNames: PAK, Chun Il, Chun Il Pak\nBirth Date: 1954-07-28\nNationality: kp\nCountry: eg, kp\nPassport: 563410091\nPosition: North Korean Ambassador to Egypt\nFirst Name: Chun\nLast Name: Pak', 'classification': 'positive'}) (input_keys={'entity_b', 'entity_a'}) with <function f1_metric at 0x1554b520b880> due to LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, let's tackle this problem step by step. I need to determine if the two entity records refer to the same real-world entity. The primary task is to look for contradictions or conflicts between the two records. If there are no contradictions, I should classify them as the same entity (positive). Only if there's explicit conflicting information should I classify them as different entities (negative).
+
+First, I'll examine the details provided for each entity.
+
+**Entity A:**
+- **Type:** Person
+- **Names:** Pak Chun Il
+- **Birth Date:** 1954-07-28, 1954
+- **Nationality:** kp
+- **ID Numbers:** 563410091
+- **Position:** Served as the DPRK Ambassador to Egypt. Concluded his tour of duty and left Egypt on 15 November 2016.
+
+**Entity B:**
+- **Type:** Person
+- **Names:** PAK, Chun Il, Chun Il Pak
+- **Birth Date:** 1954-07-28
+- **Nationality:** kp
+- **Country:** eg, kp
+- **Passport:** 563410091
+- **Position:** North Korean Ambassador to Egypt
+- **First Name:** Chun
+- **Last Name:** Pak
+
+Now, I'll compare these details to identify any conflicts.
+
+1. **Names:**
+   - Entity A's name is "Pak Chun Il."
+   - Entity B lists names as "PAK, Chun Il, Chun Il Pak." This seems to be different ways of writing the same name, possibly due to variations in formatting or transliteration.
+
+2. **Birth Date:**
+   - Entity A has two birth dates: "1954-07-28" and "1954." Entity B has "1954-07-28." The more specific date matches between the two, and the less specific one in Entity A likely refers to the same date range.
+
+3. **Nationality:**
+   - Both entities list the nationality as "kp," which I assume stands for North Korea. This is consistent.
+
+4. **ID Numbers/Passport:**
+   - Entity A has an ID number "563410091."
+   - Entity B has a passport number "563410091." Assuming that ID 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+.
+  8%|▊         | 12/160 [16:56<2:59:51, 72.92s/it]  8%|▊         | 13/160 [17:26<2:26:23, 59.75s/it]  9%|▉         | 14/160 [17:55<2:03:06, 50.59s/it]  9%|▉         | 15/160 [18:31<1:51:35, 46.17s/it]  9%|▉         | 15/160 [19:54<3:12:30, 79.66s/it]
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/chat_adapter.py", line 52, in __call__
+    return super().__call__(lm, lm_kwargs, signature, demos, inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/base.py", line 203, in __call__
+    return self._call_postprocess(processed_signature, signature, outputs, lm, lm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/base.py", line 137, in _call_postprocess
+    value = self.parse(processed_signature, text)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/chat_adapter.py", line 219, in parse
+    raise AdapterParseError(
+dspy.utils.exceptions.AdapterParseError: Adapter ChatAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same real-world person. Let's break it down step by step.
+
+First, I'll look at the basic information provided for each entity. Entity A is a person named Claudine DELASSUS, born on June 7, 1965, in France. She's female and has the first name Claudine and the last name DELASSUS. Entity B is also a person named Claudine Delassus, born on the same date, June 7, 1965, also in France. She's female too, and her first and last names are Claudine and Delassus respectively.
+
+The first thing I notice is that the names are almost identical. The only difference I see is the capitalization of the last name. In Entity A, it's written as DELASSUS with all capital letters, while in Entity B, it's Delassus with only the first letter capitalized. However, this is a common variation, especially considering different naming conventions and how names are listed in official documents versus everyday use.
+
+Next, I'll check the birth dates. Both entities have the exact same birth date: June 7, 1965. This is a strong indicator that they could be the same person since having the same birth date is a specific detail that's less likely to be coincidental.
+
+Looking at the country of origin, both are listed as France. This consistency in nationality further supports the idea that they might be the same person, as it's another specific detail that aligns.
+
+Gender is also the same for both entities, which is another point in favor of them being the same person. While gender alone isn't enough to confirm identity, combined with the other matching details, it adds to the case.
+
+Now, I'll examine the positions listed. Entity B mentions that Claudine Delassus is the Mayor of Bissezeele and a municipal counselor since 2020. Entity A doesn't provide any information about her position. However, the absence of this information in Entity A doesn't necessarily mean she isn't the mayor. It's possible that Entity A simply doesn't list her position, or the information isn't available in that record.
+
+I should also consider the possibility of name variations. Sometimes, people have different spellings of their last name, especially if it's a less common surname. In this case, the last name is spelled DELASSUS in Entity A and Delassus 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+Actual output fields parsed from the LM response: [] 
+
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 632, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 599, in main
+    results = run_mipro_optimization(args, module, dev_examples, test_examples)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 360, in run_mipro_optimization
+    compiled = run_mipro(
+               ^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/optimize.py", line 304, in run_mipro
+    compiled = optimizer.compile(module, **compile_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/mipro_optimizer_v2.py", line 218, in compile
+    demo_candidates = self._bootstrap_fewshot_examples(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/mipro_optimizer_v2.py", line 417, in _bootstrap_fewshot_examples
+    demo_candidates = create_n_fewshot_demo_sets(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/utils.py", line 391, in create_n_fewshot_demo_sets
+    program2 = program.compile(student, teacher=teacher, trainset=trainset_copy)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/bootstrap.py", line 86, in compile
+    self._bootstrap()
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/bootstrap.py", line 159, in _bootstrap
+    if self._bootstrap_one_example(example, round_idx):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/bootstrap.py", line 217, in _bootstrap_one_example
+    raise e
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/bootstrap.py", line 196, in _bootstrap_one_example
+    prediction = teacher(**example.inputs())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/primitives/module.py", line 82, in __call__
+    return self.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/modules.py", line 95, in forward
+    return self.predict(entity_a=entity_a, entity_b=entity_b)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/primitives/module.py", line 82, in __call__
+    return self.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/predict/chain_of_thought.py", line 37, in forward
+    return self.predict(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/predict/predict.py", line 103, in __call__
+    return super().__call__(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/primitives/module.py", line 82, in __call__
+    return self.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/predict/predict.py", line 192, in forward
+    completions = adapter(lm, lm_kwargs=config, signature=signature, demos=demos, inputs=kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/chat_adapter.py", line 65, in __call__
+    return JSONAdapter()(lm, lm_kwargs, signature, demos, inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/json_adapter.py", line 73, in __call__
+    result = self._json_adapter_call_common(lm, lm_kwargs, signature, demos, inputs, super().__call__)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/json_adapter.py", line 63, in _json_adapter_call_common
+    return call_fn(lm, lm_kwargs, signature, demos, inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/chat_adapter.py", line 64, in __call__
+    raise e
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/chat_adapter.py", line 52, in __call__
+    return super().__call__(lm, lm_kwargs, signature, demos, inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/base.py", line 203, in __call__
+    return self._call_postprocess(processed_signature, signature, outputs, lm, lm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/base.py", line 137, in _call_postprocess
+    value = self.parse(processed_signature, text)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/adapters/json_adapter.py", line 161, in parse
+    raise AdapterParseError(
+dspy.utils.exceptions.AdapterParseError: LM response cannot be serialized to a JSON object.
+
+Adapter JSONAdapter failed to parse the LM response. 
+
+LM Response: Alright, so I'm trying to figure out whether these two entity records refer to the same person. Let's break it down step by step.
+
+First, I'll look at the basic information provided for each entity. Entity A is a person named Claudine DELASSUS, born on June 7, 1965, in France. She's female and has the first name Claudine and the last name DELASSUS. 
+
+Entity B is also a person named Claudine Delassus, born on the same date, June 7, 1965. She's also female, and her first name is Claudine, with the last name Delassus. Additionally, Entity B mentions her position as Mayor of Bissezeele and a municipal counselor there since 2020.
+
+Okay, so the first thing I notice is that both entities share the exact same birth date. That's a strong indicator that they could be the same person. The names are almost identical too—Claudine DELASSUS in Entity A and Claudine Delassus in Entity B. The only difference is the capitalization of the last name: DELASSUS vs. Delassus. In many cultures, especially in French-speaking regions, the capitalization of surnames can vary, but it doesn't necessarily mean they're different people. It's common for names to be written with different capitalizations in different records.
+
+Next, both entities are categorized as Type: Person, which aligns them as individuals. The country of residence for both is France, which is another point in favor of them being the same person. 
+
+Looking at the positions, Entity B mentions specific roles, which could help in identifying the person. However, since Entity A doesn't provide any position information, it's a bit harder to compare that aspect. But the presence of a position in Entity B doesn't conflict with the information in Entity A; it just adds more detail.
+
+I should also consider any potential conflicts. Are there any differences in the dates, names, or other attributes that would suggest they're different? The birth dates match exactly, and the names are consistent except for the minor capitalization difference. There's no conflicting information about gender, country, or birth date. 
+
+Another thing to think about is whether the absence of certain fields in one entity could indicate a difference. However, according to the instructions, missing fields aren't evidence of difference. So, the lack of position information in Entity A doesn't mean they're different entities 
+
+Expected to find output fields in the LM response: [reasoning, classification] 
+
+
+Model loaded successfully on cuda:0
+
+End time: Fri Jan 16 10:20:48 PST 2026

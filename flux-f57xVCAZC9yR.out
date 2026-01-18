@@ -1,0 +1,29 @@
+============================================================
+GPU Setup Verification Test
+============================================================
+Working directory: /usr/WS1/smith585/codebases/OSINT_entity_resolution
+Python: /usr/workspace/smith585/x86_miniconda/bin/python3
+
+1. GPU Visibility:
+   PyTorch version: 2.5.0.dev20240905+rocm6.2
+   torch.cuda.is_available(): True
+   torch.cuda.device_count(): 8
+   GPU 0: AMD Instinct MI250X
+   GPU 1: AMD Instinct MI250X
+   GPU 2: AMD Instinct MI250X
+   GPU 3: AMD Instinct MI250X
+   GPU 4: AMD Instinct MI250X
+   GPU 5: AMD Instinct MI250X
+   GPU 6: AMD Instinct MI250X
+   GPU 7: AMD Instinct MI250X
+
+2. Device Visibility Environment:
+   HIP_VISIBLE_DEVICES: not set
+   CUDA_VISIBLE_DEVICES: not set
+   ROCR_VISIBLE_DEVICES: 0,1,2,3,4,5,6,7
+
+3. Testing Model Loading...
+   Target path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+   Path exists: False
+   ERROR: Model path does not exist!
+   This is expected if running from login node (no access to /p/vast1)

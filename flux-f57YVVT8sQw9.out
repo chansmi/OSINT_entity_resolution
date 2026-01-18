@@ -1,0 +1,1574 @@
+==============================================
+Llama-3.1-8B Fine-Tuning with Multi-Node DDP
+Configuration: 4 nodes, 32 GPUs (MI250X)
+Started: Tue Jan 13 05:29:29 PST 2026
+Hostname: tioga18
+==============================================
+Python: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python
+Working directory: /usr/WS1/smith585/codebases/OSINT_entity_resolution
+WANDB_PROJECT: osint-entity-resolution
+HF_HOME: /p/vast1/smith585/caches/hf_home
+MASTER_ADDR: tioga18
+MASTER_PORT: 29500
+
+Starting multi-node distributed training...
+Using 4 nodes × 8 GPUs = 32 processes with data parallelism
+
+Node 0: tioga18 starting accelerate launch...
+Node 3: tioga21 starting accelerate launch...
+Node 2: tioga20 starting accelerate launch...
+Node 1: tioga19 starting accelerate launch...
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+WandB project: osint-entity-resolution
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+WandB project: osint-entity-resolution
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+============================================================
+
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+WandB project: osint-entity-resolution
+============================================================
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Quick mode: False
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+============================================================
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+Quick mode: False
+============================================================
+
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+WandB project: osint-entity-resolution
+WandB project: osint-entity-resolution
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+============================================================
+Entity Resolution Fine-Tuning: Llama-3.1-8B-Instruct
+============================================================
+Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+Output dir: /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_20260113_053057
+Quick mode: False
+
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+✓ Verified: No test data leakage detected
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+Training samples: 697210
+Validation samples: 3714
+
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.59it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.88it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.29it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.57it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.68it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  9.13it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  9.93it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 12.47it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.13it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.33it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.55it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  7.48it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.63it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.71it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.57it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.54it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.39it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 12.99it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 17.20it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.84it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.08it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.33it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.76it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.89it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.63it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 15.68it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.72it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 19.60it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.80it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.61it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.69it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  8.79it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.14it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.14it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.51it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.80it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.80it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.75it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.81it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.85it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.79it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.45it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.43it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.07it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.15it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.40it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.50it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.91it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.61it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.17it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  8.96it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  8.06it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.48it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  9.79it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 12.61it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 13.08it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.10it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.57it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.40it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  7.95it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  8.18it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 10.58it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.88it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.64it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.69it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.76it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.06it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  6.07it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  9.01it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.85it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.91it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.76it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.47it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.40it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.01it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.75it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  9.17it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.68it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  9.14it/s]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.41it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.44it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.00it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 10.28it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.23it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.71it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 11.86it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 11.64it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.97it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 10.53it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.86it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.69it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.87it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.29it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 11.21it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.54it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.78it/s]
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 14.14it/s]
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.56it/s]    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.87it/s]
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+           Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.40it/s]  
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.25it/s]^^
+^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.00it/s]^^
+^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.37it/s]  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 18.33it/s]Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+              model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+        param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 10.77it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 11.47it/s]
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 431, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 427, in main
+    train(args)
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 249, in train
+    model, tokenizer = get_model_and_tokenizer(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/finetune/train.py", line 174, in get_model_and_tokenizer
+    model = model.to(f"cuda:{local_rank}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: HIP error: invalid device ordinal
+HIP kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Compile with `TORCH_USE_HIP_DSA` to enable device-side assertions.
+
+W0113 05:35:23.538000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047105 closing signal SIGTERM
+W0113 05:35:23.539000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047106 closing signal SIGTERM
+W0113 05:35:23.539000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047107 closing signal SIGTERM
+W0113 05:35:23.540000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047108 closing signal SIGTERM
+W0113 05:35:23.540000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047110 closing signal SIGTERM
+W0113 05:35:23.540000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047111 closing signal SIGTERM
+W0113 05:35:23.540000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1047112 closing signal SIGTERM
+W0113 05:35:24.243000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640010 closing signal SIGTERM
+W0113 05:35:24.245000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640011 closing signal SIGTERM
+W0113 05:35:24.245000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640012 closing signal SIGTERM
+W0113 05:35:24.246000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640013 closing signal SIGTERM
+W0113 05:35:24.246000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640015 closing signal SIGTERM
+W0113 05:35:24.246000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640016 closing signal SIGTERM
+W0113 05:35:24.246000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 640017 closing signal SIGTERM
+W0113 05:35:24.433000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556132 closing signal SIGTERM
+W0113 05:35:24.435000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556133 closing signal SIGTERM
+W0113 05:35:24.435000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556134 closing signal SIGTERM
+W0113 05:35:24.435000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556135 closing signal SIGTERM
+W0113 05:35:24.436000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556136 closing signal SIGTERM
+W0113 05:35:24.436000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556137 closing signal SIGTERM
+W0113 05:35:24.436000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1556138 closing signal SIGTERM
+E0113 05:35:24.623000 1047078 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 4 (pid: 1047109) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_05:35:23
+  host      : tioga18.llnl.gov
+  rank      : 4 (local_rank: 4)
+  exitcode  : 1 (pid: 1047109)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+W0113 05:35:24.932000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568546 closing signal SIGTERM
+W0113 05:35:24.934000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568547 closing signal SIGTERM
+W0113 05:35:24.934000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568548 closing signal SIGTERM
+W0113 05:35:24.934000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568549 closing signal SIGTERM
+W0113 05:35:24.934000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568550 closing signal SIGTERM
+W0113 05:35:24.935000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568551 closing signal SIGTERM
+W0113 05:35:24.935000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 568552 closing signal SIGTERM
+E0113 05:35:25.222000 639984 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 4 (pid: 640014) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_05:35:24
+  host      : tioga19.llnl.gov
+  rank      : 12 (local_rank: 4)
+  exitcode  : 1 (pid: 640014)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+E0113 05:35:25.416000 1556107 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 7 (pid: 1556139) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_05:35:24
+  host      : tioga21.llnl.gov
+  rank      : 31 (local_rank: 7)
+  exitcode  : 1 (pid: 1556139)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+E0113 05:35:26.015000 568518 /usr/WS1/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 7 (pid: 568553) of binary: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python3.11
+Traceback (most recent call last):
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1226, in launch_command
+    multi_gpu_launcher(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/accelerate/commands/launch.py", line 853, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/finetune/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-13_05:35:24
+  host      : tioga20.llnl.gov
+  rank      : 23 (local_rank: 7)
+  exitcode  : 1 (pid: 568553)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+flux-job: task(s) exited with exit code 1
+Jan 13 05:35:27.526828 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f57YVVT8sQw9/script Exited (rc=1) 357.7s
