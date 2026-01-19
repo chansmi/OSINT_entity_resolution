@@ -1,0 +1,57 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "entity_a": "Type: Person\nNames: Tarek Willians SAAB HALABI\nCountry: ve\nFirst Name: Tarek Willians\nLast Name: SAAB HALABI",
+        "entity_b": "Type: Person\nNames: Tarık William Saab, Тарек Уильям Сааб, طارق صعب, Tarek Saab, Tarek William Saab Halabi, ターレク・サアブ, Tarek William SAAB HALABI, SAAB HALABI, Tarek William\nAliases: Tarık William Saab Halebi, Tarek Williams Saab Halabi, Tarek William Saab Halabi, Tarek Saab Halabi\nBirth Date: 1963, 1962-09-10, 1963-09-10\nBirth Place: El Tigre, État d'Anzoátegui, El Tigre Anzoategui State\nVenezuela\nNationality: ve\nCountry: ve, co\nAddress: Caracas; Anzoategui; Caracas, Venezuela\nID Numbers: 8459301\nPassport: 5532000\nGender: male\nPosition: attorney general (2017-), Attorney General\nFirst Name: William, Tarek, Tarek William\nLast Name: Saab Halabi, Halabi, SAAB HALABI, Saab",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Organization\nNames: AGROECO GROUP VRN LIMITED, ЧАСТНАЯ КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"АГРОЭКО ГРУП ВРН ЛИМИТЕД\"",
+        "entity_b": "Type: Organization\nNames: AGROECO GROUP VRN LIMITED, AGROECO GROUP VRN LIMITED (THE COMPANY), ЧАСТНАЯ КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"АГРОЭКО ГРУП ВРН ЛИМИТЕД\"\nAddress: АРХ. МАКАРИОУ III, 2-4, КЭПИТАЛ ЦЕНТР, 9 ЭТАЖ, 1065, НИКОСИЯ, КИПР",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "classification": "positive"
+      }
+    ],
+    "signature": {
+      "instructions": "Given two entity records, determine if they refer to the same real-world entity. Analyze for contradictions in attributes like dates, IDs, or other details. Consider common variations in names and missing data. Classify as 'positive' if no conflicts are found, otherwise 'negative'. Provide a clear reasoning for your classification.",
+      "fields": [
+        {
+          "prefix": "Entity A:",
+          "description": "First entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Entity B:",
+          "description": "Second entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Brief explanation of decision, focusing on conflicts or lack thereof"
+        },
+        {
+          "prefix": "Classification:",
+          "description": "positive if same entity, negative if different entities"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.1.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}
