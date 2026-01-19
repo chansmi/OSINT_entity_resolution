@@ -35,6 +35,19 @@ python scripts/create_proper_sample.py --validate-only data/samples/sample_1000.
 python scripts/cache_full_dataset.py
 ```
 
+### Quick Testing
+
+Most scripts support `--limit N` and `--dry-run` for fast iteration:
+```bash
+# Limit API/GPU calls for testing
+python scripts/baselines/llm_zeroshot.py --limit 10 --input data/samples/sample_1000.json
+python scripts/baselines/dspy_er/run_dspy.py --model llama-8b --mode zero-shot --limit 20
+
+# Dry run to preview prompts (no API/GPU usage)
+python scripts/baselines/dspy_er/run_dspy.py --dry-run --mode mipro
+python scripts/baselines/llm_fewshot.py --dry-run --examples 8
+```
+
 ### Running Baselines
 ```bash
 # Simple fuzzy matching (no API/GPU required)
@@ -112,6 +125,16 @@ python scripts/baselines/dspy_er/run_dspy.py \
     --mode zero-shot
 ```
 
+### Large-Scale Parallel Evaluation
+```bash
+# Split 10k dataset across 10 parallel GPU jobs
+python scripts/baselines/dspy_er/run_parallel_eval.py --model llama-8b --chunks 10 \
+    --input data/samples/sample_10000.json --load data/prompts/llama-8b/mipro_20260116.json
+
+# Aggregate results after all jobs complete
+python scripts/baselines/dspy_er/run_parallel_eval.py --aggregate --run-id 20260117_123456
+```
+
 ### Prompt Optimization Workflow
 ```bash
 # Phase 1: Baseline (default prompt on TEST set)
@@ -169,6 +192,24 @@ python scripts/experiment.py --compare --method llm    # Compare LLM experiments
 python scripts/generate_summary.py --filter-method llm # Generate summary report
 ```
 
+### Job Management
+```bash
+# Monitor running/pending jobs
+flux jobs -u all
+
+# View job output in real-time
+flux job attach <job_id>
+
+# Check GPU utilization (on compute node)
+/opt/rocm-5.4.2/bin/rocm-smi --showmeminfo vram
+
+# Cancel stuck/wrong jobs
+flux cancel <job_id>
+
+# List available GPU resources before submitting
+flux resource list
+```
+
 ## Architecture
 
 ### Data Flow
@@ -211,6 +252,8 @@ Models requiring Responses API are defined in `RESPONSES_API_MODELS` in `llm_zer
 **Data Splits** (from `sample_1000.json`):
 - DEV set: pairs 0-199 (200 pairs) - used for few-shot example selection and optimization
 - TEST set: pairs 200-999 (800 pairs) - used for final evaluation
+
+**Evaluation Protocol**: Never optimize on the test set. MIPROv2 uses DEV for prompt discovery, then the best prompt is evaluated on TEST. This prevents overfitting to the evaluation data.
 
 ### DSPy Architecture
 
