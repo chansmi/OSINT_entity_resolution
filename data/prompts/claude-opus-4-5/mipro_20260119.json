@@ -1,0 +1,36 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Determine if two entity records refer to the same real-world entity.\n\nPrimary task: Identify CONFLICTS, not similarities.\n- Name variations (transliterations, nicknames, titles) are common\n- Missing fields are normal - absence of data is NOT evidence of difference\n- Same entity often appears across multiple sources with variations\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.",
+      "fields": [
+        {
+          "prefix": "Entity A:",
+          "description": "First entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Entity B:",
+          "description": "Second entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Brief explanation of decision, focusing on conflicts or lack thereof"
+        },
+        {
+          "prefix": "Classification:",
+          "description": "positive if same entity, negative if different entities"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.1.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

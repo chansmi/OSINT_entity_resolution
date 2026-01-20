@@ -1,0 +1,15 @@
+{
+  "prompt_id": "gpt-5-nano_mipro_20260119_v1",
+  "model": "gpt-5-nano",
+  "description": "DSPy mipro optimized prompt for gpt-5-nano",
+  "system_prompt": "Determine if two entity records refer to the same real-world entity.\n\nPrimary task: Identify CONFLICTS, not similarities.\n- Name variations (transliterations, nicknames, titles) are common\n- Missing fields are normal - absence of data is NOT evidence of difference\n- Same entity often appears across multiple sources with variations\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.",
+  "user_template": "Entity A:\n{entity_a}\n\nEntity B:\n{entity_b}",
+  "demonstrations": [],
+  "dspy_module_path": "data/prompts/gpt-5-nano/mipro_20260119.json",
+  "provenance": {
+    "optimizer": "mipro",
+    "dev_f1": 0.9588607594936709,
+    "optimization_date": "2026-01-19",
+    "git_commit": "14c646c"
+  }
+}
