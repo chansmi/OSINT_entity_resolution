@@ -87,6 +87,9 @@ pip install dspy-ai
 # Zero-shot baseline (validate against existing 94.95% F1)
 python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode zero-shot
 
+# Parallel evaluation (for large datasets with API models)
+python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode zero-shot --parallel 10
+
 # Dry run (preview prompts without API calls)
 python scripts/baselines/dspy_er/run_dspy.py --dry-run --mode zero-shot
 
@@ -184,6 +187,8 @@ flux batch -t 720m -N 4 -n 4 -g 32 jobs/train_llama8b.sh
 # Inference on fine-tuned model
 python scripts/finetune/inference.py --model-path /path/to/checkpoint --input data/samples/sample_1000.json
 ```
+
+**AMD ROCm Note**: Multi-GPU training on Tioga requires `HIP_VISIBLE_DEVICES` set per-process to avoid GPU conflicts. This is handled automatically in `train.py` but is important if modifying training scripts or running manual distributed training.
 
 ### Experiment Tracking
 ```bash
@@ -338,6 +343,7 @@ Scripts use short aliases that map to full paths:
 | `llama-8b` | `/p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct` |
 | `deepseek-14b` | `/p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B` |
 | `deepseek-32b` | `/p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-32B` |
+| `claude-opus-4-5` | `anthropic/claude-opus-4-5-20251101` (via DSPy Anthropic adapter) |
 
 Override with `--model-path /custom/path` if needed.
 
@@ -353,6 +359,7 @@ Checkpoints saved to: `/p/vast1/smith585/checkpoints/entity_resolution/`
 | LLM Zero-Shot (GPT-5-nano) | 94.95% | 91.77% | 98.37% | Conflict-focused prompt |
 | LLM Zero-Shot (GPT-5.2-pro) | 98.53% | 98.37% | 98.69% | Best overall |
 | LLM Few-Shot 4-ex (GPT-5.2-pro) | 98.75% | 98.75% | 98.75% | 724/800 evaluated |
+| Claude Opus 4.5 MIPROv2 | 99.02%* | - | - | *Dev set only (200 pairs) |
 
 ### Local Models with DSPy MIPROv2 (800-pair test set)
 

@@ -22,11 +22,33 @@
         "optimizer": "bootstrap",
         "dev_f1": 0.9411764705882353
       }
+    },
+    {
+      "prompt_id": "anthropic/claude-opus-4-5-20251101_mipro_20260119_v1",
+      "model": "anthropic/claude-opus-4-5-20251101",
+      "description": "DSPy mipro optimized prompt for anthropic/claude-opus-4-5-20251101",
+      "path": "anthropic/claude-opus-4-5-20251101/mipro_20260119_v1.json",
+      "created_date": "2026-01-19",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9901960784313726
+      }
+    },
+    {
+      "prompt_id": "gpt-5-nano_mipro_20260119_v1",
+      "model": "gpt-5-nano",
+      "description": "DSPy mipro optimized prompt for gpt-5-nano",
+      "path": "gpt-5-nano/mipro_20260119_v1.json",
+      "created_date": "2026-01-19",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9588607594936709
+      }
     }
   ],
   "metadata": {
     "version": "1.0",
-    "last_updated": "2026-01-16",
+    "last_updated": "2026-01-19",
     "description": "Registry of optimized prompts for entity resolution"
   }
 }

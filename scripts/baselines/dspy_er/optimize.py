@@ -8,15 +8,19 @@ Provides wrapper functions for different DSPy optimizers:
 - MIPROv2: Joint instruction and example optimization
 - SIMBA: Self-improving with failure analysis
 
-Also provides LM configuration for both API-based models (OpenAI) and
-local HuggingFace models via the HuggingFaceLanguageModel wrapper.
+Also provides LM configuration for both API-based models (OpenAI, Anthropic via LiteLLM)
+and local HuggingFace models via the HuggingFaceLanguageModel wrapper.
 """
 
 import os
 from pathlib import Path
 from typing import List, Optional, Callable, Union
 
+from dotenv import load_dotenv
 import dspy
+
+# Load environment variables from .env file
+load_dotenv()
 from dspy.teleprompt import (
     BootstrapFewShot,
     BootstrapFewShotWithRandomSearch,
@@ -46,6 +50,7 @@ def is_local_model(model: str) -> bool:
 def configure_lm(
     model: str = "gpt-5-nano",
     api_base: Optional[str] = None,
+    api_key: Optional[str] = None,
     temperature: float = 0.0,
     model_path: Optional[str] = None,
     max_new_tokens: int = 512,
@@ -56,11 +61,15 @@ def configure_lm(
     For local models (Llama, DeepSeek, etc.), uses HuggingFace transformers
     directly by default. Can optionally use vLLM server if use_vllm=True.
 
-    For API models (OpenAI), uses the standard DSPy OpenAI integration.
+    For API models (OpenAI, Anthropic via LiteLLM), uses the standard DSPy
+    OpenAI-compatible integration. Supports provider prefixes like:
+    - "anthropic/claude-opus-4-5-20251101" -> Anthropic via LiteLLM
+    - "openai/gpt-5.2-pro" -> OpenAI via LiteLLM
 
     Args:
-        model: Model name (e.g., "gpt-5-nano", "llama-8b", "openai/gpt-4o")
-        api_base: Optional API base URL for vLLM server mode
+        model: Model name (e.g., "gpt-5-nano", "llama-8b", "anthropic/claude-opus-4-5-20251101")
+        api_base: Optional API base URL (defaults to LITELLM_BASE_URL env var)
+        api_key: Optional API key (defaults to provider-specific env var)
         temperature: Sampling temperature
         model_path: Optional explicit path to model (for local models)
         max_new_tokens: Maximum tokens to generate (for local models)
@@ -69,7 +78,7 @@ def configure_lm(
     Returns:
         Configured DSPy LM instance (or HuggingFaceLanguageModel for local)
     """
-    # Handle local models
+    # Handle local models (check before stripping prefix)
     if is_local_model(model):
         if use_vllm:
             # Use vLLM server (requires separate server process)
@@ -95,11 +104,59 @@ def configure_lm(
                 max_new_tokens=max_new_tokens,
             )
 
-    # OpenAI models
-    return dspy.LM(
-        model=f"openai/{model}",
-        temperature=temperature,
-    )
+    # API models - detect provider from prefix or default to OpenAI
+    provider = "openai"  # default
+    model_name = model
+
+    if model.startswith("anthropic/"):
+        provider = "anthropic"
+        model_name = model[len("anthropic/"):]
+    elif model.startswith("openai/"):
+        provider = "openai"
+        model_name = model[len("openai/"):]
+
+    # Get API base URL (use LiteLLM endpoint by default)
+    if api_base is None:
+        api_base = os.environ.get("LITELLM_BASE_URL")
+
+    # Get API key from environment if not provided
+    if api_key is None:
+        if provider == "anthropic":
+            api_key = os.environ.get("LITELLM_API_KEY_ANTHROPIC")
+        else:
+            api_key = os.environ.get("LITELLM_API_KEY_OPENAI")
+
+    # Build the model string for DSPy
+    # When using LiteLLM proxy with OpenAI-compatible API, use "openai/" prefix
+    # and pass the provider/model as the model name (LiteLLM routes by model name)
+    if api_base:
+        # Using LiteLLM proxy - use OpenAI format, LiteLLM routes by model name
+        # The model name should be "anthropic/claude-opus-4-5-20251101" for LiteLLM routing
+        dspy_model = f"openai/{provider}/{model_name}"
+    else:
+        # Direct API - use appropriate provider prefix
+        dspy_model = f"{provider}/{model_name}"
+
+    # Build kwargs for dspy.LM
+    lm_kwargs = {
+        "model": dspy_model,
+    }
+
+    # GPT-5 models don't support temperature=0.0, only temperature=1.0
+    # For these models, we omit the temperature parameter entirely
+    if "gpt-5" in model_name.lower() and not "gpt-5.1" in model_name.lower():
+        # GPT-5 base models: don't set temperature (defaults to 1.0)
+        pass
+    else:
+        lm_kwargs["temperature"] = temperature
+
+    if api_base:
+        lm_kwargs["api_base"] = api_base
+    if api_key:
+        lm_kwargs["api_key"] = api_key
+
+    print(f"Configuring LM: model={dspy_model}, api_base={api_base or 'default'}")
+    return dspy.LM(**lm_kwargs)
 
 
 def configure_teacher_student(
