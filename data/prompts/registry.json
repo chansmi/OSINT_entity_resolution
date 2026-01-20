@@ -1,0 +1,54 @@
+{
+  "prompts": [
+    {
+      "prompt_id": "default_conflict_focused_v1",
+      "model": "all",
+      "description": "Default conflict-focused prompt - works across all models",
+      "path": "default/conflict_focused_v1.json",
+      "is_default": true,
+      "created_date": "2026-01-16",
+      "provenance": {
+        "source": "manual",
+        "notes": "Baseline conflict-focused prompt strategy from llm_zeroshot.py"
+      }
+    },
+    {
+      "prompt_id": "llama-8b_bootstrap_20260116_v1",
+      "model": "llama-8b",
+      "description": "DSPy bootstrap optimized prompt for llama-8b",
+      "path": "llama-8b/bootstrap_20260116_v1.json",
+      "created_date": "2026-01-16",
+      "provenance": {
+        "optimizer": "bootstrap",
+        "dev_f1": 0.9411764705882353
+      }
+    },
+    {
+      "prompt_id": "anthropic/claude-opus-4-5-20251101_mipro_20260119_v1",
+      "model": "anthropic/claude-opus-4-5-20251101",
+      "description": "DSPy mipro optimized prompt for anthropic/claude-opus-4-5-20251101",
+      "path": "anthropic/claude-opus-4-5-20251101/mipro_20260119_v1.json",
+      "created_date": "2026-01-19",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9901960784313726
+      }
+    },
+    {
+      "prompt_id": "gpt-5-nano_mipro_20260119_v1",
+      "model": "gpt-5-nano",
+      "description": "DSPy mipro optimized prompt for gpt-5-nano",
+      "path": "gpt-5-nano/mipro_20260119_v1.json",
+      "created_date": "2026-01-19",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9588607594936709
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-01-19",
+    "description": "Registry of optimized prompts for entity resolution"
+  }
+}

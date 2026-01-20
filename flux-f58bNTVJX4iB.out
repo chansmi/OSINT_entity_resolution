@@ -1,0 +1,35 @@
+=== Llama-8B MIPROv2 0-shot ===
+Started: Sun Jan 18 14:34:27 PST 2026
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+  Model name: llama-8b
+  Temperature: 0.0
+  Max new tokens: 512
+Loading compiled module from data/prompts/llama-8b/mipro_20260116.json...
+Loaded compiled module from data/prompts/llama-8b/mipro_20260116.json
+Limiting demos to 0 for evaluation...
+  predict.predict: 8 -> 0 demos
+
+============================================================
+Running Zero-Shot Evaluation
+============================================================
+Model: llama-8b
+Module: cot
+Test examples: 800
+Evaluating:   0%|          | 0/800 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:13<00:40, 13.66s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:26<00:26, 13.36s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:40<00:13, 13.58s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [00:44<00:00,  9.54s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [00:44<00:00, 11.00s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Evaluating:   0%|          | 1/800 [01:49<24:13:01, 109.11s/it]Evaluating:   0%|          | 2/800 [01:54<10:39:24, 48.08s/it] Evaluating:   0%|          | 3/800 [01:59<6:20:11, 28.62s/it] Evaluating:   0%|          | 4/800 [02:02<4:04:09, 18.40s/it]Evaluating:   1%|          | 5/800 [02:07<3:00:36, 13.63s/it]Evaluating:   1%|          | 6/800 [02:13<2:22:40, 10.78s/it]Evaluating:   1%|          | 7/800 [02:19<2:04:21,  9.41s/it]Evaluating:   1%|          | 8/800 [02:26<1:51:47,  8.47s/it]Evaluating:   1%|          | 9/800 [02:35<1:57:20,  8.90s/it]Evaluating:   1%|▏         | 10/800 [02:41<1:44:12,  7.92s/it]Evaluating:   1%|▏         | 11/800 [02:47<1:35:07,  7.23s/it]Evaluating:   2%|▏         | 12/800 [02:52<1:27:03,  6.63s/it]Evaluating:   2%|▏         | 13/800 [02:58<1:25:43,  6.54s/it]Evaluating:   2%|▏         | 14/800 [03:04<1:20:30,  6.15s/it]Evaluating:   2%|▏         | 15/800 [03:10<1:19:56,  6.11s/it]Evaluating:   2%|▏         | 16/800 [03:16<1:21:36,  6.25s/it]Evaluating:   2%|▏         | 17/800 [03:28<1:44:30,  8.01s/it]Evaluating:   2%|▏         | 18/800 [03:34<1:33:31,  7.18s/it]Evaluating:   2%|▏         | 19/800 [03:40<1:30:07,  6.92s/it]Evaluating:   2%|▎         | 20/800 [03:45<1:24:05,  6.47s/it]Evaluating:   3%|▎         | 21/800 [03:50<1:16:50,  5.92s/it]Evaluating:   3%|▎         | 22/800 [04:22<2:59:23, 13.83s/it]Evaluating:   3%|▎         | 23/800 [04:28<2:25:49, 11.26s/it]Evaluating:   3%|▎         | 24/800 [04:32<1:59:41,  9.25s/it]Evaluating:   3%|▎         | 25/800 [04:39<1:51:20,  8.62s/it]Evaluating:   3%|▎         | 26/800 [04:45<1:38:09,  7.61s/it]Evaluating:   3%|▎         | 27/800 [04:50<1:28:50,  6.90s/it]Evaluating:   4%|▎         | 28/800 [04:54<1:19:42,  6.20s/it]Evaluating:   4%|▎         | 29/800 [04:59<1:12:53,  5.67s/it]Evaluating:   4%|▍         | 30/800 [05:01<1:01:17,  4.78s/it]Evaluating:   4%|▍         | 31/800 [05:09<1:12:32,  5.66s/it]Evaluating:   4%|▍         | 32/800 [05:13<1:04:26,  5.03s/it]Evaluating:   4%|▍         | 33/800 [05:17<1:00:41,  4.75s/it]Evaluating:   4%|▍         | 34/800 [05:22<1:02:31,  4.90s/it]Evaluating:   4%|▍         | 35/800 [05:43<2:02:55,  9.64s/it]Evaluating:   4%|▍         | 36/800 [05:50<1:52:44,  8.85s/it]Evaluating:   5%|▍         | 37/800 [05:56<1:44:04,  8.18s/it]Evaluating:   5%|▍         | 38/800 [06:02<1:32:43,  7.30s/it]Evaluating:   5%|▍         | 39/800 [06:07<1:27:00,  6.86s/it]Evaluating:   5%|▌         | 40/800 [06:13<1:20:45,  6.38s/it]Evaluating:   5%|▌         | 41/800 [06:22<1:32:28,  7.31s/it]Evaluating:   5%|▌         | 42/800 [06:54<3:06:40, 14.78s/it]Evaluating:   5%|▌         | 43/800 [06:58<2:24:02, 11.42s/it]Evaluating:   6%|▌         | 44/800 [07:01<1:52:58,  8.97s/it]Evaluating:   6%|▌         | 45/800 [07:06<1:38:45,  7.85s/it]Evaluating:   6%|▌         | 46/800 [07:37<3:03:45, 14.62s/it]Evaluating:   6%|▌         | 47/800 [07:40<2:20:59, 11.23s/it]Evaluating:   6%|▌         | 48/800 [08:05<3:11:49, 15.31s/it]Evaluating:   6%|▌         | 49/800 [08:11<2:37:21, 12.57s/it]Evaluating:   6%|▋         | 50/800 [08:17<2:12:35, 10.61s/it]Evaluating:   6%|▋         | 51/800 [08:23<1:52:16,  8.99s/it]Evaluating:   6%|▋         | 52/800 [08:27<1:36:25,  7.73s/it]Evaluating:   7%|▋         | 53/800 [08:33<1:26:56,  6.98s/it]Evaluating:   7%|▋         | 54/800 [08:39<1:23:17,  6.70s/it]Evaluating:   7%|▋         | 55/800 [08:45<1:20:45,  6.50s/it]Jan 18 14:43:54.533594 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f58bNTVJX4iB/script Terminated (rc=143) 566.7s

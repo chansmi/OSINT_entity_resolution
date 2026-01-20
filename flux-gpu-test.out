@@ -1,0 +1,72 @@
+Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+============================================================
+GPU Setup Verification Test
+============================================================
+Working directory: /usr/WS1/smith585/codebases/OSINT_entity_resolution
+Python: /usr/workspace/smith585/x86_miniconda/bin/python
+
+1. GPU Visibility:
+   PyTorch version: 2.5.0.dev20240905+rocm6.2
+   torch.cuda.is_available(): True
+   torch.cuda.device_count(): 8
+   GPU 0: AMD Instinct MI250X
+   GPU 1: AMD Instinct MI250X
+   GPU 2: AMD Instinct MI250X
+   GPU 3: AMD Instinct MI250X
+   GPU 4: AMD Instinct MI250X
+   GPU 5: AMD Instinct MI250X
+   GPU 6: AMD Instinct MI250X
+   GPU 7: AMD Instinct MI250X
+
+2. Device Visibility Environment:
+   HIP_VISIBLE_DEVICES: not set
+   CUDA_VISIBLE_DEVICES: not set
+   ROCR_VISIBLE_DEVICES: 4,5,2,3,6,7,0,1
+
+3. Testing Model Loading...
+   Target path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+   Path exists: True
+   Model directory contents: ['.cache', '.gitattributes', 'LICENSE', 'README.md', 'config.json']...
+
+   Loading tokenizer...
+   Tokenizer loaded successfully!
+   Vocab size: 151643
+
+   Loading model with device_map='auto'...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:21<01:03, 21.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:41<00:41, 20.83s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:03<00:21, 21.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:11<00:00, 16.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:11<00:00, 17.92s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+   Model loaded in 79.09s
+
+4. Model Device Placement:
+   Unique devices used: {0, 1, 2, 3, 4, 5, 6, 7}
+   Number of GPUs used for model layers: 8
+   Layers per device: {0: 3, 1: 7, 2: 7, 3: 7, 4: 7, 5: 7, 6: 7, 7: 6}
+
+5. GPU Memory Usage:
+   GPU 0: 2.80GB allocated, 2.80GB reserved, 68.7GB total
+   GPU 1: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 2: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 3: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 4: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 5: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 6: 4.35GB allocated, 4.35GB reserved, 68.7GB total
+   GPU 7: 4.04GB allocated, 4.04GB reserved, 68.7GB total
+
+6. Testing Inference...
+   Input device: cuda:0
+   Inference time: 42.80s
+   Input: 'Hello, how are you?'
+   Response: 'Hello, how are you? I'm doing well, thank you. I have a question about the difference between the te...'
+
+7. Testing Entity Resolution Prompt...
+   Inference time: 0.36s
+   Response: '</think>
+
+negative'
+
+============================================================
+TEST COMPLETE - All checks passed!
+============================================================

@@ -1,0 +1,51 @@
+Searching for model paths...
+Hostname: tioga19
+
+Checking /p/vast1/smith585/:
+total 28
+drwxrws--- 2 root     smith585  4096 Jan 15 07:45 .
+drwxr-xr-x 2 root     root      4096 Jan 14 15:48 ..
+drwx--S--- 2 smith585 smith585  4096 Jan  5 18:33 advanced_experiments_20260105_183333
+drwx--S--- 2 smith585 smith585  4096 Jan  5 18:33 advanced_experiments_20260105_183349
+drwx--S--- 2 smith585 smith585  4096 Jan  5 18:34 advanced_experiments_20260105_183401
+drwx--S--- 2 smith585 smith585  4096 Jan  5 18:36 advanced_experiments_20260105_183546
+drwx--S--- 2 smith585 smith585  4096 Jan  6 02:56 advanced_experiments_20260106_025324
+drwx------ 2 smith585 smith585  4096 Jan 15 08:11 .cache
+drwx--S--- 2 smith585 smith585  4096 Aug 13 09:52 caches
+drwx--S--- 2 smith585 smith585  4096 Jan 12 08:57 checkpoints
+drwx--S--- 2 smith585 smith585  4096 Jan  5 06:14 .claude
+-rw------- 1 smith585 smith585  2449 Jan  5 06:15 CLAUDE.md
+drwx--S--- 2 smith585 smith585  4096 Aug 13 09:46 datasets
+-rw------- 1 smith585 smith585   107 Aug 13 09:26 llnl.md
+-rw------- 1 smith585 smith585 25105 Jan  6 02:56 meta_pipeline.log
+drwx--S--- 2 smith585 smith585  4096 Jan 14 09:04 models
+drwx--S--- 2 smith585 smith585  4096 Jan  6 03:10 qwen_real_experiments_20260106_031025
+drwx--S--- 2 smith585 smith585  4096 Jan  6 03:12 qwen_real_experiments_20260106_031130
+drwx--S--- 2 smith585 smith585  4096 Aug 13 09:46 scratch
+
+Checking /p/vast1/:
+total 0
+drwxr-xr-x 2 root  root                 4096 Jan 14 15:48 .
+drwxr-xr-x 1 root  root                  120 Jan  6 14:07 ..
+drwxrws--- 2 root                  3001 4096 Aug  3  2020 001_a4i
+drwxrws--- 2 root                  3433 4096 Apr 25  2022 2016fire
+drwxrws--- 2 root                  3300 4096 Nov 15  2021 22ERD013
+drwxrws--- 2 root  22SI006              4096 Nov  2  2021 22SI006
+drwxrws--- 2 root                  2296 4096 Aug  3  2020 2DVISAR
+drwxrws--- 2 root                  3758 4096 Apr 11  2024 2p_turb
+drwxrws--- 2 root                  1592 4096 Aug  3  2020 3gmmm
+
+Checking /usr/workspace/smith585/:
+total 420
+drwxrws---    8 root     smith585   4096 Jan 15 08:11 .
+drwxr-xr-x 4019 root     root     368640 Jan 14 15:47 ..
+drwx--S---    2 smith585 smith585   4096 Jan 15 07:49 .claude
+-rw-------    1 smith585 smith585   6708 Jan 15 07:59 CLAUDE.md
+drwx--S---    7 smith585 smith585   4096 Jan 12 08:10 codebases
+drwx--S---    4 smith585 smith585   4096 Jan 12 08:59 hf_cache
+drwx--S---    6 smith585 smith585   4096 Jan 15 07:44 home_overflow
+-rw-------    1 smith585 smith585   1909 Jan  5 07:31 README.md
+drwx--S---    2 smith585 smith585   4096 Jan  5 06:33 scripts
+
+Looking for pretrained model directories:
+Jan 15 08:24:59.683553 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f57xW7GDCGgw/script Terminated (rc=143) 55.1s

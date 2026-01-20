@@ -1,0 +1,25 @@
+=== Parallel Eval Chunk 2/8 ===
+Run ID: 20260118_144438
+Range: 200 to 300
+Started: Sun Jan 18 14:53:30 PST 2026
+
+Evaluating chunk: 200 to 300 (100 examples)
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 2048
+  DeepSeek R1 mode: enabled (will extract answer from <think> tags)
+Evaluating:   0%|          | 0/100 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:25, 28.46s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:54<00:53, 26.94s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:20<00:26, 26.46s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:30<00:00, 19.99s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:30<00:00, 22.57s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Evaluating:   1%|          | 1/100 [03:26<5:40:21, 206.28s/it]Evaluating:   2%|▏         | 2/100 [04:27<3:17:38, 121.01s/it]Evaluating:   3%|▎         | 3/100 [05:46<2:44:15, 101.60s/it]Evaluating:   4%|▍         | 4/100 [06:49<2:18:44, 86.71s/it] Evaluating:   5%|▌         | 5/100 [07:42<1:57:34, 74.26s/it]Evaluating:   6%|▌         | 6/100 [08:39<1:47:08, 68.39s/it]Evaluating:   7%|▋         | 7/100 [09:02<1:23:20, 53.77s/it]Evaluating:   8%|▊         | 8/100 [10:03<1:26:01, 56.10s/it]

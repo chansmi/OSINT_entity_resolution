@@ -1,0 +1,49 @@
+=== DeepSeek-14b MIPROv2 Optimization (5 candidates) ===
+Started: Sun Jan 18 14:34:29 PST 2026
+2026/01/18 14:34:55 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/01/18 14:34:55 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/01/18 14:34:55 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=5 sets of demonstrations...
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 2048
+  DeepSeek R1 mode: enabled (will extract answer from <think> tags)
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: deepseek-14b
+Dev examples: 200
+Candidates: 5
+Running MIPROv2 optimization (num_candidates=5, num_trials=7)...
+  trainset: 160 examples
+  valset: 40 examples
+Bootstrapping set 1/5
+Bootstrapping set 2/5
+Bootstrapping set 3/5
+  0%|          | 0/160 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:12, 24.14s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:48<00:48, 24.28s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:11<00:23, 23.89s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:20<00:00, 17.87s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:20<00:00, 20.14s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+  1%|          | 1/160 [03:36<9:34:22, 216.75s/it]  1%|▏         | 2/160 [05:18<6:32:55, 149.21s/it]  2%|▏         | 3/160 [06:34<5:02:33, 115.63s/it]  2%|▎         | 4/160 [07:24<3:53:17, 89.73s/it]   2%|▎         | 4/160 [07:24<4:48:50, 111.09s/it]
+Model loaded successfully on cuda:0
+Bootstrapped 4 full traces after 4 examples for up to 1 rounds, amounting to 4 attempts.
+Bootstrapping set 4/5
+  0%|          | 0/160 [00:00<?, ?it/s]  1%|          | 1/160 [00:56<2:28:42, 56.12s/it]  1%|          | 1/160 [00:56<2:28:42, 56.12s/it]
+Bootstrapped 1 full traces after 1 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 5/5
+  0%|          | 0/160 [00:00<?, ?it/s]Jan 18 14:43:54.535023 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f58bNTuEBUUw/script Terminated (rc=143) 565.6s

@@ -1,0 +1,37 @@
+=== MIPROv2 Optimization for deepseek-32b ===
+Start time: Fri Jan 16 09:55:10 PST 2026
+Hostname: tioga24
+
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 632, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 599, in main
+    results = run_mipro_optimization(args, module, dev_examples, test_examples)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 360, in run_mipro_optimization
+    compiled = run_mipro(
+               ^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/optimize.py", line 280, in run_mipro
+    optimizer = MIPROv2(
+                ^^^^^^^^
+TypeError: MIPROv2.__init__() got an unexpected keyword argument 'num_trials'
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-32B
+  Model name: deepseek-32b
+  Temperature: 0.0
+  Max new tokens: 512
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: deepseek-32b
+Dev examples: 200
+Candidates: 15
+
+End time: Fri Jan 16 09:55:38 PST 2026

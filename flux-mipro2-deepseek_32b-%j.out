@@ -1,0 +1,42 @@
+=== MIPROv2 Optimization for deepseek-32b ===
+Start time: Fri Jan 16 09:36:37 PST 2026
+Hostname: tioga20
+
+Failed to initialize disk cache, falling back to memory-only cache: disk I/O error
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 632, in <module>
+    main()
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 599, in main
+    results = run_mipro_optimization(args, module, dev_examples, test_examples)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 360, in run_mipro_optimization
+    compiled = run_mipro(
+               ^^^^^^^^^^
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/optimize.py", line 288, in run_mipro
+    compiled = optimizer.compile(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/dspy/teleprompt/mipro_optimizer_v2.py", line 152, in compile
+    raise ValueError(
+ValueError: If auto is not None, num_candidates and num_trials cannot be set, since they would be overridden by the auto settings. Please either set auto to None, or do not specify num_candidates and num_trials.
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-32B
+  Model name: deepseek-32b
+  Temperature: 0.0
+  Max new tokens: 512
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: deepseek-32b
+Dev examples: 200
+Candidates: 15
+Running MIPROv2 optimization (num_candidates=15)...
+  trainset: 160 examples
+  valset: 40 examples
+
+End time: Fri Jan 16 09:37:02 PST 2026

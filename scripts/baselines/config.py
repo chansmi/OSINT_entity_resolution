@@ -225,20 +225,38 @@ def add_config_args(parser) -> None:
 
 
 def get_config_from_args(args) -> ExperimentConfig:
-    """Get ExperimentConfig from parsed args, with predefined config support."""
-    if args.config:
-        # Start with predefined config
-        config = CONFIGS[args.config]
-        # Override with any explicitly set args
-        for key in ["input", "output", "offset", "limit", "model", "reasoning",
-                    "examples", "strategy", "parallel", "ternary", "dry_run"]:
-            arg_value = getattr(args, key.replace("_", "-").replace("-", "_"), None)
-            if arg_value is not None and arg_value != getattr(config, key, None):
-                # Arg was explicitly set, override config
-                pass  # TODO: implement selective override
-        return config
-    else:
+    """Get ExperimentConfig from parsed args, with predefined config support.
+
+    When a predefined config is specified, starts with that config and
+    overrides with any explicitly provided CLI arguments.
+    """
+    if not args.config:
         return ExperimentConfig.from_args(args)
+
+    # Start with predefined config as base
+    base = CONFIGS[args.config]
+
+    # Map CLI arg names to config field names
+    arg_to_field = {
+        "input": "input_file",
+        "output": "output_dir",
+        "reasoning": "reasoning_effort",
+        "examples": "n_examples",
+        "strategy": "example_strategy",
+    }
+
+    # Build kwargs from base config
+    kwargs = base.to_dict()
+
+    # Override with explicitly set CLI args
+    for arg_name, value in vars(args).items():
+        if value is None or arg_name == "config":
+            continue
+        field_name = arg_to_field.get(arg_name, arg_name)
+        if field_name in kwargs:
+            kwargs[field_name] = value
+
+    return ExperimentConfig(**kwargs)
 
 
 if __name__ == "__main__":

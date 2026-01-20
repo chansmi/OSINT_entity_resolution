@@ -1,0 +1,9 @@
+Checking model paths...
+Hostname: tioga18
+
+Contents of /p/vast1/smith585/models/pretrained/:
+ls: cannot access '/p/vast1/smith585/models/pretrained/': No such file or directory
+
+Checking specific paths:
+Llama-8B: ls: cannot access '/p/vast1/smith585/models/pretrained/meta-llama*': No such file or directory
+DeepSeek: ls: cannot access '/p/vast1/smith585/models/pretrained/deepseek*': No such file or directory

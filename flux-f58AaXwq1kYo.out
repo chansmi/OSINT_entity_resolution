@@ -1,0 +1,43 @@
+=== MIPROv2 Optimization for llama-8b ===
+Start time: Fri Jan 16 10:00:24 PST 2026
+Hostname: tioga19
+
+2026/01/16 10:00:51 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/01/16 10:00:51 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/01/16 10:00:51 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=15 sets of demonstrations...
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+  Model name: llama-8b
+  Temperature: 0.0
+  Max new tokens: 512
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: llama-8b
+Dev examples: 200
+Candidates: 15
+Running MIPROv2 optimization (num_candidates=15, num_trials=22)...
+  trainset: 160 examples
+  valset: 40 examples
+Bootstrapping set 1/15
+Bootstrapping set 2/15
+Bootstrapping set 3/15
+  0%|          | 0/160 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:13<00:40, 13.56s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:26<00:26, 13.47s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:39<00:12, 12.97s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [00:42<00:00,  9.06s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [00:42<00:00, 10.60s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Jan 16 10:02:25.892328 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f58AaXwq1kYo/script Terminated (rc=143) 121.0s

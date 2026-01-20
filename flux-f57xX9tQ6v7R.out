@@ -1,0 +1,16 @@
+Checking Llama-8B model path structure...
+Llama-8B directory:
+total 0
+drwx--S--- 2 smith585 smith585 4096 Aug 13 11:20 .
+drwx--S--- 2 smith585 smith585 4096 Aug 13 12:50 ..
+drwx--S--- 2 smith585 smith585 4096 Aug 13 11:20 refs
+
+Snapshots directory:
+ls: cannot access '/p/vast1/smith585/caches/hf_home/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/': No such file or directory
+
+First snapshot contents:
+ls: cannot access '/p/vast1/smith585/caches/hf_home/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/*/': No such file or directory
+
+Full path to use:
+ls: cannot access '/p/vast1/smith585/caches/hf_home/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/': No such file or directory
+/p/vast1/smith585/caches/hf_home/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/

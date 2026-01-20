@@ -1,0 +1,20 @@
+{
+  "prompt_id": "llama-8b_bootstrap_20260116_v1",
+  "model": "llama-8b",
+  "description": "DSPy bootstrap optimized prompt for llama-8b",
+  "system_prompt": "Determine if two entity records refer to the same real-world entity.\n\nPrimary task: Identify CONFLICTS, not similarities.\n- Name variations (transliterations, nicknames, titles) are common\n- Missing fields are normal - absence of data is NOT evidence of difference\n- Same entity often appears across multiple sources with variations\n\nDecision Process:\n1. Look for CONTRADICTORY evidence (different dates, conflicting IDs, incompatible attributes)\n2. If NO contradictions found -> POSITIVE (same entity)\n3. Only NEGATIVE if explicit conflicts exist\n\nThe DEFAULT is POSITIVE unless you find proof of difference.",
+  "user_template": "Entity A:\n{entity_a}\n\nEntity B:\n{entity_b}",
+  "demonstrations": [
+    {},
+    {},
+    {},
+    {}
+  ],
+  "dspy_module_path": "data/prompts/dspy_compiled/llama8b_bootstrap_test.json",
+  "provenance": {
+    "optimizer": "bootstrap",
+    "dev_f1": 0.9411764705882353,
+    "optimization_date": "2026-01-16",
+    "git_commit": "4b47cb2"
+  }
+}

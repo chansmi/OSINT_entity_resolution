@@ -1,0 +1,36 @@
+=== DeepSeek-14b MIPROv2 Optimization (3 candidates, 200 dev) ===
+Started: Sun Jan 18 15:02:12 PST 2026
+2026/01/18 15:02:39 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2026/01/18 15:02:39 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2026/01/18 15:02:39 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=3 sets of demonstrations...
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 800 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 2048
+  DeepSeek R1 mode: enabled (will extract answer from <think> tags)
+
+============================================================
+Running MIPROv2 Optimization
+============================================================
+Model: deepseek-14b
+Dev examples: 200
+Candidates: 3
+Running MIPROv2 optimization (num_candidates=3, num_trials=4)...
+  trainset: 160 examples
+  valset: 40 examples
+Bootstrapping set 1/3
+Bootstrapping set 2/3
+Bootstrapping set 3/3
+  0%|          | 0/160 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:23<01:11, 23.75s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:48<00:48, 24.23s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:11<00:23, 23.73s/it][A

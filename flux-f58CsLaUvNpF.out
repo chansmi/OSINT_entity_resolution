@@ -1,0 +1,92 @@
+Testing DeepSeek R1 with explicit JSON constraint (no parsing)
+==============================================================
+Loading data from data/samples/sample_1000.json...
+Dev set: 200 examples
+Test set: 20 examples
+HuggingFaceLanguageModel initialized (lazy loading)
+  Model path: /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B
+  Model name: deepseek-14b
+  Temperature: 0.0
+  Max new tokens: 2048
+  DeepSeek R1 mode: enabled (will extract answer from <think> tags)
+
+============================================================
+Running Zero-Shot Evaluation
+============================================================
+Model: deepseek-14b
+Module: cot
+Test examples: 20
+Evaluating:   0%|          | 0/20 [00:00<?, ?it/s]Using the `SDPA` attention implementation on multi-gpu setup with ROCM may lead to performance issues due to the FA backend. Disabling it to use alternative backends.
+Loading model from /p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B...
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:30<01:31, 30.50s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [01:08<01:09, 34.79s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:39<00:33, 33.24s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [01:50<00:00, 24.44s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [01:50<00:00, 27.66s/it]
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/workspace/smith585/x86_miniconda/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:572: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Evaluating:   5%|▌         | 1/20 [03:26<1:05:19, 206.31s/it]Evaluating:  10%|█         | 2/20 [03:49<29:36, 98.69s/it]   Evaluating:  15%|█▌        | 3/20 [04:50<23:05, 81.48s/it]Evaluating:  20%|██        | 4/20 [05:19<16:11, 60.72s/it]Evaluating:  25%|██▌       | 5/20 [06:42<17:12, 68.85s/it]Evaluating:  30%|███       | 6/20 [07:05<12:26, 53.30s/it]Evaluating:  35%|███▌      | 7/20 [08:44<14:45, 68.12s/it]Evaluating:  40%|████      | 8/20 [09:39<12:47, 63.99s/it]Evaluating:  45%|████▌     | 9/20 [11:13<13:25, 73.26s/it]Evaluating:  50%|█████     | 10/20 [12:12<11:29, 68.93s/it]Evaluating:  55%|█████▌    | 11/20 [13:28<10:39, 71.01s/it]Evaluating:  60%|██████    | 12/20 [13:51<07:31, 56.44s/it]Evaluating:  65%|██████▌   | 13/20 [15:05<07:11, 61.64s/it]Evaluating:  70%|███████   | 14/20 [15:28<05:00, 50.00s/it]Evaluating:  75%|███████▌  | 15/20 [15:59<03:41, 44.33s/it]Evaluating:  80%|████████  | 16/20 [17:20<03:41, 55.29s/it]Evaluating:  85%|████████▌ | 17/20 [18:13<02:44, 54.70s/it]Evaluating:  90%|█████████ | 18/20 [18:36<01:30, 45.21s/it]Evaluating:  95%|█████████▌| 19/20 [19:47<00:52, 52.82s/it]Evaluating: 100%|██████████| 20/20 [20:43<00:00, 53.82s/it]Evaluating: 100%|██████████| 20/20 [20:43<00:00, 62.16s/it]
+Model loaded successfully on cuda:0
+
+==================================================
+Zero-Shot Results
+==================================================
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1 Score:  1.0000
+  Evaluated: 20
+  Errors:    0
+
+Confusion Matrix:
+  True Negatives:  1
+  False Positives: 0
+  False Negatives: 0
+  True Positives:  19
+==================================================
+Elapsed time: 1243.2s (62.16s per example)
+
+============================================================
+EXPERIMENT: dspy_zero_shot_20260116_151310
+============================================================
+Method:     dspy_zero_shot
+Input:      data/samples/sample_1000.json
+Git:        main@4b47cb2
+Timestamp:  2026-01-16T15:13:10.858647
+
+Parameters:
+  model: deepseek-14b
+  module: cot
+  mode: zero-shot
+  demos: 0
+  teacher: None
+  candidates: None
+  dev_size: 200
+  test_size: 20
+
+Metrics:
+  accuracy: 1.0000
+  precision: 1.0000
+  recall: 1.0000
+  f1: 1.0000
+  confusion_matrix:
+    true_negative: 1
+    false_positive: 0
+    false_negative: 0
+    true_positive: 19
+============================================================
+
+
+============================================================
+FINAL RESULTS
+============================================================
+F1:        1.0000
+Precision: 1.0000
+Recall:    1.0000
+Accuracy:  1.0000
+============================================================
+
+Test completed at Fri Jan 16 15:13:14 PST 2026

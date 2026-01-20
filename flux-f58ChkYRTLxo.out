@@ -1,0 +1,12 @@
+Setting up environment...
+Python: /usr/workspace/smith585/x86_miniconda/bin/python
+DSPy version: 3.1.0
+
+Testing DeepSeek R1 with format constraint
+===========================================
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 42, in <module>
+    from .data import load_dspy_examples, format_entity, get_raw_pairs
+ImportError: attempted relative import with no known parent package
+
+Test completed at Fri Jan 16 14:31:17 PST 2026

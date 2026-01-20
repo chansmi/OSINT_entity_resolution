@@ -1,0 +1,15 @@
+Setting up environment...
+Python: /usr/workspace/smith585/x86_miniconda/envs/llm-rocm63/bin/python
+Testing dspy import...
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'dspy'
+
+Testing DeepSeek R1 parsing fix
+==============================
+Traceback (most recent call last):
+  File "/usr/WS1/smith585/codebases/OSINT_entity_resolution/scripts/baselines/dspy_er/run_dspy.py", line 35, in <module>
+    import dspy
+ModuleNotFoundError: No module named 'dspy'
+
+Test completed at Fri Jan 16 14:25:13 PST 2026

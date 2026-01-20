@@ -36,6 +36,7 @@ from tqdm.asyncio import tqdm_asyncio
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate, print_evaluation_report
 from scripts.experiment import Experiment
+from scripts.load_data import load_sample
 from scripts.baselines.config import ExperimentConfig, CONFIGS, add_config_args, get_config_from_args
 from scripts.baselines.example_selector import get_examples, print_example_summary
 from scripts.baselines.llm_zeroshot import (
@@ -88,21 +89,19 @@ CLASSIFICATION: {label}"""
     return example
 
 
-def build_fewshot_messages(examples: list, test_pair: dict) -> list:
-    """Build chat messages with few-shot examples (Chat Completions API).
+def build_fewshot_user_prompt(examples: list, test_pair: dict) -> str:
+    """Build the user prompt content with few-shot examples.
 
     Args:
         examples: List of example pairs for in-context learning
         test_pair: The pair to classify
 
     Returns:
-        List of message dicts for chat completion
+        Formatted user prompt string
     """
-    # Format examples
     example_text = "\n\n".join(format_example(ex) for ex in examples)
 
-    # Build user prompt with examples
-    user_prompt = f"""Here are some examples of entity matching decisions:
+    return f"""Here are some examples of entity matching decisions:
 
 {example_text}
 
@@ -118,46 +117,23 @@ Compare these two entities:
 
 Search for CONTRADICTIONS. If none found, classify as POSITIVE."""
 
-    return [
-        {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": user_prompt}
-    ]
 
-
-def build_fewshot_responses_api_input(examples: list, test_pair: dict) -> list:
-    """Build input for few-shot prompts (Responses API).
-
-    The Responses API uses 'developer' role instead of 'system'.
+def build_fewshot_messages(examples: list, test_pair: dict, use_responses_api: bool = False) -> list:
+    """Build chat messages with few-shot examples.
 
     Args:
         examples: List of example pairs for in-context learning
         test_pair: The pair to classify
+        use_responses_api: If True, use 'developer' role instead of 'system'
 
     Returns:
-        List of message dicts for Responses API
+        List of message dicts for the API
     """
-    # Format examples
-    example_text = "\n\n".join(format_example(ex) for ex in examples)
-
-    # Build user prompt with examples
-    user_prompt = f"""Here are some examples of entity matching decisions:
-
-{example_text}
-
-=== NOW CLASSIFY THIS PAIR ===
-
-Compare these two entities:
-
-=== ENTITY A ===
-{format_entity(test_pair["left"])}
-
-=== ENTITY B ===
-{format_entity(test_pair["right"])}
-
-Search for CONTRADICTIONS. If none found, classify as POSITIVE."""
+    system_role = "developer" if use_responses_api else "system"
+    user_prompt = build_fewshot_user_prompt(examples, test_pair)
 
     return [
-        {"role": "developer", "content": SYSTEM_PROMPT},
+        {"role": system_role, "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_prompt}
     ]
 
@@ -181,7 +157,7 @@ async def classify_pair_async(
                 # Use Responses API for gpt-5.2-pro and similar models
                 response = await client.responses.create(
                     model=model,
-                    input=build_fewshot_responses_api_input(examples, pair),
+                    input=build_fewshot_messages(examples, pair, use_responses_api=True),
                     text=get_responses_api_schema(ternary),
                     reasoning={"effort": reasoning_effort},
                     max_output_tokens=4000
@@ -253,7 +229,7 @@ def classify_pair_sync(
             # Use Responses API for gpt-5.2-pro and similar models
             response = client.responses.create(
                 model=model,
-                input=build_fewshot_responses_api_input(examples, pair),
+                input=build_fewshot_messages(examples, pair, use_responses_api=True),
                 text=get_responses_api_schema(ternary),
                 reasoning={"effort": reasoning_effort},
                 max_output_tokens=4000
@@ -377,29 +353,18 @@ def validate_and_preview(config: ExperimentConfig, data: list, examples: list) -
 
 # --- Main ---
 
-def load_data(filepath: str) -> list:
-    """Load entity pairs from JSON file."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-    # Handle v2 format (with metadata wrapper)
-    if isinstance(data, dict) and 'pairs' in data:
-        return data['pairs']
-
-    return data
-
-
-def run_experiment(config: ExperimentConfig) -> dict:
+def run_experiment(config: ExperimentConfig) -> tuple:
     """Run the full few-shot experiment.
 
     Args:
         config: Experiment configuration
 
     Returns:
-        Dict with metrics and results
+        Tuple of (metrics_dict, results_list). For dry runs, results_list is empty.
+        On error, metrics_dict contains an "error" key.
     """
     # Load data
-    data = load_data(config.input_file)
+    data = load_sample(config.input_file)
 
     # Apply offset and limit
     if config.offset:
@@ -417,7 +382,8 @@ def run_experiment(config: ExperimentConfig) -> dict:
 
     # Dry run mode
     if config.dry_run:
-        return validate_and_preview(config, data, examples)
+        validation = validate_and_preview(config, data, examples)
+        return validation, []
 
     # Setup output
     output_dir = Path(config.output_dir)
@@ -540,18 +506,18 @@ def main():
         config.n_examples = 8  # Default for few-shot
         print(f"Note: Using default {config.n_examples} examples for few-shot")
 
-    result = run_experiment(config)
+    metrics, results = run_experiment(config)
 
-    if isinstance(result, tuple):
-        metrics, results = result
-        if "error" not in metrics:
-            # Cost estimate
-            exp = metrics["experiment"]
-            est_cost = exp['total_tokens'] * 0.0000005
-            print(f"Estimated cost: ${est_cost:.4f}")
-    else:
-        # Dry run result
-        pass
+    # Skip cost output for dry runs or errors
+    if config.dry_run or "error" in metrics:
+        return
+
+    # Print cost estimate
+    exp = metrics.get("experiment", {})
+    total_tokens = exp.get("total_tokens", 0)
+    if total_tokens > 0:
+        est_cost = total_tokens * 0.0000005
+        print(f"Estimated cost: ${est_cost:.4f}")
 
 
 if __name__ == "__main__":

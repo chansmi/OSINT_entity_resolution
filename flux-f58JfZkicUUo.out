@@ -1,0 +1,11 @@
+=== Parallel Eval Chunk 7/10 ===
+Run ID: 20260117_030904
+Range: 6860 to 7840
+Started: Sat Jan 17 03:09:12 PST 2026
+
+  File "<string>", line 18
+    load=data/prompts/llama-8b/mipro_20260116.json,
+                            ^
+SyntaxError: invalid decimal literal
+
+Completed: Sat Jan 17 03:09:33 PST 2026

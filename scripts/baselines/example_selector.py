@@ -23,8 +23,12 @@ Usage:
 import argparse
 import json
 import random
+import sys
 from pathlib import Path
 from typing import List, Optional
+
+sys.path.append(str(Path(__file__).parent.parent.parent))
+from scripts.load_data import load_sample
 
 
 MASTER_SEED = 42
@@ -45,12 +49,7 @@ def load_dev_pairs(
     Returns:
         List of entity pair dicts
     """
-    with open(path, encoding="utf-8") as f:
-        data = json.load(f)
-
-    # Handle both formats (with/without metadata wrapper)
-    pairs = data.get("pairs", data) if isinstance(data, dict) else data
-
+    pairs = load_sample(path)
     return pairs[:dev_size]
 
 
@@ -95,53 +94,48 @@ def select_diverse(
     """
     random.seed(seed)
 
+    def get_schema(pair: dict) -> str:
+        return pair.get("left", {}).get("schema", "Unknown")
+
+    def sample_from_pool(pool: List[dict], count: int) -> List[dict]:
+        """Sample up to count items from pool."""
+        return random.sample(pool, min(count, len(pool)))
+
+    def select_by_class(
+        pairs_list: List[dict],
+        target_count: int,
+        person_ratio: float = 0.6
+    ) -> List[dict]:
+        """Select examples with Person/Organization balance."""
+        persons = [p for p in pairs_list if get_schema(p) == "Person"]
+        orgs = [p for p in pairs_list if get_schema(p) != "Person"]
+
+        n_persons = max(1, int(target_count * person_ratio))
+        n_orgs = target_count - n_persons
+
+        result = sample_from_pool(persons, n_persons)
+        result.extend(sample_from_pool(orgs, n_orgs))
+
+        # Fill remaining slots from any available
+        if len(result) < target_count:
+            remaining = [p for p in pairs_list if p not in result]
+            result.extend(sample_from_pool(remaining, target_count - len(result)))
+
+        return result
+
     # Separate by class
     positives = [p for p in pairs if p["judgement"] == "positive"]
     negatives = [p for p in pairs if p["judgement"] == "negative"]
 
-    # Target: ~60% positive, ~40% negative (slightly more positive as base rate is high)
-    n_pos = max(1, int(n * 0.625))  # e.g., 5 of 8
-    n_neg = n - n_pos  # e.g., 3 of 8
+    # Target: ~62.5% positive, ~37.5% negative
+    n_pos = max(1, int(n * 0.625))
+    n_neg = n - n_pos
 
-    # Further categorize by entity type
-    def get_schema(pair):
-        return pair.get("left", {}).get("schema", "Unknown")
+    # Select from each class with entity type diversity
+    selected = select_by_class(positives, n_pos)
+    selected.extend(select_by_class(negatives, n_neg))
 
-    person_pos = [p for p in positives if get_schema(p) == "Person"]
-    org_pos = [p for p in positives if get_schema(p) != "Person"]
-    person_neg = [p for p in negatives if get_schema(p) == "Person"]
-    org_neg = [p for p in negatives if get_schema(p) != "Person"]
-
-    selected = []
-
-    # Select positive examples (prioritize Person, then Organization)
-    if person_pos:
-        # Select ~60% persons from positives
-        n_person_pos = max(1, int(n_pos * 0.6))
-        selected.extend(random.sample(person_pos, min(n_person_pos, len(person_pos))))
-    if org_pos and len(selected) < n_pos:
-        n_org_pos = n_pos - len(selected)
-        selected.extend(random.sample(org_pos, min(n_org_pos, len(org_pos))))
-    # Fill remaining positive slots if needed
-    remaining_pos = [p for p in positives if p not in selected]
-    while len(selected) < n_pos and remaining_pos:
-        selected.append(random.choice(remaining_pos))
-        remaining_pos.remove(selected[-1])
-
-    # Select negative examples
-    if person_neg:
-        n_person_neg = max(1, int(n_neg * 0.6))
-        selected.extend(random.sample(person_neg, min(n_person_neg, len(person_neg))))
-    if org_neg and len(selected) < n_pos + n_neg:
-        n_org_neg = n_pos + n_neg - len(selected)
-        selected.extend(random.sample(org_neg, min(n_org_neg, len(org_neg))))
-    # Fill remaining negative slots
-    remaining_neg = [p for p in negatives if p not in selected]
-    while len(selected) < n and remaining_neg:
-        selected.append(random.choice(remaining_neg))
-        remaining_neg.remove(selected[-1])
-
-    # Shuffle to avoid positives always coming first
+    # Shuffle to mix positives and negatives
     random.shuffle(selected)
 
     return selected[:n]

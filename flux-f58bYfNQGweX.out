@@ -1,0 +1,3 @@
+=== DeepSeek-14b MIPROv2 Optimization (5 candidates) ===
+Started: Sun Jan 18 14:56:47 PST 2026
+Jan 18 14:57:01.667738 PST 2026 broker.err[0]: rc2.0: /var/tmp/smith585/jobtmp-0-f58bYfNQGweX/script Terminated (rc=143) 14.4s
