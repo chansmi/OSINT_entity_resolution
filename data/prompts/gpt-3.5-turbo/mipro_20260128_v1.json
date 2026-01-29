@@ -1,0 +1,24 @@
+{
+  "prompt_id": "gpt-3.5-turbo_mipro_20260128_v1",
+  "model": "gpt-3.5-turbo",
+  "description": "DSPy mipro optimized prompt for gpt-3.5-turbo",
+  "system_prompt": "You are working for a top security agency tasked with preventing corporate espionage. Your job is to accurately determine if two entity records refer to the same real-world entity or if they represent different entities. Use the provided entity records and focus on identifying any conflicting information to make your decision. Remember, the stakes are high, and accurate classifications are crucial to safeguarding sensitive information.",
+  "user_template": "Entity A:\n{entity_a}\n\nEntity B:\n{entity_b}",
+  "demonstrations": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  "dspy_module_path": "data/prompts/gpt-3.5-turbo/mipro_20260128.json",
+  "provenance": {
+    "optimizer": "mipro",
+    "dev_f1": 0.9356223175965666,
+    "optimization_date": "2026-01-28",
+    "git_commit": "f9f9880"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "reasoning": "The entities are of the same type and there are no conflicting attributes or information provided.",
+        "classification": "positive"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Person\nNames: Oleg Valerjevitj KOVAL, Oleg KOVAL, Oleh Valerijovytj KOVAL, Олег Валерьевич КОВАЛЬ, Коваль Олег Валерійович, Oleg Valerievich KOVAL, Koval Oleg Valeryevich, Koval Oleg\nAliases: Koval Oleh Valeriiovych, Oleg Valerievich KOVAL, Олег Валерьевич КОВАЛЬ, Олег Валерiйович КОВАЛЬ\nBirth Date: 1974, 1974-09-29\nCountry: ua\nAddress: 9 Square Of Heroes Of The Great Patriotic War, Luhansk, Ukraine; 9 Square of Heroes of the Great Patriotic War, Luhansk; 9 Square of Heroes of the Great Patriotic War, Luhansk, Ukraine\nGender: male\nPosition: Deputy Chairman of the so-called “People’s Council” of the so-called “Luhansk People’s Republic”, «депутат народної ради» незаконного збройного формування «ЛНР»\nFirst Name: Oleg Valeryevich, Oleg, Олег\nLast Name: Koval, KOVAL, КОВАЛЬ",
+        "entity_b": "Type: Person\nNames: Ivaninskiy Oleg Ivanovich, Іванінський Олег Іванович, 奥列格·伊万宁斯基, Oleg Ivanovich Ivaninskiy, Oleg Ivanovitj IVANINSKIJ, Олег Иванович ИВАНИНСКИЙ, オレグ・イヴァニンスキー, ИВАНИНСКИЙ ОЛЕГ ИВАНОВИЧ\nAliases: Иванинский, Олег Иванович, Иванинский Олег Иванович, Ivaninskiy Oleg Ivanovich, Ivaninskyi Oleh Ivanovych\nBirth Date: 1966-06-05, 1966\nBirth Place: Novosibirsk\nRussia, Російська Федерація, м. Новосибірськ\nNationality: ru\nCountry: ru\nAddress: 1 Okhotny Ryad str, Russia, 103265; 1 Okhotny Ryad str, 103265; 1 Okhotny Ryad Str, Russia, 103265\nGender: male\nPosition: Members of Parliament and Senate, Депутаты и сенаторы\nFirst Name: Oleg Ivanovich, Oleg, Олег\nLast Name: IVANINSKY, Ivaninskiy, IVANINSKIY, Иванинский, Ivaninsky, ИВАНИНСКИЙ",
+        "reasoning": "The two entities have conflicting names, birth dates, birth places, addresses, positions, and nationalities. These discrepancies indicate that they are different individuals.",
+        "classification": "negative"
+      },
+      {
+        "augmented": true,
+        "entity_a": "Type: Succession",
+        "entity_b": "Type: Succession",
+        "reasoning": "Not supplied for this particular example.",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Person\nNames: Sergey Borisovich PROKOPENKO\nAliases: Сергей Борисович ПРОКОПЕНКО / Сергiй Борисович ПРОКОПЕНКО\nCountry: ua\nFirst Name: Sergey Borisovich\nLast Name: PROKOPENKO",
+        "entity_b": "Type: Person\nNames: Serhij Borysovytj PROKOPENKO, Sergei (Sergey) PROKOPENKO, セルゲイ・プロコペンコ, Sergei PROKOPENKO, Sergej Borisovitj PROKOPENKO, Сергей Борисович ПРОКОПЕНКО, Prokopenko Sergey, Sergey Prokopenko\nAliases: Prokopenko Serhii Borysovych, ПРОКОПЕНКО Сергiй Борисович, ПРОКОПЕНКО Сергей Борисович\nBirth Date: 1986-10-20, 1986\nBirth Place: Taganrog\nCountry: ua-dpr, ua\nAddress: 97 Artema St, Donetsk, 283001; 97 Artema St, Donetsk, 283001, Ukraine\nGender: male\nPosition: 「ドネツク人民共和国人民議会議員」（自称）, Член так званої «народної ради ДНР»\nFirst Name: Сергей, Sergey Borisovich, Сергiй, Sergey\nLast Name: PROKOPENKO, Prokopenko, ПРОКОПЕНКО",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Occupancy",
+        "entity_b": "Type: Occupancy",
+        "classification": "positive"
+      },
+      {
+        "entity_a": "Type: Person\nNames: HANNIBAL MUAMMAR QADHAFI\nBirth Date: 1975-09-20\nBirth Place: Tripoli, Libya.\nAddress: Lebanon (in custody)",
+        "entity_b": "Type: Person\nNames: Qadhafi Hannibal Muammar, ハンニバル・ムアンマル・カダフィ, GADDAFI, Hannibal, HANNIBAL MUAMMAR QADHAFI, Hannibal Muammar QADHAFI, Hannibal GADDAFI\nAliases: Hannibal GHATHAFI, Hannibal GHADAFFI, Hannibal Muammar GADDAFI, Hannibal Muammar GHEDDAFI\nBirth Date: 1977, 1975-09-20, 1975\nBirth Place: Tripoli, LIBYA, Tripoli\nNationality: ly\nCountry: lb, ly\nAddress: Détenu; レバノン共和国（拘留中）; Lebanon (in custody)\nID Numbers: B/002210\nPassport: Libya B/002210, リビア旅券番号：B/002210\nGender: male\nFirst Name: HANNIBAL, Hannibal Muammar, Hannibal\nLast Name: EL-QADDAFI, GADDAFI, ELKADDAFI, GHATHAFI, Qadhafi, QADHAFI, AL-QADHAFI, GHADAFFI, QADDAFI, AL-GADDAFI",
+        "classification": "positive"
+      }
+    ],
+    "signature": {
+      "instructions": "You are working for a top security agency tasked with preventing corporate espionage. Your job is to accurately determine if two entity records refer to the same real-world entity or if they represent different entities. Use the provided entity records and focus on identifying any conflicting information to make your decision. Remember, the stakes are high, and accurate classifications are crucial to safeguarding sensitive information.",
+      "fields": [
+        {
+          "prefix": "Entity A:",
+          "description": "First entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Entity B:",
+          "description": "Second entity record with names, dates, IDs, and other attributes"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Brief explanation of decision, focusing on conflicts or lack thereof"
+        },
+        {
+          "prefix": "Classification:",
+          "description": "positive if same entity, negative if different entities"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.1.2",
+      "cloudpickle": "3.1"
+    }
+  }
+}

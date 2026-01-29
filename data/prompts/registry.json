@@ -44,11 +44,55 @@
         "optimizer": "mipro",
         "dev_f1": 0.9588607594936709
       }
+    },
+    {
+      "prompt_id": "gpt-3.5-turbo_mipro_20260128_v1",
+      "model": "gpt-3.5-turbo",
+      "description": "DSPy mipro optimized prompt for gpt-3.5-turbo",
+      "path": "gpt-3.5-turbo/mipro_20260128_v1.json",
+      "created_date": "2026-01-28",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9356223175965666
+      }
+    },
+    {
+      "prompt_id": "gpt-4o_mipro_20260128_v1",
+      "model": "gpt-4o",
+      "description": "DSPy mipro optimized prompt for gpt-4o",
+      "path": "gpt-4o/mipro_20260128_v1.json",
+      "created_date": "2026-01-28",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9901800327332242
+      }
+    },
+    {
+      "prompt_id": "anthropic/claude-3-haiku-20240307_mipro_20260128_v1",
+      "model": "anthropic/claude-3-haiku-20240307",
+      "description": "DSPy mipro optimized prompt for anthropic/claude-3-haiku-20240307",
+      "path": "anthropic/claude-3-haiku-20240307/mipro_20260128_v1.json",
+      "created_date": "2026-01-28",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.9894222945484134
+      }
+    },
+    {
+      "prompt_id": "anthropic/claude-3-7-sonnet-20250219_mipro_20260128_v1",
+      "model": "anthropic/claude-3-7-sonnet-20250219",
+      "description": "DSPy mipro optimized prompt for anthropic/claude-3-7-sonnet-20250219",
+      "path": "anthropic/claude-3-7-sonnet-20250219/mipro_20260128_v1.json",
+      "created_date": "2026-01-28",
+      "provenance": {
+        "optimizer": "mipro",
+        "dev_f1": 0.986863711001642
+      }
     }
   ],
   "metadata": {
     "version": "1.0",
-    "last_updated": "2026-01-19",
+    "last_updated": "2026-01-28",
     "description": "Registry of optimized prompts for entity resolution"
   }
 }
