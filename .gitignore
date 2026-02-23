@@ -21,6 +21,7 @@ data/processed/
 
 # Paper drafts
 paper/
+*.pdf
 
 # IDE
 .vscode/
