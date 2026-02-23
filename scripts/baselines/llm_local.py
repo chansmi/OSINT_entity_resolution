@@ -33,6 +33,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from scripts.evaluate import evaluate, print_evaluation_report
 from scripts.experiment import Experiment
+from scripts.baselines.llm_zeroshot import format_entity
 from scripts.finetune.config import PRETRAINED_MODELS_DIR, SYSTEM_PROMPT
 
 # Model configurations
@@ -46,36 +47,6 @@ MODEL_CONFIGS = {
         "path": PRETRAINED_MODELS_DIR / "deepseek-ai--DeepSeek-R1-Distill-Qwen-14B",
     },
 }
-
-# Field specifications for entity formatting
-FIELD_SPECS = [
-    ("name", "Names", 8, ", "),
-    ("alias", "Aliases", 4, ", "),
-    ("birthDate", "Birth Date", None, ", "),
-    ("birthPlace", "Birth Place", 2, ", "),
-    ("nationality", "Nationality", None, ", "),
-    ("country", "Country", None, ", "),
-    ("address", "Address", 3, "; "),
-    ("idNumber", "ID Numbers", 3, ", "),
-    ("passportNumber", "Passport", 2, ", "),
-    ("gender", "Gender", None, ", "),
-    ("position", "Position", 2, ", "),
-    ("firstName", "First Name", None, ", "),
-    ("lastName", "Last Name", None, ", "),
-]
-
-
-def format_entity(entity: dict) -> str:
-    """Convert entity dict to readable text for the prompt."""
-    props = entity.get("properties", {})
-    lines = [f"Type: {entity.get('schema', 'Unknown')}"]
-
-    for key, label, limit, sep in FIELD_SPECS:
-        if key in props:
-            values = props[key][:limit] if limit else props[key]
-            lines.append(f"{label}: {sep.join(str(v) for v in values)}")
-
-    return "\n".join(lines)
 
 
 def load_data(filepath: str) -> list:

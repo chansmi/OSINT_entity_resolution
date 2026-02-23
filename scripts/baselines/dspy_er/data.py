@@ -14,41 +14,7 @@ import dspy
 # Add parent directory for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from scripts.load_data import load_sample
-
-
-# --- Entity Formatting (reused from llm_zeroshot.py) ---
-
-def format_entity(entity: dict) -> str:
-    """Convert entity dict to readable text for the prompt.
-
-    Replicates the format from llm_zeroshot.py for consistency.
-    """
-    props = entity.get("properties", {})
-    lines = [f"Type: {entity.get('schema', 'Unknown')}"]
-
-    # Field definitions: (key, label, limit, separator)
-    field_specs = [
-        ("name", "Names", 8, ", "),
-        ("alias", "Aliases", 4, ", "),
-        ("birthDate", "Birth Date", None, ", "),
-        ("birthPlace", "Birth Place", 2, ", "),
-        ("nationality", "Nationality", None, ", "),
-        ("country", "Country", None, ", "),
-        ("address", "Address", 3, "; "),
-        ("idNumber", "ID Numbers", 3, ", "),
-        ("passportNumber", "Passport", 2, ", "),
-        ("gender", "Gender", None, ", "),
-        ("position", "Position", 2, ", "),
-        ("firstName", "First Name", None, ", "),
-        ("lastName", "Last Name", None, ", "),
-    ]
-
-    for key, label, limit, sep in field_specs:
-        if key in props:
-            values = props[key][:limit] if limit else props[key]
-            lines.append(f"{label}: {sep.join(values)}")
-
-    return "\n".join(lines)
+from scripts.baselines.llm_zeroshot import format_entity
 
 
 # --- DSPy Example Conversion ---

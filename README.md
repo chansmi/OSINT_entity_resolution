@@ -1,176 +1,212 @@
 # OSINT Entity Resolution Benchmark
 
-A minimal benchmark for evaluating entity resolution approaches on OSINT data.
+A benchmark for evaluating entity resolution approaches on OSINT sanctions screening data. The task: given two entity records (persons or organizations), determine whether they refer to the same real-world entity.
+
+**Dataset**: 755,540 entity pairs from [OpenSanctions](https://opensanctions.org/) data (76.9% positive matches, 23.1% negative).
+
+## Results
+
+Best results on an 800-pair held-out test set (stratified from the full dataset):
+
+| Method | F1 | Precision | Recall | Notes |
+|--------|-----|-----------|--------|-------|
+| Nomenklatura RegressionV1 | 90.61% | 82.84% | 100% | Rule-based baseline |
+| LLM Zero-Shot (GPT-5-nano) | 94.95% | 91.77% | 98.37% | Conflict-focused prompt |
+| Llama-8B MIPROv2 0-shot | 97.25% | 96.47% | 98.04% | Best local model |
+| LLM Zero-Shot (GPT-5.2-pro) | 98.53% | 98.37% | 98.69% | Best API zero-shot |
+| LLM Few-Shot (GPT-5.2-pro) | **98.75%** | 98.75% | 98.75% | Best overall |
+
+**Key finding**: MIPROv2-optimized instructions alone (0-shot) outperform all few-shot configurations for local models. Adding demonstrations actually hurts performance by 1.6-1.9pp. The optimized instruction encodes a conflict-focused decision strategy that's more effective than example-based learning.
 
 ## Quick Start
 
-### 1. Setup Environment
+### 1. Setup
 
 ```bash
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate
 pip install -r requirements.txt
+
+# Copy and fill in API keys
+cp .env.example .env
 ```
 
-### 2. Download and Prepare Data
+### 2. Data
 
-**Download the raw data file** and place it in `data/raw/`:
+Download the raw data file and place it in `data/raw/`:
 
 ```bash
-# Download pairs-20251209.json.gz (391 MB compressed)
-# Place it in: data/raw/pairs-20251209.json.gz
+# TODO: Insert download URL for pairs-20251209.json.gz (391 MB compressed)
+mkdir -p data/raw
+# Place pairs-20251209.json.gz in data/raw/
 ```
 
-The dataset contains **755,540 entity pairs** with the following distribution:
-- **Positive matches**: 581,149 (76.9%)
-- **Negative matches**: 174,391 (23.1%)
-
-### 3. Choose Your Data Loading Strategy
-
-#### Option A: Use Sample Data (Recommended for Quick Start)
-
-Create a stratified, properly shuffled sample for experiments:
+Create a stratified sample for experiments:
 
 ```bash
-# Creates data/samples/sample_1000.json with 76.9% positive ratio (matching full dataset)
 python scripts/create_proper_sample.py --n 1000
-
-# Validate an existing sample
-python scripts/create_proper_sample.py --validate-only data/samples/sample_1000.json
 ```
 
-The sample uses stratified sampling to match the full dataset class distribution and is shuffled with a fixed seed (42) for reproducibility.
-
-**Memory usage**: ~4 MB
-**Load time**: <1 second
-
-#### Option B: Use Full Dataset
-
-Load all 755k entries into memory with caching for faster subsequent loads:
+### 3. Run Baselines
 
 ```bash
-# First run: loads from .gz and creates cache (~43s)
-# Subsequent runs: loads from cache (~5-10s)
-python scripts/cache_full_dataset.py
+# Fuzzy matching (no API required)
+python scripts/baselines/simple_fuzzy.py --input data/samples/sample_1000.json
+
+# Nomenklatura rule-based baseline
+python scripts/baselines/nomenklatura_v1.py --input data/samples/sample_1000.json
+
+# LLM zero-shot (requires OPENAI_API_KEY)
+python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30
+
+# LLM few-shot with diverse example selection
+python scripts/baselines/llm_fewshot.py --input data/samples/sample_1000.json --examples 8 --strategy diverse
 ```
 
-This creates `data/raw/pairs_full.json` (2.1 GB, gitignored) for faster loading.
+Most scripts support `--limit N` (cap API/GPU calls), `--dry-run` (preview prompts), and `--offset 200` (skip dev set, evaluate on test only).
 
-**Memory usage**: ~10 GB  
-**Load time**: 
-- First run (from .gz): ~30-60 seconds
-- Cached runs: ~5-10 seconds
+## DSPy Prompt Optimization
 
-### 4. Explore the Data
+Uses [DSPy](https://dspy.ai/) for automatic prompt optimization via MIPROv2.
 
 ```bash
-# Open Jupyter notebook
-jupyter notebook notebooks/explore_data.ipynb
+pip install dspy-ai
 
-# Toggle between sample and full dataset in the notebook
-# Set USE_SAMPLE = True for sample (1k entries)
-# Set USE_SAMPLE = False for full dataset (755k entries)
+# Zero-shot baseline
+python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode zero-shot
+
+# MIPROv2 optimization (discovers optimal instructions on dev set)
+python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode mipro --candidates 15
+
+# Evaluate saved prompt on test set
+python scripts/baselines/dspy_er/run_dspy.py --load data/prompts/llama-8b/mipro_20260116.json --offset 200
+
+# Local models via HuggingFace (requires GPU)
+flux run -N1 -g8 python scripts/baselines/dspy_er/run_dspy.py --model llama-8b --mode mipro
+```
+
+Optimized prompts are stored in `data/prompts/` with a registry at `data/prompts/registry.json`. Manage with:
+
+```bash
+python scripts/baselines/prompt_optimization/prompt_store.py list --model llama-8b
+python scripts/baselines/prompt_optimization/prompt_store.py best llama-8b
+```
+
+## Fine-Tuning
+
+Infrastructure for supervised fine-tuning of local models with entity-level train/test splits (no entity appears in both sets).
+
+```bash
+pip install peft trl datasets
+
+# Prepare SFT data
+python scripts/finetune/prepare_sft_data.py --input data/samples/sample_10000.json
+
+# Entity-level splits (prevents data leakage)
+python scripts/finetune/prepare_data.py --input data/raw/pairs-20251209.json.gz \
+    --output-dir data/processed --train-ratio 0.70 --val-ratio 0.05
+
+# Quick test
+python scripts/finetune/train.py --model llama-8b --quick --limit 100
+
+# Inference
+python scripts/finetune/inference.py --model-path /path/to/checkpoint --input data/samples/sample_1000.json
+```
+
+## Experiment Tracking
+
+All runs are logged to `data/outputs/experiments.jsonl` with run ID, git commit, parameters, and metrics.
+
+```bash
+python scripts/experiment.py --list                    # List recent experiments
+python scripts/experiment.py --compare --method llm    # Compare LLM experiments
+python scripts/generate_summary.py --filter-method llm # Generate summary report
 ```
 
 ## Data Format
 
-The dataset consists of entity pairs with ground truth labels:
+Entity pairs with ground truth labels:
 
 ```json
 {
-  "judgement": "positive",  // or "negative"
-  "left": { ... },          // Entity data
-  "right": { ... }          // Entity data
+  "left": {
+    "id": "ofac-40604",
+    "caption": "Aliasghar Norouzi",
+    "schema": "Person",
+    "properties": {
+      "alias": ["Ali Asghar Norowzi"],
+      "birthDate": ["1962-11-11"],
+      "nationality": ["ir"]
+    }
+  },
+  "right": { "..." : "..." },
+  "judgement": "positive"
 }
 ```
 
-- **positive**: Entities refer to the same real-world entity
-- **negative**: Entities refer to different real-world entities
+- **positive**: Records refer to the same real-world entity
+- **negative**: Records refer to different entities
 
 ## Repository Structure
 
 ```
 ├── data/
-│   ├── raw/                          # Large data files (gitignored)
-│   │   ├── pairs-20251209.json.gz    # Original compressed dataset (391 MB)
-│   │   └── pairs_full.json           # Cached uncompressed dataset (2.1 GB, created by cache_full_dataset.py)
-│   ├── samples/                      # Small samples (tracked in git)
-│   │   └── sample_1000.json          # Stratified sample of 1,000 pairs (76.9% positive)
-│   └── outputs/                      # Experiment results (gitignored)
-├── notebooks/
-│   └── explore_data.ipynb            # EDA notebook with sample/full dataset toggle
+│   ├── raw/                              # Raw data (gitignored)
+│   ├── samples/                          # Stratified samples (tracked)
+│   │   └── sample_1000.json
+│   ├── prompts/                          # Optimized prompts with registry
+│   │   └── registry.json
+│   ├── examples/                         # Curated few-shot examples
+│   └── outputs/                          # Experiment results (gitignored)
 ├── scripts/
-│   ├── load_data.py                  # Data loading utilities (library)
-│   ├── create_proper_sample.py       # Create stratified, shuffled samples
-│   ├── cache_full_dataset.py         # Script to create full dataset cache
-│   ├── evaluate.py                   # Evaluation metrics
-│   ├── experiment.py                 # Experiment tracking and logging
-│   └── baselines/                    # Baseline implementations
-│       ├── simple_fuzzy.py           # Deterministic weighted scoring
-│       ├── nomenklatura_v1.py        # OpenSanctions RegressionV1
-│       └── llm_zeroshot.py           # GPT-5 zero-shot (async parallel)
-└── requirements.txt                  # Python dependencies
+│   ├── load_data.py                      # Data loading (iterator, sample, full cache)
+│   ├── create_proper_sample.py           # Stratified sampling
+│   ├── evaluate.py                       # Evaluation metrics
+│   ├── experiment.py                     # Experiment tracking
+│   ├── generate_summary.py              # Summary reports
+│   ├── baselines/
+│   │   ├── simple_fuzzy.py               # Deterministic weighted scoring
+│   │   ├── nomenklatura_v1.py            # OpenSanctions RegressionV1
+│   │   ├── llm_zeroshot.py              # GPT zero-shot (async parallel)
+│   │   ├── llm_fewshot.py              # GPT few-shot with example selection
+│   │   ├── llm_local.py                # Local LLM inference (Llama, DeepSeek)
+│   │   ├── config.py                    # Experiment configs and cost estimation
+│   │   ├── example_selector.py          # Few-shot example strategies
+│   │   ├── reasoning_sweep.py           # Reasoning effort ablation
+│   │   ├── dspy_er/                     # DSPy prompt optimization module
+│   │   │   ├── run_dspy.py              # Main CLI (zero-shot, bootstrap, mipro)
+│   │   │   ├── signatures.py            # Typed I/O signatures
+│   │   │   ├── modules.py              # DSPy modules
+│   │   │   ├── data.py                 # Entity pair → DSPy Example adapters
+│   │   │   ├── metrics.py             # DSPy-compatible metrics
+│   │   │   ├── optimize.py            # Optimizer wrappers
+│   │   │   └── hf_lm.py              # HuggingFace LM (local, no vLLM needed)
+│   │   └── prompt_optimization/        # Prompt storage and management
+│   │       └── prompt_store.py
+│   ├── finetune/                        # Fine-tuning infrastructure
+│   │   ├── train.py                     # Training loop (multi-GPU, LoRA)
+│   │   ├── inference.py                # Checkpoint evaluation
+│   │   ├── prepare_data.py            # Entity-level train/test splits
+│   │   ├── prepare_sft_data.py        # SFT data formatting
+│   │   ├── data_pipeline.py           # Data loading for training
+│   │   └── config.py                  # Model paths and training config
+│   └── vendor/
+│       └── nomenklatura/               # Vendored nomenklatura (git submodule)
+├── notebooks/
+│   └── explore_data.ipynb              # EDA notebook
+├── requirements.txt
+└── .env.example
 ```
 
-## Usage
+## Design Decisions
 
-### Loading Data
+**Conflict-focused prompting**: The default assumption is POSITIVE (same entity). Only classify as NEGATIVE when explicit contradictions exist (different birth dates, conflicting IDs, etc.). This reduces false negatives by 97% vs. a conservative "are these the same?" framing.
 
-```python
-from scripts.load_data import load_pairs, create_sample, load_sample, load_full_dataset
+**DEV/TEST split**: From `sample_1000.json`, pairs 0-199 are DEV (for optimization), pairs 200-999 are TEST (for evaluation). Use `--offset 200` to evaluate on test only.
 
-# Option 1: Memory-efficient iterator (doesn't load everything at once)
-for pair in load_pairs("data/raw/pairs-20251209.json.gz"):
-    print(pair["judgement"], pair["left"], pair["right"])
+**Entity-level splits**: Fine-tuning ensures no entity appears in both train and test to prevent data leakage.
 
-# Option 2: Create and load a small sample
-create_sample("data/raw/pairs-20251209.json.gz", "data/samples/sample_100.json", n=100)
-sample_data = load_sample("data/samples/sample_100.json")
-
-# Option 3: Load full dataset into memory with caching (~10 GB)
-full_data = load_full_dataset(
-    input_path="data/raw/pairs-20251209.json.gz",
-    cache_path="data/raw/pairs_full.json",
-    use_cache=True  # Uses cache if available, creates it if not
-)
-print(f"Loaded {len(full_data):,} pairs")
-```
-
-### Evaluation
-
-```python
-from scripts.evaluate import evaluate
-
-results = evaluate(
-    ground_truth=["positive", "negative", "positive"],
-    predictions=["positive", "positive", "positive"]
-)
-print(results)
-# Output: {'accuracy': 0.67, 'precision': 0.67, 'recall': 1.0, 'f1': 0.80}
-```
-
-## Baseline Results
-
-Results on a properly stratified sample of 1,000 pairs (76.9% positive, matching full dataset distribution). Evaluation uses an 80/20 dev/test split with fixed seed for reproducibility.
-
-| Method | F1 Score | Precision | Recall | Notes |
-|--------|----------|-----------|--------|-------|
-| Nomenklatura RegressionV1 | 90.61% | 82.84% | 100% | Perfect recall, some false positives |
-| LLM Zero-Shot (GPT-5-nano) | **93.10%** | 87.84% | 99.02% | Conflict-focused prompt |
-| LLM Ternary Mode | 99.53%* | 99.38% | 99.69% | *62.8% coverage (uncertain cases flagged for review) |
-
-**Key Finding:** The LLM zero-shot approach uses a conflict-focused prompt that frames entity resolution as contradiction detection. This reduces false negatives by 97% compared to a conservative "are these the same?" framing.
-
-## Contributing
-
-This is a collaborative project. Keep things simple:
-- Add notebooks for experiments in `notebooks/`
-- Add utility scripts to `scripts/`
-- Document your approach in notebook markdown cells
-- Update this README when adding major features
+**HPC notes**: Local model experiments were run on the Tioga cluster (AMD ROCm GPUs) via the Flux scheduler. Model paths like `llama-8b` map to `/p/vast1/smith585/models/pretrained/...` — override with `--model-path` for other environments.
 
 ## License
 
