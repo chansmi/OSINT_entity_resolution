@@ -38,7 +38,15 @@ dist/
 build/
 *.egg-info/
 Gemini.md
-Claude.md
+CLAUDE.md
 PROJECT_PLAN.md
 .claude
 *.tex
+
+# HPC / job outputs
+flux-*.out
+*.out
+jobs/
+
+# Experiment tracking
+wandb/

@@ -1,0 +1,3 @@
+[submodule "scripts/vendor/nomenklatura"]
+	path = scripts/vendor/nomenklatura
+	url = https://github.com/opensanctions/nomenklatura.git
