@@ -9,8 +9,6 @@ A benchmark for evaluating entity resolution approaches on OSINT sanctions scree
 <img width="877" height="537" alt="Screenshot 2026-02-23 at 10 34 37 PM" src="https://github.com/user-attachments/assets/36b1aa0e-f887-4204-ab6c-53e9872eae4b" />
 
 
-**Key finding**: MIPROv2-optimized instructions alone (0-shot) outperform all few-shot configurations for local models. Adding demonstrations actually hurts performance by 1.6-1.9pp. The optimized instruction encodes a conflict-focused decision strategy that's more effective than example-based learning.
-
 ## Quick Start
 
 ### 1. Setup
