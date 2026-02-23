@@ -6,15 +6,8 @@ A benchmark for evaluating entity resolution approaches on OSINT sanctions scree
 
 ## Results
 
-Best results on an 800-pair held-out test set (stratified from the full dataset):
+<img width="877" height="537" alt="Screenshot 2026-02-23 at 10 34 37 PM" src="https://github.com/user-attachments/assets/36b1aa0e-f887-4204-ab6c-53e9872eae4b" />
 
-| Method | F1 | Precision | Recall | Notes |
-|--------|-----|-----------|--------|-------|
-| Nomenklatura RegressionV1 | 90.61% | 82.84% | 100% | Rule-based baseline |
-| LLM Zero-Shot (GPT-5-nano) | 94.95% | 91.77% | 98.37% | Conflict-focused prompt |
-| Llama-8B MIPROv2 0-shot | 97.25% | 96.47% | 98.04% | Best local model |
-| LLM Zero-Shot (GPT-5.2-pro) | 98.53% | 98.37% | 98.69% | Best API zero-shot |
-| LLM Few-Shot (GPT-5.2-pro) | **98.75%** | 98.75% | 98.75% | Best overall |
 
 **Key finding**: MIPROv2-optimized instructions alone (0-shot) outperform all few-shot configurations for local models. Adding demonstrations actually hurts performance by 1.6-1.9pp. The optimized instruction encodes a conflict-focused decision strategy that's more effective than example-based learning.
 
