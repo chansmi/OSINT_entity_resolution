@@ -59,7 +59,7 @@ def main():
 
     if not os.path.exists(model_path):
         print(f"   ERROR: Model path does not exist!")
-        print(f"   This is expected if running from login node (no access to /p/vast1)")
+        print(f"   Set PRETRAINED_MODELS_DIR or check that the model path is correct.")
         return
 
     # List model directory contents

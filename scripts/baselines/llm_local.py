@@ -147,7 +147,7 @@ def load_model(model_key: str):
     if not os.path.exists(model_path):
         raise FileNotFoundError(
             f"Model path does not exist: {model_path}\n"
-            f"This may indicate you're running from a node without access to /p/vast1.\n"
+            f"Set PRETRAINED_MODELS_DIR or use --model-path to specify the correct location.\n"
             f"Use: flux run -N 1 -n 1 -g 8 python scripts/baselines/llm_local.py ..."
         )
 
