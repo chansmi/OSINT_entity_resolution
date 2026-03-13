@@ -196,7 +196,7 @@ Entity pairs with ground truth labels:
 
 **Entity-level splits**: Fine-tuning ensures no entity appears in both train and test to prevent data leakage.
 
-**HPC notes**: Local model experiments were run on the Tioga cluster (AMD ROCm GPUs) via the Flux scheduler. Model paths like `llama-8b` map to `/p/vast1/smith585/models/pretrained/...` — override with `--model-path` for other environments.
+**HPC notes**: Local model experiments were run on an AMD ROCm GPU cluster via the Flux scheduler. Set `PRETRAINED_MODELS_DIR` to point to your local model directory, or use `--model-path` per-script.
 
 ## License
 

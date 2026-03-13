@@ -78,11 +78,9 @@ echo "Range: {start_idx} to {end_idx}"
 echo "Started: $(date)"
 echo ""
 
-source ~/.bashrc && module load rocm/6.3.1
-export CONDAPATH=/usr/workspace/smith585/x86_miniconda
-eval "$($CONDAPATH/bin/conda shell.bash hook)"
-conda activate base
-cd /usr/workspace/smith585/codebases/OSINT_entity_resolution
+# Activate environment (customize for your setup)
+# Example for HPC: module load rocm/6.3.1 && conda activate myenv
+cd "${{PROJECT_DIR:-$(git rev-parse --show-toplevel)}}"
 export PYTHONPATH=$PWD:$PYTHONPATH
 
 # Run evaluation on chunk

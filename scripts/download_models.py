@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 # Set cache directories BEFORE importing transformers
-CACHE_DIR = Path("/p/vast1/smith585/models/pretrained")
+CACHE_DIR = Path(os.environ.get("PRETRAINED_MODELS_DIR", "./models/pretrained"))
 os.environ["HF_HOME"] = str(CACHE_DIR)
 os.environ["TRANSFORMERS_CACHE"] = str(CACHE_DIR)
 

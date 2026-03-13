@@ -51,7 +51,8 @@ def main():
 
     # 3. Test model loading
     print(f"\n3. Testing Model Loading...")
-    model_path = "/p/vast1/smith585/models/pretrained/deepseek-ai--DeepSeek-R1-Distill-Qwen-14B"
+    base_dir = os.environ.get("PRETRAINED_MODELS_DIR", "./models/pretrained")
+    model_path = os.path.join(base_dir, "deepseek-ai--DeepSeek-R1-Distill-Qwen-14B")
 
     print(f"   Target path: {model_path}")
     print(f"   Path exists: {os.path.exists(model_path)}")

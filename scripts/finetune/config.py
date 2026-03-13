@@ -7,13 +7,14 @@ Defines model paths, hyperparameters, and prompts for both:
 - DeepSeek-R1-Distill-Qwen-14B
 """
 
+import os
 from dataclasses import dataclass, field
 from typing import List, Optional
 from pathlib import Path
 
-# Base paths
-PRETRAINED_MODELS_DIR = Path("/p/vast1/smith585/models/pretrained")
-CHECKPOINTS_DIR = Path("/p/vast1/smith585/checkpoints/entity_resolution")
+# Base paths (override via environment variables)
+PRETRAINED_MODELS_DIR = Path(os.environ.get("PRETRAINED_MODELS_DIR", "./models/pretrained"))
+CHECKPOINTS_DIR = Path(os.environ.get("CHECKPOINTS_DIR", "./checkpoints"))
 
 # System prompt for entity resolution
 SYSTEM_PROMPT = """You are an expert entity resolution system for sanctions screening. Your task is to determine whether two entity records refer to the same real-world person or organization.

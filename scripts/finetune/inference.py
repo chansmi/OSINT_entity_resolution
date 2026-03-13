@@ -9,7 +9,7 @@ Usage:
     # Evaluate fine-tuned model on universal test set
     python scripts/finetune/inference.py \
         --model llama-8b \
-        --adapter-path /p/vast1/smith585/checkpoints/entity_resolution/llama-8b_*/final \
+        --adapter-path ./checkpoints/llama-8b_*/final \
         --input data/processed/test_pairs.json
 
     # Quick test with limited samples
