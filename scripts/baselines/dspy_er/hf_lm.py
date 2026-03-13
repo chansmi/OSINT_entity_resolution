@@ -11,7 +11,7 @@ Usage:
     import dspy
 
     lm = HuggingFaceLanguageModel(
-        model_path='/p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct',
+        model_path='./models/pretrained/meta-llama--Llama-3.1-8B-Instruct',
         model_name='llama-8b'
     )
     dspy.configure(lm=lm)
@@ -350,7 +350,7 @@ MODEL_PATHS = {
     "mixtral-8x22b": "mistralai--Mixtral-8x22B-Instruct-v0.1",
 }
 
-DEFAULT_MODEL_BASE = "/p/vast1/smith585/models/pretrained"
+DEFAULT_MODEL_BASE = os.environ.get("PRETRAINED_MODELS_DIR", "./models/pretrained")
 
 
 def get_model_path(model_name: str, base_path: Optional[str] = None) -> str:

@@ -56,9 +56,8 @@ flux batch -N1 -n1 -g8 -t 12h <<'EOF'
 #!/bin/bash
 source ~/.bashrc
 module load rocm/6.3.1
-source /usr/workspace/smith585/x86_miniconda/etc/profile.d/conda.sh
-conda activate llm-rocm63
-cd /usr/workspace/smith585/codebases/OSINT_entity_resolution
+# Activate your environment (customize for your setup)
+cd /path/to/OSINT_entity_resolution
 
 python scripts/baselines/dspy_er/run_dspy.py \
     --model llama-8b \
@@ -189,7 +188,7 @@ If you need faster inference (e.g., for larger-scale experiments), you can use v
 ```bash
 # Start vLLM server (in separate terminal/job)
 python -m vllm.entrypoints.openai.api_server \
-    --model /p/vast1/smith585/models/pretrained/meta-llama--Llama-3.1-8B-Instruct
+    --model $PRETRAINED_MODELS_DIR/meta-llama--Llama-3.1-8B-Instruct
 
 # Run with --use-vllm flag
 python scripts/baselines/dspy_er/run_dspy.py \

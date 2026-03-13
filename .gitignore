@@ -41,6 +41,7 @@ build/
 Gemini.md
 CLAUDE.md
 PROJECT_PLAN.md
+updates.md
 .claude
 *.tex
 
@@ -48,6 +49,7 @@ PROJECT_PLAN.md
 flux-*.out
 *.out
 jobs/
+submit_overnight.sh
 
 # Experiment tracking
 wandb/
