@@ -27,9 +27,8 @@ cp .env.example .env
 Download the raw data file and place it in `data/raw/`:
 
 ```bash
-# TODO: Insert download URL for pairs-20251209.json.gz (391 MB compressed)
 mkdir -p data/raw
-# Place pairs-20251209.json.gz in data/raw/
+wget -P data/raw/ https://data.opensanctions.org/contrib/training/pairs-20251209.json.gz
 ```
 
 Create a stratified sample for experiments:
