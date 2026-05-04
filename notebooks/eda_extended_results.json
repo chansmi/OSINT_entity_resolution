@@ -1,0 +1,484 @@
+{
+  "input_file": "/Users/magnus/git/OSINT_entity_resolution/data/raw/pairs-20251209.json.gz",
+  "cutoff_date": "2025-07-01",
+  "main": {
+    "total_pairs": 755540,
+    "positive": 581149,
+    "negative": 174391,
+    "positive_ratio": 0.7692,
+    "unique_entities": 1002093,
+    "num_source_datasets": 293,
+    "naive_constant_positive_baseline": {
+      "f1": 0.8695,
+      "precision": 0.7692,
+      "recall": 1.0,
+      "accuracy": 0.7692
+    }
+  },
+  "source_distribution": {
+    "num_sources": 293,
+    "gini_coefficient_over_entity_counts": 0.9338,
+    "top10_share_of_entity_appearances": 0.82,
+    "top20_sources": [
+      [
+        "wd_categories",
+        317305
+      ],
+      [
+        "wd_peps",
+        282262
+      ],
+      [
+        "ann_pep_positions",
+        114942
+      ],
+      [
+        "wikidata",
+        106068
+      ],
+      [
+        "ext_ru_egrul",
+        97462
+      ],
+      [
+        "fr_maires",
+        56359
+      ],
+      [
+        "everypolitician",
+        44848
+      ],
+      [
+        "us_trade_csl",
+        23109
+      ],
+      [
+        "ua_nsdc_sanctions",
+        19587
+      ],
+      [
+        "us_ofac_sdn",
+        19544
+      ],
+      [
+        "us_hhs_exclusions",
+        14918
+      ],
+      [
+        "iso9362_bic",
+        8919
+      ],
+      [
+        "us_cia_world_leaders",
+        6994
+      ],
+      [
+        "ch_seco_sanctions",
+        6681
+      ],
+      [
+        "us_ca_med_exclusions",
+        6664
+      ],
+      [
+        "fr_tresor_gels_avoir",
+        6338
+      ],
+      [
+        "ext_gleif",
+        6178
+      ],
+      [
+        "eu_fsf",
+        6110
+      ],
+      [
+        "gb_fcdo_sanctions",
+        6101
+      ],
+      [
+        "mc_fund_freezes",
+        6001
+      ]
+    ],
+    "num_countries_represented": 45,
+    "sources_by_country": {
+      "Other/International": 87,
+      "United States": 74,
+      "European Union": 10,
+      "Russia": 8,
+      "United Kingdom": 6,
+      "France": 6,
+      "Brazil": 6,
+      "Poland": 5,
+      "Canada": 5,
+      "Lithuania": 5,
+      "Japan": 4,
+      "Israel": 4,
+      "Germany": 4,
+      "South Africa": 4,
+      "Netherlands": 4,
+      "Turkey": 3,
+      "Ukraine": 3,
+      "Switzerland": 3,
+      "Australia": 3,
+      "Moldova": 3,
+      "India": 3,
+      "Mexico": 3,
+      "Latvia": 3,
+      "Austria": 3,
+      "Spain": 3,
+      "United Nations": 2,
+      "China": 2,
+      "Argentina": 2,
+      "Singapore": 2,
+      "Bulgaria": 2,
+      "New Zealand": 2,
+      "Hong Kong": 2,
+      "Estonia": 2,
+      "Georgia": 2,
+      "Czech Republic": 2,
+      "Belgium": 1,
+      "Kazakhstan": 1,
+      "UAE": 1,
+      "Qatar": 1,
+      "North Korea": 1,
+      "Norway": 1,
+      "Armenia": 1,
+      "Denmark": 1,
+      "Azerbaijan": 1,
+      "Ireland": 1,
+      "Romania": 1
+    }
+  },
+  "schema_distribution": {
+    "Occupancy": {
+      "count": 422942,
+      "pct": 0.4221
+    },
+    "Person": {
+      "count": 320580,
+      "pct": 0.3199
+    },
+    "Succession": {
+      "count": 67142,
+      "pct": 0.067
+    },
+    "Company": {
+      "count": 48266,
+      "pct": 0.0482
+    },
+    "Position": {
+      "count": 47468,
+      "pct": 0.0474
+    },
+    "Organization": {
+      "count": 47261,
+      "pct": 0.0472
+    },
+    "LegalEntity": {
+      "count": 25711,
+      "pct": 0.0257
+    },
+    "Vessel": {
+      "count": 7320,
+      "pct": 0.0073
+    },
+    "Ownership": {
+      "count": 4765,
+      "pct": 0.0048
+    },
+    "Family": {
+      "count": 4562,
+      "pct": 0.0046
+    },
+    "Directorship": {
+      "count": 4045,
+      "pct": 0.004
+    },
+    "Security": {
+      "count": 1113,
+      "pct": 0.0011
+    },
+    "UnknownLink": {
+      "count": 726,
+      "pct": 0.0007
+    },
+    "CryptoWallet": {
+      "count": 116,
+      "pct": 0.0001
+    },
+    "Airplane": {
+      "count": 34,
+      "pct": 0.0
+    },
+    "Representation": {
+      "count": 14,
+      "pct": 0.0
+    },
+    "Documentation": {
+      "count": 12,
+      "pct": 0.0
+    },
+    "Employment": {
+      "count": 8,
+      "pct": 0.0
+    },
+    "PublicBody": {
+      "count": 6,
+      "pct": 0.0
+    },
+    "Associate": {
+      "count": 2,
+      "pct": 0.0
+    }
+  },
+  "entity_descriptives": {
+    "fields_per_entity": {
+      "mean": 6.062,
+      "median": 5,
+      "p25": 4,
+      "p75": 8,
+      "max": 35,
+      "min": 1,
+      "n": 1002093
+    },
+    "filled_fields_per_entity": {
+      "mean": 6.062,
+      "median": 5,
+      "p25": 4,
+      "p75": 8,
+      "max": 35,
+      "min": 1,
+      "n": 1002093
+    },
+    "aliases_per_entity": {
+      "mean": 1.136,
+      "median": 0,
+      "p25": 0,
+      "p75": 1,
+      "max": 387,
+      "min": 0,
+      "n": 1002093
+    },
+    "datasets_per_entity": {
+      "mean": 1.316,
+      "median": 1,
+      "p25": 1,
+      "p75": 1,
+      "max": 28,
+      "min": 1,
+      "n": 1002093
+    },
+    "countries_per_entity": {
+      "mean": 0.316,
+      "median": 0,
+      "p25": 0,
+      "p75": 1,
+      "max": 23,
+      "min": 0,
+      "n": 1002093
+    },
+    "fraction_with_alias_or_weakAlias": 0.1383
+  },
+  "scripts": {
+    "pair_caption_scripts_differ": 28968,
+    "pair_caption_scripts_differ_pct": 0.0383,
+    "pairs_with_any_nonlatin": 51910,
+    "pairs_with_any_nonlatin_pct": 0.0687,
+    "script_appearances_in_pairs": {
+      "Latin": 732736,
+      "Cyrillic": 47494,
+      "CJK": 3178,
+      "Arabic": 859,
+      "Greek": 164,
+      "Thai": 125,
+      "Hebrew": 91,
+      "Devanagari": 4
+    },
+    "primary_script_by_entity": {
+      "Latin": {
+        "count": 943836,
+        "pct": 0.9419
+      },
+      "Cyrillic": {
+        "count": 52626,
+        "pct": 0.0525
+      },
+      "CJK": {
+        "count": 4024,
+        "pct": 0.004
+      },
+      "Arabic": {
+        "count": 969,
+        "pct": 0.001
+      },
+      "Greek": {
+        "count": 300,
+        "pct": 0.0003
+      },
+      "Thai": {
+        "count": 131,
+        "pct": 0.0001
+      },
+      "Unknown": {
+        "count": 125,
+        "pct": 0.0001
+      },
+      "Hebrew": {
+        "count": 78,
+        "pct": 0.0001
+      },
+      "Devanagari": {
+        "count": 4,
+        "pct": 0.0
+      }
+    },
+    "top_pair_script_combos": {
+      "Latin": 703512,
+      "Cyrillic|Latin": 26001,
+      "Cyrillic": 21484,
+      "CJK|Latin": 2106,
+      "CJK": 1070,
+      "Arabic|Latin": 616,
+      "Arabic": 242,
+      "Greek": 141,
+      "Latin|Thai": 107,
+      "Latin|Unknown": 94,
+      "Hebrew|Latin": 51,
+      "Hebrew": 40,
+      "Unknown": 24,
+      "Greek|Latin": 21,
+      "Thai": 17
+    }
+  },
+  "cross_source": {
+    "cross_source_pairs": 489011,
+    "cross_source_pct": 0.6472,
+    "cross_source_positive": 476609,
+    "cross_source_negative": 12402,
+    "same_source_positive": 104540,
+    "same_source_negative": 161989,
+    "cross_source_positive_ratio_within_positives": 0.8201,
+    "cross_country_positive_pairs": 1380
+  },
+  "pair_difficulty": {
+    "shared_exact_fields_positive": {
+      "mean": 4.712,
+      "median": 4,
+      "p25": 3,
+      "p75": 5,
+      "max": 37,
+      "min": 0,
+      "n": 581149
+    },
+    "shared_exact_fields_negative": {
+      "mean": 3.731,
+      "median": 3,
+      "p25": 2,
+      "p75": 5,
+      "max": 26,
+      "min": 0,
+      "n": 174391
+    }
+  },
+  "pair_schema_combinations": {
+    "all": {
+      "Person|Person": 284808,
+      "Occupancy|Occupancy": 213448,
+      "Company|Company": 70885,
+      "Company|Organization": 47802,
+      "Organization|Organization": 35429,
+      "Succession|Succession": 33607,
+      "Position|Position": 26330,
+      "Company|LegalEntity": 9052,
+      "Vessel|Vessel": 7550,
+      "LegalEntity|LegalEntity": 6424,
+      "LegalEntity|Organization": 5719,
+      "LegalEntity|Person": 4435,
+      "Ownership|Ownership": 2392,
+      "Family|Family": 2301,
+      "Directorship|Directorship": 2099,
+      "Security|Security": 1661,
+      "CryptoWallet|CryptoWallet": 818,
+      "UnknownLink|UnknownLink": 395,
+      "Organization|Person": 175,
+      "Company|Person": 95,
+      "Airplane|Airplane": 84,
+      "Organization|PublicBody": 12,
+      "Representation|Representation": 7,
+      "Documentation|Documentation": 6,
+      "Employment|Employment": 4,
+      "Company|PublicBody": 1,
+      "Associate|Associate": 1
+    },
+    "positive": {
+      "Occupancy|Occupancy": 213448,
+      "Person|Person": 203587,
+      "Succession|Succession": 33607,
+      "Company|Company": 31143,
+      "Company|Organization": 23767,
+      "Position|Position": 23706,
+      "Organization|Organization": 16540,
+      "Company|LegalEntity": 8520,
+      "LegalEntity|Organization": 5325,
+      "Vessel|Vessel": 5311,
+      "LegalEntity|LegalEntity": 4847,
+      "LegalEntity|Person": 4132,
+      "Ownership|Ownership": 2392,
+      "Family|Family": 2301,
+      "Directorship|Directorship": 2099,
+      "UnknownLink|UnknownLink": 395,
+      "Organization|PublicBody": 9,
+      "Representation|Representation": 7,
+      "Documentation|Documentation": 6,
+      "Employment|Employment": 4,
+      "Company|Person": 1,
+      "Company|PublicBody": 1,
+      "Associate|Associate": 1
+    },
+    "negative": {
+      "Person|Person": 81221,
+      "Company|Company": 39742,
+      "Company|Organization": 24035,
+      "Organization|Organization": 18889,
+      "Position|Position": 2624,
+      "Vessel|Vessel": 2239,
+      "Security|Security": 1661,
+      "LegalEntity|LegalEntity": 1577,
+      "CryptoWallet|CryptoWallet": 818,
+      "Company|LegalEntity": 532,
+      "LegalEntity|Organization": 394,
+      "LegalEntity|Person": 303,
+      "Organization|Person": 175,
+      "Company|Person": 94,
+      "Airplane|Airplane": 84,
+      "Organization|PublicBody": 3
+    }
+  },
+  "temporal_coverage": {
+    "first_seen_min": "2019-05-21",
+    "first_seen_max": "2025-11-19",
+    "last_seen_min": "2025-04-03",
+    "last_seen_max": "2025-12-07",
+    "first_seen_by_year": {
+      "2019": 44848,
+      "2020": 59,
+      "2021": 122,
+      "2022": 3106,
+      "2023": 196373,
+      "2024": 420948,
+      "2025": 336637
+    },
+    "last_seen_by_year": {
+      "2025": 1002093
+    }
+  },
+  "temporal_holdout": {
+    "cutoff_date": "2025-07-01",
+    "pairs_both_first_seen_after_cutoff": 60110,
+    "post_cutoff_positive": 56437,
+    "post_cutoff_negative": 3673,
+    "post_cutoff_pct_of_total": 0.0796
+  }
+}

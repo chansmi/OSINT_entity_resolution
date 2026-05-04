@@ -2,7 +2,7 @@
 
 A benchmark for evaluating entity resolution approaches on OSINT sanctions screening data. The task: given two entity records (persons or organizations), determine whether they refer to the same real-world entity.
 
-**Dataset**: 755,540 entity pairs from [OpenSanctions](https://opensanctions.org/) data (76.9% positive matches, 23.1% negative).
+**Dataset**: 755,540 entity pairs from [OpenSanctions](https://opensanctions.org/) data (76.9% positive matches, 23.1% negative). Croissant metadata for the dataset lives in `data/croissant/`.
 
 ## Results
 
@@ -147,43 +147,51 @@ Entity pairs with ground truth labels:
 │   ├── prompts/                          # Optimized prompts with registry
 │   │   └── registry.json
 │   ├── examples/                         # Curated few-shot examples
+│   ├── croissant/                        # MLCommons Croissant metadata (+ RAI fields)
 │   └── outputs/                          # Experiment results (gitignored)
 ├── scripts/
 │   ├── load_data.py                      # Data loading (iterator, sample, full cache)
 │   ├── create_proper_sample.py           # Stratified sampling
+│   ├── cache_full_dataset.py             # One-time full dataset cache
+│   ├── download_models.py                # Pretrained model downloader
 │   ├── evaluate.py                       # Evaluation metrics
 │   ├── experiment.py                     # Experiment tracking
-│   ├── generate_summary.py              # Summary reports
+│   ├── generate_summary.py               # Summary reports
 │   ├── baselines/
 │   │   ├── simple_fuzzy.py               # Deterministic weighted scoring
 │   │   ├── nomenklatura_v1.py            # OpenSanctions RegressionV1
-│   │   ├── llm_zeroshot.py              # GPT zero-shot (async parallel)
-│   │   ├── llm_fewshot.py              # GPT few-shot with example selection
-│   │   ├── llm_local.py                # Local LLM inference (Llama, DeepSeek)
-│   │   ├── config.py                    # Experiment configs and cost estimation
-│   │   ├── example_selector.py          # Few-shot example strategies
-│   │   ├── reasoning_sweep.py           # Reasoning effort ablation
-│   │   ├── dspy_er/                     # DSPy prompt optimization module
-│   │   │   ├── run_dspy.py              # Main CLI (zero-shot, bootstrap, mipro)
-│   │   │   ├── signatures.py            # Typed I/O signatures
-│   │   │   ├── modules.py              # DSPy modules
-│   │   │   ├── data.py                 # Entity pair → DSPy Example adapters
-│   │   │   ├── metrics.py             # DSPy-compatible metrics
-│   │   │   ├── optimize.py            # Optimizer wrappers
-│   │   │   └── hf_lm.py              # HuggingFace LM (local, no vLLM needed)
-│   │   └── prompt_optimization/        # Prompt storage and management
+│   │   ├── llm_zeroshot.py               # GPT zero-shot (async parallel)
+│   │   ├── llm_fewshot.py                # GPT few-shot with example selection
+│   │   ├── llm_local.py                  # Local LLM inference (Llama, DeepSeek)
+│   │   ├── config.py                     # Experiment configs and cost estimation
+│   │   ├── example_selector.py           # Few-shot example strategies
+│   │   ├── reasoning_sweep.py            # Reasoning effort ablation
+│   │   ├── test_gpu_setup.py             # GPU/ROCm sanity check
+│   │   ├── dspy_er/                      # DSPy prompt optimization module
+│   │   │   ├── run_dspy.py               # Main CLI (zero-shot, bootstrap, mipro)
+│   │   │   ├── run_parallel_eval.py      # Chunked parallel evaluation
+│   │   │   ├── signatures.py             # Typed I/O signatures
+│   │   │   ├── modules.py                # DSPy modules
+│   │   │   ├── data.py                   # Entity pair → DSPy Example adapters
+│   │   │   ├── metrics.py                # DSPy-compatible metrics
+│   │   │   ├── optimize.py               # Optimizer wrappers
+│   │   │   └── hf_lm.py                  # HuggingFace LM (local, no vLLM needed)
+│   │   └── prompt_optimization/          # Prompt storage and management
 │   │       └── prompt_store.py
-│   ├── finetune/                        # Fine-tuning infrastructure
-│   │   ├── train.py                     # Training loop (multi-GPU, LoRA)
-│   │   ├── inference.py                # Checkpoint evaluation
-│   │   ├── prepare_data.py            # Entity-level train/test splits
-│   │   ├── prepare_sft_data.py        # SFT data formatting
-│   │   ├── data_pipeline.py           # Data loading for training
-│   │   └── config.py                  # Model paths and training config
+│   ├── finetune/                         # Fine-tuning infrastructure
+│   │   ├── train.py                      # Training loop (multi-GPU, LoRA)
+│   │   ├── inference.py                  # Checkpoint evaluation
+│   │   ├── prepare_data.py               # Entity-level train/test splits
+│   │   ├── prepare_sft_data.py           # SFT data formatting
+│   │   ├── data_pipeline.py              # Data loading for training
+│   │   └── config.py                     # Model paths and training config
 │   └── vendor/
-│       └── nomenklatura/               # Vendored nomenklatura (git submodule)
+│       └── nomenklatura/                 # Vendored nomenklatura (git submodule)
 ├── notebooks/
-│   └── explore_data.ipynb              # EDA notebook
+│   ├── explore_data.ipynb                # EDA notebook
+│   ├── advanced_baselines.ipynb          # Additional baseline experiments
+│   ├── dataset_eda.py                    # Streaming EDA over raw pairs
+│   └── dataset_eda_extended.py           # Extended EDA (script + JSON results)
 ├── requirements.txt
 └── .env.example
 ```

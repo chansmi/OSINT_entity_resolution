@@ -23,6 +23,12 @@ data/processed/
 paper/
 *.pdf
 
+# Presentation materials (kept locally only)
+presentation/
+
+# HuggingFace dataset card (published separately to HF Hub)
+data/DATASET_CARD.md
+
 # IDE
 .vscode/
 .idea/
@@ -50,6 +56,18 @@ flux-*.out
 *.out
 jobs/
 submit_overnight.sh
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.synctex.gz
 
 # Experiment tracking
 wandb/
