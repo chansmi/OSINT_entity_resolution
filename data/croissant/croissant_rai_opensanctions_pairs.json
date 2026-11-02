@@ -1,0 +1,206 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dataUseCases": "rai:dataUseCases",
+    "dataSocialImpact": "rai:dataSocialImpact",
+    "dataReleaseMaintenancePlan": "rai:dataReleaseMaintenancePlan",
+    "dataLimitation": "rai:dataLimitation",
+    "dataAnnotationProtocol": "rai:dataAnnotationProtocol",
+    "dataAnnotationPlatform": "rai:dataAnnotationPlatform",
+    "dataAnnotationAnalysis": "rai:dataAnnotationAnalysis",
+    "annotationsPerItem": "rai:annotationsPerItem",
+    "annotatorDemographics": "rai:annotatorDemographics",
+    "machineAnnotationTools": "rai:machineAnnotationTools",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-default",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "default_splits/split_name"
+      },
+      "@id": "default_splits",
+      "name": "default_splits",
+      "description": "Splits for the default config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "default_splits/split_name": "train"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "description": "sanctions-er-anon/opensanctions_pairs - 'default' subset\n\nAdditional information:\n- 2 skipped columns: left, right",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "default/(?:partial-)?(train)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "default_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/judgement",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "judgement"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "opensanctions_pairs",
+  "description": "\n\t\n\t\t\n\t\tSanctions Entity Resolution Benchmark\n\t\n\nA benchmark for evaluating entity resolution (entity matching / record\nlinkage) on sanctions and OSINT data. Each record is a pair of entities\n(persons or organizations) with a binary label indicating whether they\nrefer to the same real-world entity.\n\nThis dataset is a snapshot of the OpenSanctions Pairs corpus\n(https://www.opensanctions.org/docs/opensource/pairs/), redistributed\nhere in unmodified form to provide a stable, citable artefact for… See the full description on the dataset page: https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs.",
+  "alternateName": [
+    "sanctions-er-anon/opensanctions_pairs",
+    "OpenSanctions Pairs Entity Resolution Benchmark"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Anonymous",
+    "url": "https://huggingface.co/sanctions-er-anon"
+  },
+  "keywords": [
+    "text-classification",
+    "English",
+    "cc-by-nc-4.0",
+    "100K - 1M",
+    "Text",
+    "🇺🇸 Region: US",
+    "entity-resolution",
+    "entity-matching",
+    "record-linkage",
+    "sanctions",
+    "osint",
+    "benchmark"
+  ],
+  "license": "https://choosealicense.com/licenses/cc-by-nc-4.0/",
+  "url": "https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs",
+  "datePublished": "2025-12-09",
+  "version": "1.0.0",
+  "citeAs": "OpenSanctions. Pairs: Cross-Referencing Training Data. https://www.opensanctions.org/docs/opensource/pairs/. Snapshot dated 2025-12-09.",
+  "dataCollection": "Records are sourced verbatim from the OpenSanctions Pairs corpus (https://www.opensanctions.org/docs/opensource/pairs/), snapshot dated 2025-12-09. OpenSanctions aggregates public sanctions lists, PEP registers, and watchlists from national and international authorities via its cross-referencing pipeline. The pairs are emitted by that pipeline as candidate matches with curator-assigned positive/negative judgements. This dataset is the unmodified snapshot, archived as a single gzipped JSON Lines file.",
+  "dataBiases": "Geographic and political bias: coverage is skewed toward jurisdictions that publish sanctions, PEP, and watchlist data in machine-readable form (US OFAC, EU, UK, UN); jurisdictions with less open data infrastructure are under-represented. Script and language bias: names are recorded in source-list scripts and inconsistently romanised; Latin-script names and transliteration variants of Cyrillic, Arabic, and CJK names dominate. Class imbalance: 76.9% positive vs 23.1% negative pairs reflects the upstream candidate-generation strategy and is not a representative base rate for screening. Population bias: the corpus over-represents persons and organisations of interest to compliance authorities and is not representative of general populations.",
+  "personalSensitiveInformation": "Contains personally identifiable information about real individuals: names, aliases, dates of birth, nationalities, addresses, and identification numbers. All records are drawn from publicly published sanctions lists, PEP registers, and official watchlists maintained by governmental and intergovernmental bodies; no private or non-public information is included. Because the data concerns individuals associated with sanctions or political exposure, downstream use must respect upstream source licences and avoid contexts that imply guilt or wrongdoing for any specific individual.",
+  "dataUseCases": "Intended uses: benchmarking entity resolution and record linkage systems; evaluating LLMs and fine-tuned models on noisy multilingual records; methods research on prompt optimisation, fine-tuning, and retrieval for entity matching; education and reproducibility for compliance and OSINT research. Out-of-scope uses: real-world sanctions enforcement, watchlist deployment, or any decision affecting individuals without human review and adherence to applicable regulations.",
+  "dataSocialImpact": "Improved entity resolution on sanctions data benefits compliance, anti-money-laundering, and transparency research. Risks include misidentification (false positives can affect innocent individuals sharing names with sanctioned persons) and over-reliance on automated matching in high-stakes contexts. The benchmark is intended for research and evaluation, not deployment; practitioners should pair any system trained or evaluated here with human review before action.",
+  "dataLimitation": "Synthetic data disclosure: the dataset contains no synthetic, generated, or LLM-produced records; all entity records and pair labels are sourced verbatim from OpenSanctions. Limitations: labels reflect upstream curator decisions and may contain noise; transliteration is inconsistent across sources; the distribution is not representative of general-purpose record linkage.",
+  "rai:dataLimitations": "This dataset is restricted to entity pairs (persons and organizations) drawn from OpenSanctions sources, which over-represent entities relevant to sanctions, politically exposed persons (PEPs), and crime/corruption watchlists. It is therefore not representative of the general population of names. Coverage is strongest for entities with Latin-script names; non-Latin scripts (Arabic, Cyrillic, Chinese, Korean, Japanese) are present but transliteration quality varies across sources. Pair labels were generated by the OpenSanctions deduplication workflow (a mix of automated matchers and human review), so a small amount of label noise is expected. The dataset is class-imbalanced (76.9% positive, 23.1% negative) and the negatives are hard negatives produced by candidate generation, not a uniform sample. It is not recommended for: (a) training or evaluating production sanctions screening systems without an additional held-out screening benchmark, (b) general-purpose name matching outside the watchlist domain, or (c) any safety-critical or high-stakes legal use without independent validation.",
+  "rai:dataBiases": "Selection bias: entities are drawn from public sanctions, PEP, and watchlist sources, which heavily over-represent jurisdictions and individuals targeted by Western (US, EU, UK) sanctions regimes and under-represent ordinary individuals and businesses. Geographic and political bias: countries under active sanctions (Russia, Iran, North Korea, Venezuela, Syria, Belarus, Myanmar, etc.) are disproportionately represented relative to their share of global population or commerce. Script and language bias: name variants in Latin script and standard transliterations are better covered than native-script forms, and CJK names in particular have fewer attested aliases per entity. Label bias: positive pairs are skewed toward entities that have already been deduplicated by OpenSanctions reviewers, so confusable cases that survived deduplication may be under-represented among the negatives. Type bias: persons and organizations dominate; vessels, addresses, and other entity types are excluded from this benchmark.",
+  "rai:personalSensitiveInformation": "The dataset contains personal information about real, named individuals and organizations. The following sensitive categories apply:\n\n- Gender (inferred from names in some records)\n- Geography (nationality, country of residence, place of birth)\n- Language and culture (names in multiple scripts and transliterations)\n- Age (dates of birth where published by the source)\n- Political or religious beliefs (politically exposed persons, sanctioned political figures)\n- Others: alleged criminal involvement, sanctions designations, and law-enforcement watchlist status\n\nAll data is sourced from OpenSanctions, which aggregates information that is already publicly published by governments, regulators, and official watchlists. No private or non-public personal data is included, and no contact details, financial account numbers, or government identification numbers beyond what the upstream public sources release are added by this dataset.",
+  "rai:dataUseCases": "The dataset measures entity resolution: given two records describing a person or organization, decide whether they refer to the same real-world entity. It is intended as a research benchmark for evaluating name-matching, record-linkage, and large language model approaches on watchlist-style data.\n\nValidated use cases: zero-shot and few-shot evaluation of LLM-based entity resolution, evaluation of fuzzy and rule-based matchers (e.g. nomenklatura), and prompt optimization research (see accompanying paper). Validation is reported on a stratified test split with standard precision, recall, and F1.\n\nNot validated: production sanctions screening (which uses a different decision threshold and risk model), entity resolution in non-watchlist domains (e.g. customer records, academic authors, product catalogs), fine-tuning of deployed compliance systems, and any clinical, legal, or safety-critical decision making.",
+  "rai:dataSocialImpact": "Positive impact: provides an open, reproducible benchmark for entity resolution on real watchlist data, which has historically been evaluated only on proprietary datasets inside compliance vendors. Lowers the barrier for academic research on multilingual name matching, hard-negative evaluation, and LLM-based record linkage, and enables fair comparison across methods.\n\nRisks: the dataset names real individuals associated with sanctions, PEP status, or alleged criminal activity; misuse could include scraping for harassment, building shadow watchlists, or making consequential decisions about individuals based on model outputs without human review. Because designations and labels change over time, stale predictions could harm individuals who have been removed from upstream lists.\n\nMitigations: the dataset is a snapshot of already-public OpenSanctions data and includes only fields the upstream sources release publicly. It is distributed for research use and inherits the upstream OpenSanctions licensing terms (CC BY-NC 4.0 for non-commercial research). Users should consult live OpenSanctions data, not this snapshot, for any operational decision, and should not use model predictions as a substitute for an authoritative compliance workflow.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://www.opensanctions.org/docs/opensource/pairs/",
+      "prov:label": "OpenSanctions Entity Pairs",
+      "sc:license": "CC-BY-NC-4.0"
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q4929239"
+      },
+      "prov:label": "Snapshot download from OpenSanctions",
+      "sc:description": "The dataset was obtained by downloading the OpenSanctions training pairs snapshot file (`pairs-20251209.json.gz`) directly from the official OpenSanctions distribution endpoint at `https://data.opensanctions.org/contrib/training/`. No cleaning, filtering, relabeling, or annotation was performed by the dataset authors; the records and pair labels are used as published by OpenSanctions, which produces them via its own continuous watchlist aggregation and deduplication workflow (combining the RegressionV1 and logic-v2 matchers with human reviewer adjudication)."
+    }
+  ]
+}

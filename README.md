@@ -1,121 +1,90 @@
-# OSINT Entity Resolution Benchmark
+# OpenSanctions Pairs
 
-A benchmark for evaluating entity resolution approaches on OSINT sanctions screening data. The task: given two entity records (persons or organizations), determine whether they refer to the same real-world entity.
+Code and evaluation artifacts for **OpenSanctions Pairs: A Large-Scale Dataset for Pairwise Entity Matching**.
 
-**Dataset**: 755,540 entity pairs from [OpenSanctions](https://opensanctions.org/) data (76.9% positive matches, 23.1% negative). Croissant metadata for the dataset lives in `data/croissant/`.
+The task: given two entity records (persons, organisations, vessels, ...) drawn from sanctions, PEP and watchlist sources, decide whether they refer to the same real-world entity. The corpus has 755,540 labelled pairs from [OpenSanctions](https://www.opensanctions.org/docs/opensource/pairs/).
+
+- **Dataset:** [huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs](https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs) (CC BY-NC 4.0)
+- **Croissant metadata (with RAI fields):** [`data/croissant/`](data/croissant/)
+- **Frozen evaluation splits:** [`data/splits/`](data/splits/), checksummed in `manifest.json`
+- **Every model prediction behind the reported numbers:** [`results/predictions/`](results/predictions/)
 
 ## Results
 
-<img width="877" height="537" alt="Screenshot 2026-02-23 at 10 34 37 PM" src="https://github.com/user-attachments/assets/36b1aa0e-f887-4204-ab6c-53e9872eae4b" />
+All models on the same analyst-judged split (N=3000). F1 with 95% bootstrap CI, McNemar test against the best model. Regenerate with `python eval/make_tables.py`.
 
+| Model | F1 (95% CI) | Precision | Recall | vs best (McNemar) |
+|---|---|---|---|---|
+| gpt-5.2-pro | 98.05 [97.58, 98.47] | 97.08 | 99.03 | best |
+| claude-sonnet-4.5 | 97.83 [97.36, 98.29] | 98.59 | 97.08 | p=0.505 (n.s.) |
+| claude-opus-4.5 | 97.75 [97.26, 98.22] | 98.64 | 96.87 | p=0.332 (n.s.) |
+| gpt-4o | 97.51 [96.97, 97.98] | 96.72 | 98.31 | p=0.030 |
+| deepseek-r1-qwen-14b | 94.27 [93.50, 95.00] | 90.59 | 98.26 | p<1e-28 |
+| gpt-5-nano | 89.57 [88.60, 90.48] | 82.65 | 97.74 | p<1e-77 |
+| nomenklatura RegressionV1 | 85.80 [84.76, 86.89] | 75.16 | 99.95 | p<1e-116 |
+| llama-3.1-8b | 76.53 [75.01, 78.08] | 84.79 | 69.74 | p<1e-151 |
 
-## Quick Start
+Robustness across the entity-disjoint, source-disjoint and temporal splits is in [`results/tables/`](results/tables/); per-script F1, error taxonomy and cost are in [`results/`](results/).
 
-### 1. Setup
-
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-# Copy and fill in API keys
-cp .env.example .env
-```
-
-### 2. Data
-
-Download the raw data file and place it in `data/raw/`:
+## Setup
 
 ```bash
-mkdir -p data/raw
-wget -P data/raw/ https://data.opensanctions.org/contrib/training/pairs-20251209.json.gz
+git clone --recurse-submodules https://github.com/chansmi/OSINT_entity_resolution.git
+cd OSINT_entity_resolution
+uv sync                       # core: data loading, API baselines, evaluation
+cp .env.example .env          # add API keys only if you re-run API models
 ```
 
-Create a stratified sample for experiments:
+Optional extras: `uv sync --extra local` (open-source models on GPU), `--extra finetune`, `--extra dspy`, `--extra notebooks`. Without uv: `pip install -r requirements.txt`. Commands below assume an activated environment (or prefix them with `uv run`).
+
+## Data
+
+### Download the corpus
 
 ```bash
-python scripts/create_proper_sample.py --n 1000
+python scripts/download_data.py                         # from the Hugging Face Hub
+python scripts/download_data.py --source opensanctions  # or directly from OpenSanctions
 ```
 
-### 3. Run Baselines
+Both write `data/raw/pairs-20251209.json.gz` and verify its sha256 against `data/splits/manifest.json`.
+
+### Load it
+
+```python
+import sys; sys.path.insert(0, "scripts")
+from load_data import load_pairs
+
+for pair in load_pairs("data/raw/pairs-20251209.json.gz"):   # streams, low memory
+    pair["left"], pair["right"], pair["judgement"]            # "positive" / "negative"
+```
+
+`load_pairs` reads JSON Lines (`.jsonl`, `.json.gz`), JSON sample files and Parquet, and always yields the same nested dicts.
+
+Straight from the Hub:
+
+```python
+from huggingface_hub import hf_hub_download
+path = hf_hub_download("sanctions-er-anon/opensanctions_pairs", "pairs.json.gz", repo_type="dataset")
+```
+
+### Parquet
+
+Entity `properties` vary by schema, so the Parquet layout keeps flat columns for filtering (`judgement`, `left_id`, `left_schema`, `left_caption`, `left_datasets`, and the same for `right`) plus the full entity as `left_json` / `right_json`, which round-trips losslessly.
 
 ```bash
-# Fuzzy matching (no API required)
-python scripts/baselines/simple_fuzzy.py --input data/samples/sample_1000.json
-
-# Nomenklatura rule-based baseline
-python scripts/baselines/nomenklatura_v1.py --input data/samples/sample_1000.json
-
-# LLM zero-shot (requires OPENAI_API_KEY)
-python scripts/baselines/llm_zeroshot.py --input data/samples/sample_1000.json --parallel 30
-
-# LLM few-shot with diverse example selection
-python scripts/baselines/llm_fewshot.py --input data/samples/sample_1000.json --examples 8 --strategy diverse
+python scripts/export_parquet.py --splits     # data/parquet/splits/*.parquet
+python scripts/export_parquet.py data/raw/pairs-20251209.json.gz data/parquet/pairs.parquet
 ```
 
-Most scripts support `--limit N` (cap API/GPU calls), `--dry-run` (preview prompts), and `--offset 200` (skip dev set, evaluate on test only).
-
-## DSPy Prompt Optimization
-
-Uses [DSPy](https://dspy.ai/) for automatic prompt optimization via MIPROv2.
-
-```bash
-pip install dspy-ai
-
-# Zero-shot baseline
-python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode zero-shot
-
-# MIPROv2 optimization (discovers optimal instructions on dev set)
-python scripts/baselines/dspy_er/run_dspy.py --model gpt-5-nano --mode mipro --candidates 15
-
-# Evaluate saved prompt on test set
-python scripts/baselines/dspy_er/run_dspy.py --load data/prompts/llama-8b/mipro_20260116.json --offset 200
-
-# Local models via HuggingFace (requires GPU)
-flux run -N1 -g8 python scripts/baselines/dspy_er/run_dspy.py --model llama-8b --mode mipro
+```python
+import json, pandas as pd
+df = pd.read_parquet("data/parquet/splits/common_analyst_judged.parquet")
+left = json.loads(df.left_json[0])
 ```
 
-Optimized prompts are stored in `data/prompts/` with a registry at `data/prompts/registry.json`. Manage with:
+Parquet files are generated locally and not committed.
 
-```bash
-python scripts/baselines/prompt_optimization/prompt_store.py list --model llama-8b
-python scripts/baselines/prompt_optimization/prompt_store.py best llama-8b
-```
-
-## Fine-Tuning
-
-Infrastructure for supervised fine-tuning of local models with entity-level train/test splits (no entity appears in both sets).
-
-```bash
-pip install peft trl datasets
-
-# Prepare SFT data
-python scripts/finetune/prepare_sft_data.py --input data/samples/sample_10000.json
-
-# Entity-level splits (prevents data leakage)
-python scripts/finetune/prepare_data.py --input data/raw/pairs-20251209.json.gz \
-    --output-dir data/processed --train-ratio 0.70 --val-ratio 0.05
-
-# Quick test
-python scripts/finetune/train.py --model llama-8b --quick --limit 100
-
-# Inference
-python scripts/finetune/inference.py --model-path /path/to/checkpoint --input data/samples/sample_1000.json
-```
-
-## Experiment Tracking
-
-All runs are logged to `data/outputs/experiments.jsonl` with run ID, git commit, parameters, and metrics.
-
-```bash
-python scripts/experiment.py --list                    # List recent experiments
-python scripts/experiment.py --compare --method llm    # Compare LLM experiments
-python scripts/generate_summary.py --filter-method llm # Generate summary report
-```
-
-## Data Format
-
-Entity pairs with ground truth labels:
+### Record format
 
 ```json
 {
@@ -123,89 +92,120 @@ Entity pairs with ground truth labels:
     "id": "ofac-40604",
     "caption": "Aliasghar Norouzi",
     "schema": "Person",
-    "properties": {
-      "alias": ["Ali Asghar Norowzi"],
-      "birthDate": ["1962-11-11"],
-      "nationality": ["ir"]
-    }
+    "datasets": ["us_ofac_sdn", "us_trade_csl"],
+    "first_seen": "2023-04-20T10:27:20",
+    "properties": {"alias": ["Ali Asghar Norowzi"], "birthDate": ["1962-11-11"], "nationality": ["ir"]}
   },
-  "right": { "..." : "..." },
+  "right": {"...": "..."},
   "judgement": "positive"
 }
 ```
 
-- **positive**: Records refer to the same real-world entity
-- **negative**: Records refer to different entities
+Split files also carry `pair_key = "{left_id}__{right_id}__{corpus_line}"` to join back to the corpus.
 
-## Repository Structure
+## Evaluation splits
 
-```
-├── data/
-│   ├── raw/                              # Raw data (gitignored)
-│   ├── samples/                          # Stratified samples (tracked)
-│   │   └── sample_1000.json
-│   ├── prompts/                          # Optimized prompts with registry
-│   │   └── registry.json
-│   ├── examples/                         # Curated few-shot examples
-│   ├── croissant/                        # MLCommons Croissant metadata (+ RAI fields)
-│   └── outputs/                          # Experiment results (gitignored)
-├── scripts/
-│   ├── load_data.py                      # Data loading (iterator, sample, full cache)
-│   ├── create_proper_sample.py           # Stratified sampling
-│   ├── cache_full_dataset.py             # One-time full dataset cache
-│   ├── download_models.py                # Pretrained model downloader
-│   ├── evaluate.py                       # Evaluation metrics
-│   ├── experiment.py                     # Experiment tracking
-│   ├── generate_summary.py               # Summary reports
-│   ├── baselines/
-│   │   ├── simple_fuzzy.py               # Deterministic weighted scoring
-│   │   ├── nomenklatura_v1.py            # OpenSanctions RegressionV1
-│   │   ├── llm_zeroshot.py               # GPT zero-shot (async parallel)
-│   │   ├── llm_fewshot.py                # GPT few-shot with example selection
-│   │   ├── llm_local.py                  # Local LLM inference (Llama, DeepSeek)
-│   │   ├── config.py                     # Experiment configs and cost estimation
-│   │   ├── example_selector.py           # Few-shot example strategies
-│   │   ├── reasoning_sweep.py            # Reasoning effort ablation
-│   │   ├── test_gpu_setup.py             # GPU/ROCm sanity check
-│   │   ├── dspy_er/                      # DSPy prompt optimization module
-│   │   │   ├── run_dspy.py               # Main CLI (zero-shot, bootstrap, mipro)
-│   │   │   ├── run_parallel_eval.py      # Chunked parallel evaluation
-│   │   │   ├── signatures.py             # Typed I/O signatures
-│   │   │   ├── modules.py                # DSPy modules
-│   │   │   ├── data.py                   # Entity pair → DSPy Example adapters
-│   │   │   ├── metrics.py                # DSPy-compatible metrics
-│   │   │   ├── optimize.py               # Optimizer wrappers
-│   │   │   └── hf_lm.py                  # HuggingFace LM (local, no vLLM needed)
-│   │   └── prompt_optimization/          # Prompt storage and management
-│   │       └── prompt_store.py
-│   ├── finetune/                         # Fine-tuning infrastructure
-│   │   ├── train.py                      # Training loop (multi-GPU, LoRA)
-│   │   ├── inference.py                  # Checkpoint evaluation
-│   │   ├── prepare_data.py               # Entity-level train/test splits
-│   │   ├── prepare_sft_data.py           # SFT data formatting
-│   │   ├── data_pipeline.py              # Data loading for training
-│   │   └── config.py                     # Model paths and training config
-│   └── vendor/
-│       └── nomenklatura/                 # Vendored nomenklatura (git submodule)
-├── notebooks/
-│   ├── explore_data.ipynb                # EDA notebook
-│   ├── advanced_baselines.ipynb          # Additional baseline experiments
-│   ├── dataset_eda.py                    # Streaming EDA over raw pairs
-│   └── dataset_eda_extended.py           # Extended EDA (script + JSON results)
-├── requirements.txt
-└── .env.example
+Built deterministically (seed 42) by `eval/build_splits.py` from the corpus and `eval/config.yaml`. The development samples in `data/samples/` are excluded from every split.
+
+| Split | N | Contents |
+|---|---|---|
+| `common_analyst_judged` | 3,000 | Primary split. Analyst-judged pairs only, natural label ratio. |
+| `common_auto_merge` | 1,000 | Auto-merge positives (relationship schemas, positive by construction). Combined with the above for overall F1. |
+| `entity_disjoint` | 3,000 | At most one pair per canonical cluster, removing near-duplicate repetition. |
+| `source_disjoint` | 3,000 | Left and right share no source dataset. |
+| `temporal` | 2,000 | Both entities first seen on or after 2025-01-01. |
+| `script_eval` | 2,000 | 400 per script bucket: Latin, Cyrillic, Arabic, CJK, cross-script. |
+
+## Reproduce the results
+
+Everything below runs on a laptop except open-source model inference.
+
+```bash
+# 1. Rebuild the splits; they match the committed files byte for byte (about 40 s)
+python scripts/download_data.py
+python eval/build_splits.py --config eval/config.yaml
+git diff --stat data/splits            # only the generated_at timestamp changes
+
+# 2. Recompute every table from the committed predictions (no API keys needed)
+python eval/make_tables.py
+python eval/significance.py $(for f in results/predictions/*__common_analyst_judged.jsonl; do \
+    m=$(basename $f); echo --pred ${m%%__*}=$f; done)
+python eval/analysis.py per-script --label gpt-4o \
+    --pred results/predictions/gpt-4o__script_eval.jsonl --split data/splits/script_eval.jsonl
+python eval/analysis.py clusters
+
+# 3. Re-run a model on a split (writes results/predictions/<model>__<split>.jsonl)
+python eval/run_model.py --runner zeroshot --model gpt-4o --split common_analyst_judged --parallel 20
+python eval/run_model.py --runner local --model llama-8b --split common_analyst_judged   # GPU
+python eval/run_nomenklatura.py --input data/splits/common_analyst_judged.jsonl \
+    --output results/predictions/nomenklatura-regv1__common_analyst_judged.jsonl
 ```
 
-## Design Decisions
+Predictions align to their split by line position (`pair_index`). Re-running API models can shift results slightly because provider models are not fully deterministic.
 
-**Conflict-focused prompting**: The default assumption is POSITIVE (same entity). Only classify as NEGATIVE when explicit contradictions exist (different birth dates, conflicting IDs, etc.). This reduces false negatives by 97% vs. a conservative "are these the same?" framing.
+### Baselines
 
-**DEV/TEST split**: From `sample_1000.json`, pairs 0-199 are DEV (for optimization), pairs 200-999 are TEST (for evaluation). Use `--offset 200` to evaluate on test only.
+- `scripts/baselines/llm_zeroshot.py`, `llm_fewshot.py`: API models (model ids in `scripts/baselines/config.py`).
+- `scripts/baselines/llm_local.py`: Llama 3.1 8B and DeepSeek-R1-Distill-Qwen-14B via `transformers`. `python scripts/download_models.py` fetches weights; gated models need `HF_TOKEN`. Set `PRETRAINED_MODELS_DIR` to reuse an existing model directory.
+- `eval/run_nomenklatura.py`: OpenSanctions' `RegressionV1` matcher from the pinned `scripts/vendor/nomenklatura` submodule (Python 3.11+, ICU).
+- `scripts/baselines/simple_fuzzy.py`: deterministic weighted string-similarity baseline.
+- `scripts/baselines/dspy_er/`: DSPy MIPROv2 prompt optimisation; optimised prompts are in `data/prompts/`.
+- `scripts/finetune/`: LoRA fine-tuning with entity-level train/test splits.
 
-**Entity-level splits**: Fine-tuning ensures no entity appears in both train and test to prevent data leakage.
+Sample-based scripts take `--offset 200` to skip the 200 development pairs of `data/samples/sample_1000.json`.
 
-**HPC notes**: Local model experiments were run on an AMD ROCm GPU cluster via the Flux scheduler. Set `PRETRAINED_MODELS_DIR` to point to your local model directory, or use `--model-path` per-script.
+### Earlier sample-based results
+
+`results/sample_1000/` holds per-pair predictions for the original 1,000-pair sample (800 test pairs) and the manifest that `scripts/build_tables.py` uses to recompute those numbers with confidence intervals.
+
+## Repository layout
+
+```
+data/
+  croissant/          Croissant + RAI metadata
+  splits/             frozen evaluation splits (JSONL) + manifest.json with sha256s
+  samples/            1k / 10k development samples (excluded from all splits)
+  prompts/            optimised prompts per model, registry.json
+  examples/           curated few-shot examples
+  raw/, parquet/      downloaded corpus and local Parquet exports (gitignored)
+eval/
+  config.yaml         seed, split definitions, model list, pricing
+  build_splits.py     corpus -> splits + manifest + cluster statistics
+  run_model.py        run a baseline on a split -> results/predictions/
+  run_nomenklatura.py rule baseline on a split
+  significance.py     bootstrap CIs, exact McNemar, Wilson intervals
+  analysis.py         per-script F1, cost frontier, error taxonomy, cluster sizes
+  make_tables.py      predictions -> results/tables/*.md
+results/
+  predictions/        <model>__<split>.jsonl for every reported number
+  tables/             generated markdown tables
+  *.csv, *.json       metrics, significance, per-script, taxonomy, cost, cluster sizes
+  sample_1000/        predictions and manifest for the earlier sample-based evaluation
+scripts/
+  download_data.py    fetch and verify the corpus
+  export_parquet.py   JSONL -> Parquet
+  load_data.py        streaming loader (JSONL, JSON, Parquet)
+  baselines/          rule, fuzzy, API, local and DSPy baselines
+  finetune/           LoRA fine-tuning
+  vendor/nomenklatura pinned submodule
+notebooks/            exploratory data analysis
+```
+
+## Citation
+
+If you use the dataset or code, please cite:
+
+```bibtex
+@inproceedings{smith2026opensanctions,
+  title     = {OpenSanctions Pairs: A Large-Scale Dataset for Pairwise Entity Matching},
+  author    = {Smith, Chandler and Sesodia, Magnus and Lindenberg, Friedrich and Schroeder de Witt, Christian},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Track on Evaluations and Datasets},
+  year      = {2026}
+}
+```
+
+Chandler Smith and Magnus Sesodia contributed equally.
 
 ## License
 
-See [LICENSE](LICENSE) for details.
+Code: MIT, see [LICENSE](LICENSE). Data: CC BY-NC 4.0, following the OpenSanctions non-commercial licence; commercial use requires a licence from OpenSanctions.

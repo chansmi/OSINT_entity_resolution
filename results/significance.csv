@@ -1,0 +1,8 @@
+best,vs,n_shared,b_best_right,c_vs_right,mcnemar_p,significant_0.05
+gpt-5.2-pro,claude-opus-4.5,3000,48,38,0.33179983649777006,False
+gpt-5.2-pro,claude-sonnet-4.5,3000,44,37,0.5049850750938459,False
+gpt-5.2-pro,deepseek-r1-qwen-14b,3000,174,18,4.7662354478443627e-29,True
+gpt-5.2-pro,gpt-4o,3000,53,32,0.030059567892412424,True
+gpt-5.2-pro,gpt-5-nano,3000,374,7,1.9088718112186783e-78,True
+gpt-5.2-pro,llama-3.1-8b,3000,791,34,1.1161667247268585e-152,True
+gpt-5.2-pro,nomenklatura-regv1,3000,588,20,5.244128177994566e-117,True

@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-07-25T12:40:44.733768+00:00",
+  "seed": 42,
+  "corpus": "data/raw/pairs-20251209.json.gz",
+  "corpus_sha256": "4044cf5f6edb0d2cdccf11326063f905408224c3b2fe261baa0d779d80a0edd1",
+  "analyst_judged_positive_ratio": 0.65,
+  "auto_merge_schemas": [
+    "Occupancy",
+    "Succession",
+    "Ownership",
+    "Family",
+    "Directorship",
+    "UnknownLink"
+  ],
+  "contamination_files": [
+    "data/samples/sample_1000.json",
+    "data/samples/sample_10000.json"
+  ],
+  "contamination_pairs_excluded": 10202,
+  "splits": {
+    "common_analyst_judged": {
+      "file": "data/splits/common_analyst_judged.jsonl",
+      "n": 3000,
+      "n_pos": 1950,
+      "n_neg": 1050,
+      "sha256": "aae602811afc3b314f470258fd5ad8990c039d529d5f6a32935f20e63a90f1fe",
+      "filters": {
+        "n": 3000,
+        "analyst_judged_only": true,
+        "stratify": "natural"
+      }
+    },
+    "common_auto_merge": {
+      "file": "data/splits/common_auto_merge.jsonl",
+      "n": 1000,
+      "n_pos": 1000,
+      "n_neg": 0,
+      "sha256": "1c378a4b47f29b8ddf24b8ce6be2fded78ed7e8a8d5c6b777a573aaab1945683",
+      "filters": {
+        "n": 1000,
+        "auto_merge_positives": true
+      }
+    },
+    "entity_disjoint": {
+      "file": "data/splits/entity_disjoint.jsonl",
+      "n": 3000,
+      "n_pos": 1950,
+      "n_neg": 1050,
+      "sha256": "d5a46066e87e558a8aeedc94eecf707143660434031fcf4222ba1c56b6c6a900",
+      "filters": {
+        "n": 3000,
+        "analyst_judged_only": true,
+        "one_pair_per_cluster": true
+      }
+    },
+    "source_disjoint": {
+      "file": "data/splits/source_disjoint.jsonl",
+      "n": 3000,
+      "n_pos": 2865,
+      "n_neg": 135,
+      "sha256": "c5b703d68651b057fa7ecf165b6e07cf5cdd11d0574913e6739d3a7a2da8e792",
+      "filters": {
+        "n": 3000,
+        "analyst_judged_only": true,
+        "cross_source_only": true
+      }
+    },
+    "temporal": {
+      "file": "data/splits/temporal.jsonl",
+      "n": 2000,
+      "n_pos": 1659,
+      "n_neg": 341,
+      "sha256": "0085ebda9aed4fe404d4615e89c42d4a43e4232116518d79360eb6c8c64763df",
+      "filters": {
+        "first_seen_min": "2025-01-01",
+        "analyst_judged_only": true,
+        "n": 2000
+      }
+    },
+    "script_eval": {
+      "file": "data/splits/script_eval.jsonl",
+      "n": 2000,
+      "n_pos": 1283,
+      "n_neg": 717,
+      "sha256": "4a91c51deaf33e0838bc25337348118302d786a3802bf7366b5e3bef19f81f3a",
+      "filters": {
+        "analyst_judged_only": true,
+        "per_bucket_cap": 400
+      }
+    }
+  }
+}

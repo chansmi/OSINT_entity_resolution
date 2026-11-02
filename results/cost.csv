@@ -1,0 +1,6 @@
+model,n,prompt_tok,completion_tok,usd_per_1k_pairs
+gpt-4o,3000,1570254,420937,2.7117
+gpt-5.2-pro,3000,1552254,703336,21.828
+claude-opus-4.5,3000,2288102,574033,8.5971
+claude-sonnet-4.5,3000,2288102,697019,
+gpt-5-nano,3000,1543063,5114081,0.7076

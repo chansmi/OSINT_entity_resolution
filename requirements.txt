@@ -1,9 +1,10 @@
-pandas>=2.0.0
-numpy>=1.24.0
-jupyter>=1.0.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-scikit-learn>=1.3.0
-tqdm>=4.65.0
-openai>=1.0.0
-python-dotenv>=1.0.0
+# Core dependencies for pip users (uv users: `uv sync`, see pyproject.toml for extras).
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0
+scikit-learn>=1.3
+huggingface-hub>=0.24
+openai>=1.0
+python-dotenv>=1.0
+pyyaml>=6.0
+tqdm>=4.65

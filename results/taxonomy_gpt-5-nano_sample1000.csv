@@ -1,0 +1,8 @@
+error_type,category,count
+false_positive,date_or_id,22
+false_positive,transliteration,22
+false_positive,field_conflict,10
+false_negative,date_or_id,6
+false_negative,transliteration,3
+false_negative,field_conflict,1
+false_negative,other,1

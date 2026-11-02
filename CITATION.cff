@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use the dataset or code, please cite the paper below."
+title: "OpenSanctions Pairs"
+repository-code: "https://github.com/chansmi/OSINT_entity_resolution"
+license: MIT
+authors:
+  - family-names: Smith
+    given-names: Chandler
+  - family-names: Sesodia
+    given-names: Magnus
+  - family-names: Lindenberg
+    given-names: Friedrich
+  - family-names: Schroeder de Witt
+    given-names: Christian
+preferred-citation:
+  type: conference-paper
+  title: "OpenSanctions Pairs: A Large-Scale Dataset for Pairwise Entity Matching"
+  authors:
+    - family-names: Smith
+      given-names: Chandler
+    - family-names: Sesodia
+      given-names: Magnus
+    - family-names: Lindenberg
+      given-names: Friedrich
+    - family-names: Schroeder de Witt
+      given-names: Christian
+  collection-title: "Advances in Neural Information Processing Systems (NeurIPS), Track on Evaluations and Datasets"
+  year: 2026

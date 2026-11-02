@@ -276,7 +276,7 @@ def get_responses_api_schema(ternary: bool = False) -> dict:
 
 def uses_responses_api(model: str) -> bool:
     """Check if model requires the Responses API instead of Chat Completions."""
-    return model in RESPONSES_API_MODELS
+    return model.split('/')[-1] in RESPONSES_API_MODELS  # tolerate provider/ prefix
 
 
 def format_entity(entity: dict) -> str:
@@ -420,14 +420,17 @@ async def classify_pair_async(
                 )
                 return parse_responses_api_response(response, pair, pair_index)
             else:
-                # Use Chat Completions API for other models
-                response = await client.chat.completions.create(
+                # Use Chat Completions API for other models. Only send reasoning_effort to
+                # reasoning-family models; gpt-4o / gpt-3.5 / claude reject or ignore it.
+                kwargs = dict(
                     model=model,
                     messages=build_messages(pair, few_shot_examples),
                     response_format=get_response_schema(ternary),
                     max_completion_tokens=4000,
-                    reasoning_effort=reasoning_effort
                 )
+                if model.split('/')[-1].startswith(("o1", "o3", "o4", "gpt-5")):
+                    kwargs["reasoning_effort"] = reasoning_effort
+                response = await client.chat.completions.create(**kwargs)
                 return parse_response(response, pair, pair_index)
         except Exception as e:
             return make_error_result(pair, pair_index, e)
@@ -602,7 +605,7 @@ def run_experiment(
 
     mode = "ternary" if ternary else "binary"
     shot_label = f"{n_shots}shot" if n_shots > 0 else "0shot"
-    responses_file = output_dir / f"llm_responses_{mode}_{model.replace('.', '_').replace('-', '_')}_{shot_label}.jsonl"
+    responses_file = output_dir / f"llm_responses_{mode}_{model.replace('.', '_').replace('-', '_').replace('/', '_')}_{shot_label}.jsonl"
 
     api_type = "Responses API" if uses_responses_api(model) else "Chat Completions API"
     print(f"\nRunning {mode} classification on {len(data)} pairs...")

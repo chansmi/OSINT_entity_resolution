@@ -1,0 +1,125 @@
+# Evaluation configuration. Single source of truth for seeds, splits, models.
+# Everything downstream (splits, predictions, results) is reproducible from this file
+# plus the corpus. The committed data/splits/manifest.json records the sha256 of every input.
+
+seed: 42
+corpus: data/raw/pairs-20251209.json.gz   # 755,540 JSONL pairs (scripts/download_data.py)
+
+# Schemas whose pairs are auto-merge propagations (100% positive by construction).
+# A pair is "auto-merge" if EITHER side has one of these schemas; otherwise "analyst-judged".
+auto_merge_schemas:
+  - Occupancy
+  - Succession
+  - Ownership
+  - Family
+  - Directorship
+  - UnknownLink
+
+# Prior evaluation / dev / tuning pool to exclude from ALL split sampling, so the new
+# splits cannot overlap anything a model was tuned or previously evaluated on.
+contamination_files:
+  - data/samples/sample_1000.json
+  - data/samples/sample_10000.json
+
+splits:
+  # Primary apples-to-apples split: analyst-judged only, label-stratified to the
+  # natural positive ratio of the analyst-judged subset. Every model runs on THIS file.
+  common_analyst_judged:
+    n: 3000
+    analyst_judged_only: true
+    stratify: natural            # match positive ratio of the analyst-judged subset
+
+  # Auto-merge positives only (100% positive by construction). Combined per model with
+  # common_analyst_judged to yield the overall-with-auto-merge F1 and the per-model delta
+  #. Cheap: 1000 extra pairs/model.
+  common_auto_merge:
+    n: 1000
+    auto_merge_positives: true
+
+  # Entity-disjoint: each canonical cluster (connected component over positive pairs)
+  # contributes at most one pair, removing near-duplicate repetition that could inflate scores.
+  entity_disjoint:
+    n: 3000
+    analyst_judged_only: true
+    one_pair_per_cluster: true
+
+  # Source-disjoint: left/right entities share no source dataset (provenance generalization).
+  source_disjoint:
+    n: 3000
+    analyst_judged_only: true
+    cross_source_only: true
+
+  # Temporal hold-out: pairs where BOTH entities were first ingested on/after the cutoff,
+  # a coarse proxy for "after frontier-model training cutoff" (memorization probe).
+  temporal:
+    first_seen_min: "2025-01-01"
+    analyst_judged_only: true
+    n: 2000                      # cap; may be fewer if subset is small (report actual)
+
+  # Script-stratified split that oversamples non-Latin / cross-script pairs so per-script
+  # F1 has populated buckets (the corpus is ~94% Latin). Top models only, to bound cost.
+  script_eval:
+    analyst_judged_only: true
+    per_bucket_cap: 400          # up to N per script bucket (latin, cyrillic, arabic, cjk, cross_script)
+
+# Models. runner: which script. tier: 0 run-everywhere, else subset.
+# price_in / price_out are USD per 1M tokens for the cost frontier; list prices at time of evaluation.
+models:
+  - name: nomenklatura-regv1
+    runner: nomenklatura_v1.py
+    where: local
+    tier: 0
+  - name: llama-3.1-8b
+    runner: llm_local.py
+    model_arg: llama-8b
+    where: gpu
+    tier: 0
+  - name: deepseek-r1-qwen-14b
+    runner: llm_local.py
+    model_arg: deepseek-14b
+    where: gpu
+    tier: 0
+  - name: gpt-4o
+    runner: llm_zeroshot.py
+    where: api
+    tier: 0
+    price_in: 2.50
+    price_out: 10.00
+  - name: gpt-5.2-pro
+    runner: llm_zeroshot.py
+    where: api
+    tier: 0
+    price_in: 15.00
+    price_out: 60.00
+  - name: gpt-5-nano
+    runner: llm_zeroshot.py
+    where: api
+    tier: 0
+    price_in: 0.05
+    price_out: 0.40
+  - name: gpt-3.5-turbo
+    runner: llm_zeroshot.py
+    where: api
+    tier: 1
+    price_in: 0.50
+    price_out: 1.50
+  - name: claude-3.7-sonnet
+    runner: llm_zeroshot.py
+    where: api
+    tier: 0
+    price_in: 3.00
+    price_out: 15.00
+  - name: claude-opus-4.5
+    runner: llm_zeroshot.py
+    where: api
+    tier: 0
+    price_in: 5.00
+    price_out: 25.00
+  - name: claude-3-haiku
+    runner: llm_zeroshot.py
+    where: api
+    tier: 1
+    price_in: 0.25
+    price_out: 1.25
+
+# NOTE: model_arg / API model-id strings must match scripts/baselines/config.py.

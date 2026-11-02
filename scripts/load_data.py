@@ -2,7 +2,8 @@
 """
 Data loading utilities for OSINT entity resolution benchmark.
 
-This module provides simple functions to load and sample the entity pairs dataset.
+This module provides simple functions to load and sample the entity pairs dataset
+from JSON Lines, JSON sample files, or Parquet (see scripts/export_parquet.py).
 """
 
 import gzip
@@ -12,30 +13,56 @@ from typing import Iterator, Dict, Any
 from tqdm import tqdm
 
 
-def load_pairs(filepath: str) -> Iterator[Dict[str, Any]]:
+def load_pairs(filepath: str, quiet: bool = False) -> Iterator[Dict[str, Any]]:
     """
-    Load entity pairs from JSON.gz file.
-    
-    Memory-efficient iterator that doesn't load the entire file into memory.
-    
+    Stream entity pairs from any of the supported formats.
+
+    Supported: JSON Lines (.jsonl, .json.gz, .jsonl.gz, as distributed by
+    OpenSanctions and on the Hugging Face Hub), JSON arrays / {"pairs": [...]}
+    sample files (.json), and Parquet written by scripts/export_parquet.py.
+    Parquet rows are converted back to the original nested dicts.
+
     Args:
-        filepath: Path to the JSON.gz file
-        
+        filepath: Path to the data file
+        quiet: Suppress the progress message
+
     Yields:
         dict: Entity pair with keys 'judgement', 'left', 'right'
-        
+
     Example:
-        >>> for pair in load_pairs("pairs-20251209.json.gz"):
+        >>> for pair in load_pairs("data/raw/pairs-20251209.json.gz"):
         ...     print(pair["judgement"])
     """
     filepath = Path(filepath)
-    
+
     if not filepath.exists():
         raise FileNotFoundError(f"Data file not found: {filepath}")
-    
-    print(f"Loading data from {filepath}...")
-    
-    with gzip.open(filepath, 'rt', encoding='utf-8') as f:
+
+    if not quiet:
+        print(f"Loading data from {filepath}...")
+
+    name = filepath.name
+    if name.endswith(".parquet"):
+        import pyarrow.parquet as pq
+
+        for batch in pq.ParquetFile(filepath).iter_batches():
+            for row in batch.to_pylist():
+                pair = {
+                    "left": json.loads(row["left_json"]),
+                    "right": json.loads(row["right_json"]),
+                    "judgement": row["judgement"],
+                }
+                if row.get("pair_key"):
+                    pair["pair_key"] = row["pair_key"]
+                yield pair
+        return
+
+    if name.endswith(".json"):
+        yield from load_sample(str(filepath))
+        return
+
+    opener = gzip.open if name.endswith(".gz") else open
+    with opener(filepath, 'rt', encoding='utf-8') as f:
         for line in f:
             line = line.strip()
             if line:

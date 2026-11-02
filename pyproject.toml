@@ -1,0 +1,45 @@
+[project]
+name = "opensanctions-pairs"
+version = "1.0.0"
+description = "OpenSanctions Pairs: a large-scale dataset and benchmark for pairwise entity matching"
+requires-python = ">=3.10"
+# Core: data loading (JSON / Parquet / Hugging Face Hub), API baselines, evaluation and tables.
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "scikit-learn>=1.3",
+    "huggingface-hub>=0.24",
+    "openai>=1.0",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+# Local open-source models (Llama, DeepSeek) on GPU: `uv sync --extra local`.
+local = [
+    "torch>=2.5.1",
+    "transformers>=4.36,<5.0",
+    "accelerate>=0.30",
+]
+# Supervised fine-tuning: `uv sync --extra local --extra finetune`.
+finetune = ["peft>=0.10", "trl>=0.9", "datasets>=2.18", "wandb>=0.16"]
+# DSPy prompt optimisation (MIPROv2).
+dspy = ["dspy-ai>=2.5"]
+# Notebooks and EDA plots.
+notebooks = ["jupyter>=1.0", "matplotlib>=3.7", "seaborn>=0.12"]
+# The nomenklatura RegressionV1 rule baseline is installed from the pinned submodule:
+#   git submodule update --init && uv pip install -e scripts/vendor/nomenklatura   (Python >= 3.11, needs ICU)
+
+[tool.uv]
+package = false
+
+# Linux CUDA 12.1 wheels for torch. Adjust or remove for other platforms.
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu121", marker = "sys_platform == 'linux'" }]

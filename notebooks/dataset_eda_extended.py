@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extended EDA for OpenSanctions Pairs (NeurIPS E&D reviewer response).
+Extended EDA for OpenSanctions Pairs.
 
 Computes all statistics required by paper/REVIEWER_RESPONSE_PLAN.md
 in a single streaming pass over data/raw/pairs-20251209.json.gz.

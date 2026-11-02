@@ -1,5 +1,5 @@
 {
-  "input_file": "/Users/magnus/git/OSINT_entity_resolution/data/raw/pairs-20251209.json.gz",
+  "input_file": "data/raw/pairs-20251209.json.gz",
   "cutoff_date": "2025-07-01",
   "main": {
     "total_pairs": 755540,

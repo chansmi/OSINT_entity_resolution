@@ -182,7 +182,7 @@ def predict_single(
     tokenizer,
     pair: Dict[str, Any],
     few_shot_examples: Optional[List[Dict[str, Any]]] = None,
-    max_new_tokens: int = 20,
+    max_new_tokens: int = 2048,
 ) -> str:
     """Run inference on a single entity pair."""
     messages = [
@@ -212,15 +212,18 @@ def predict_single(
         )
 
     generated_ids = outputs[0][inputs['input_ids'].shape[1]:]
-    response = tokenizer.decode(generated_ids, skip_special_tokens=True).strip().lower()
+    text = tokenizer.decode(generated_ids, skip_special_tokens=True).lower()
 
-    if "positive" in response:
-        return "positive"
-    elif "negative" in response:
-        return "negative"
-    else:
-        # Default to negative if unclear (conservative)
-        return "negative"
+    # Reasoning models (e.g. DeepSeek-R1) emit <think>...</think> before the answer; parse
+    # the text after the final </think>, and take the LAST stated label (the reasoning body
+    # often mentions both "positive" and "negative" while deliberating).
+    answer = text.split("</think>")[-1] if "</think>" in text else text
+    pos, neg = answer.rfind("positive"), answer.rfind("negative")
+    if pos == -1 and neg == -1:
+        pos, neg = text.rfind("positive"), text.rfind("negative")
+    if pos == -1 and neg == -1:
+        return "negative"  # conservative default when no label is produced
+    return "positive" if pos > neg else "negative"
 
 
 def run_experiment(

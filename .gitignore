@@ -1,73 +1,78 @@
+# ---------------------------------------------------------------------------
+# Public research repo: code, frozen splits, predictions and result tables only.
+# Large data, local environments, credentials and working notes stay out.
+# ---------------------------------------------------------------------------
+
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
-.Python
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Environments and credentials
+.venv/
 venv/
 env/
-ENV/
-.venv
+.env
+.env.*
+!.env.example
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# Data files - track samples but ignore raw data, outputs, and processed
+# Data: the corpus is downloaded (scripts/download_data.py); derived files are rebuilt
 data/raw/
-data/outputs/
 data/processed/
-!data/samples/
+data/outputs/
+data/parquet/
+data/cache/
+*.parquet
+models/
+checkpoints/
 
-# Paper drafts
+# Scratch outputs from runners (final predictions live in results/predictions/)
+results/predictions/_raw/
+logs/
+*.log
+*.out
+wandb/
+outputs/
+
+# Papers, slides and drafts are not part of this repo
 paper/
-*.pdf
-
-# Presentation materials (kept locally only)
+arxiv/
+workshop/
+docs/
 presentation/
+rebuttal/
+*.pdf
+*.tex
+*.bib
+*.bbl
+*.aux
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.tar.gz
 
-# HuggingFace dataset card (published separately to HF Hub)
-data/DATASET_CARD.md
-
-# IDE
+# Personal / assistant / editor files
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+Gemini.md
+.claude/
+.cursor/
+.cursorrules
+.aider*
+.copilot/
+*.bak
+*.bak.md
 .vscode/
 .idea/
 *.swp
 *.swo
 .DS_Store
-
-# Environment variables
-.env
-.env.local
-
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-Gemini.md
-CLAUDE.md
-PROJECT_PLAN.md
-updates.md
-.claude
-*.tex
-
-# HPC / job outputs
-flux-*.out
-*.out
-jobs/
-submit_overnight.sh
-
-# LaTeX build artifacts
-*.aux
-*.log
-*.nav
-*.snm
-*.toc
-*.fls
-*.fdb_latexmk
-*.bbl
-*.blg
-*.synctex.gz
-
-# Experiment tracking
-wandb/
