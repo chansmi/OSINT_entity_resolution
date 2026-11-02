@@ -5,7 +5,7 @@ record sets) but carries no Responsible AI metadata and names the anonymous
 review account as creator. This script keeps HF's structure untouched and adds:
 
   * the RAI fields (rai:*) and provenance (prov:*) from
-    croissant_rai_opensanctions_pairs.json, each exactly once (the older
+    rai_fields_source.json (an input, not a deliverable), each exactly once (the older
     patch wrote both `dataSocialImpact` and `rai:dataSocialImpact`, which
     resolve to the same IRI and trigger a cardinality warning);
   * the de-anonymised authors and the paper citation.
@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
-RAI_SRC = HERE / "croissant_rai_opensanctions_pairs.json"
+RAI_SRC = HERE / "rai_fields_source.json"
 
 AUTHORS = [
     ("Chandler Smith", "University of Oxford"),

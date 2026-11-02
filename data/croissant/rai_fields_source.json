@@ -150,11 +150,40 @@
     "sanctions-er-anon/opensanctions_pairs",
     "OpenSanctions Pairs Entity Resolution Benchmark"
   ],
-  "creator": {
-    "@type": "Person",
-    "name": "Anonymous",
-    "url": "https://huggingface.co/sanctions-er-anon"
-  },
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "name": "Chandler Smith",
+      "affiliation": {
+        "@type": "sc:Organization",
+        "name": "University of Oxford"
+      }
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Magnus Sesodia",
+      "affiliation": {
+        "@type": "sc:Organization",
+        "name": "University of Oxford"
+      }
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Friedrich Lindenberg",
+      "affiliation": {
+        "@type": "sc:Organization",
+        "name": "OpenSanctions"
+      }
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Christian Schroeder de Witt",
+      "affiliation": {
+        "@type": "sc:Organization",
+        "name": "University of Oxford"
+      }
+    }
+  ],
   "keywords": [
     "text-classification",
     "English",

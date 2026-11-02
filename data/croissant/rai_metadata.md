@@ -1,3 +1,5 @@
+> The published Croissant file is `croissant.json`. `rai_fields_source.json` only supplies the RAI and provenance fields that `finalize_croissant.py` merges into it; its other fields are stale and it should not be uploaded or validated on its own.
+
 # Responsible AI Metadata — OpenSanctions Entity Pairs
 
 Answers for the NeurIPS Croissant RAI fields.

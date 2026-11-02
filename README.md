@@ -199,10 +199,10 @@ notebooks/            exploratory data analysis
 If you use the dataset or code, please cite:
 
 ```bibtex
-@inproceedings{smith2026opensanctions,
+@inproceedings{smith2026opensanctionspairs,
   title     = {OpenSanctions Pairs: A Large-Scale Dataset for Pairwise Entity Matching},
   author    = {Smith, Chandler and Sesodia, Magnus and Lindenberg, Friedrich and Schroeder de Witt, Christian},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Track on Evaluations and Datasets},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Evaluations and Datasets Track},
   year      = {2026}
 }
 ```
