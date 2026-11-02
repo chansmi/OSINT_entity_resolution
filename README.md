@@ -5,7 +5,7 @@ Code and evaluation artifacts for **OpenSanctions Pairs: A Large-Scale Dataset f
 The task: given two entity records (persons, organisations, vessels, ...) drawn from sanctions, PEP and watchlist sources, decide whether they refer to the same real-world entity. The corpus has 755,540 labelled pairs from [OpenSanctions](https://www.opensanctions.org/docs/opensource/pairs/).
 
 - **Dataset:** [huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs](https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs) (CC BY-NC 4.0)
-- **Croissant metadata (with RAI fields):** [`data/croissant/`](data/croissant/)
+- **Croissant metadata (with RAI fields):** [`data/croissant/croissant.json`](data/croissant/croissant.json), rebuilt from the Hub with `data/croissant/finalize_croissant.py`
 - **Frozen evaluation splits:** [`data/splits/`](data/splits/), checksummed in `manifest.json`
 - **Every model prediction behind the reported numbers:** [`results/predictions/`](results/predictions/)
 
@@ -60,12 +60,15 @@ for pair in load_pairs("data/raw/pairs-20251209.json.gz"):   # streams, low memo
 
 `load_pairs` reads JSON Lines (`.jsonl`, `.json.gz`), JSON sample files and Parquet, and always yields the same nested dicts.
 
-Straight from the Hub:
+Straight from the Hub with `datasets` (`pip install datasets`):
 
 ```python
-from huggingface_hub import hf_hub_download
-path = hf_hub_download("sanctions-er-anon/opensanctions_pairs", "pairs.json.gz", repo_type="dataset")
+from datasets import load_dataset
+pairs  = load_dataset("sanctions-er-anon/opensanctions_pairs", split="train")                 # 755,540 pairs
+sample = load_dataset("sanctions-er-anon/opensanctions_pairs", "sample_1000", split="train")  # 1,000-pair sample
 ```
+
+The Hub also serves an auto-converted Parquet copy of both configs on the `refs/convert/parquet` branch, which the dataset viewer and Croissant metadata use.
 
 ### Parquet
 

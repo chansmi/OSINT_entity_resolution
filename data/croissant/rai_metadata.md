@@ -69,4 +69,4 @@ No, this dataset does not contain synthetic data. All entity records and pair la
 - **Name:** Snapshot download from OpenSanctions
 - **Description:** The dataset was obtained by downloading the OpenSanctions training pairs snapshot file (`pairs-20251209.json.gz`) directly from the official OpenSanctions distribution endpoint at `https://data.opensanctions.org/contrib/training/`. No cleaning, filtering, relabeling, or annotation was performed by the dataset authors; the records and pair labels are used as published by OpenSanctions, which produces them via its own continuous watchlist aggregation and deduplication workflow (combining the RegressionV1 and logic-v2 matchers with human reviewer adjudication).
 - **Time of activity:** 2025-12-09
-- **Agent:** Paper authors (anonymous for review)
+- **Agent:** Paper authors (Chandler Smith, Magnus Sesodia, Friedrich Lindenberg, Christian Schroeder de Witt)
