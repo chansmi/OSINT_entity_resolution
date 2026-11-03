@@ -136,6 +136,7 @@ python eval/significance.py $(for f in results/predictions/*__common_analyst_jud
 python eval/analysis.py per-script --label gpt-4o \
     --pred results/predictions/gpt-4o__script_eval.jsonl --split data/splits/script_eval.jsonl
 python eval/analysis.py clusters
+python eval/make_figure.py             # Figure 2 (needs --extra notebooks)
 
 # 3. Re-run a model on a split (writes results/predictions/<model>__<split>.jsonl)
 python eval/run_model.py --runner zeroshot --model gpt-4o --split common_analyst_judged --parallel 20
@@ -179,6 +180,7 @@ eval/
   significance.py     bootstrap CIs, exact McNemar, Wilson intervals
   analysis.py         per-script F1, cost frontier, error taxonomy, cluster sizes
   make_tables.py      predictions -> results/tables/*.md
+  make_figure.py      results/metrics.csv -> Figure 2
 results/
   predictions/        <model>__<split>.jsonl for every reported number
   tables/             generated markdown tables
