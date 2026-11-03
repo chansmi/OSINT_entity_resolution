@@ -23,8 +23,13 @@ env/
 .env.*
 !.env.example
 
-# Data: the corpus is downloaded (scripts/download_data.py); derived files are rebuilt
+# Data: real records are gated on Hugging Face and never committed. The corpus is
+# downloaded (scripts/download_data.py) and everything derived from it is rebuilt
+# locally; only checksums, hashed ids and the synthetic preview are tracked.
 data/raw/
+data/samples/
+data/splits/*.jsonl
+data/clusters/
 data/processed/
 data/outputs/
 data/parquet/

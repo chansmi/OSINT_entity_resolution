@@ -18,8 +18,7 @@ auto_merge_schemas:
 # Prior evaluation / dev / tuning pool to exclude from ALL split sampling, so the new
 # splits cannot overlap anything a model was tuned or previously evaluated on.
 contamination_files:
-  - data/samples/sample_1000.json
-  - data/samples/sample_10000.json
+  - data/splits/excluded_dev_pairs.json   # id pairs of data/samples/* (dev samples)
 
 splits:
   # Primary apples-to-apples split: analyst-judged only, label-stratified to the

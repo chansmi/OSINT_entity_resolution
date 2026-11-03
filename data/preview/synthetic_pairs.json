@@ -1,0 +1,2171 @@
+{
+  "metadata": {
+    "description": "Synthetic preview of OpenSanctions Pairs: real schema, fabricated values. No record refers to a real person or organisation.",
+    "generator": "scripts/make_synthetic_preview.py",
+    "seed": 7,
+    "n_pairs": 35
+  },
+  "pairs": [
+    {
+      "left": {
+        "id": "synthetic-0021",
+        "caption": "Lomfen Teltelis",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-12-11T23:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-12-11T23:00:00",
+        "properties": {
+          "name": [
+            "Lomfen Teltelis"
+          ],
+          "firstName": [
+            "Lomfen"
+          ],
+          "lastName": [
+            "Teltelis"
+          ],
+          "birthDate": [
+            "1974-08-16"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0022",
+        "caption": "Ломфен Телтелис",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-12-06T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-12-06T16:00:00",
+        "properties": {
+          "name": [
+            "Ломфен Телтелис"
+          ],
+          "alias": [
+            "LOMFEN TELTELIS"
+          ],
+          "birthDate": [
+            "1974-08-16"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0053",
+        "caption": "Munkirnak Industries",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-05-15T00:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-05-15T00:00:00",
+        "properties": {
+          "name": [
+            "Munkirnak Industries"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN353978"
+          ],
+          "incorporationDate": [
+            "1947"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0054",
+        "caption": "MUNKIRNAK INDUSTRIES",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2024-06-18T10:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-06-18T10:00:00",
+        "properties": {
+          "name": [
+            "MUNKIRNAK INDUSTRIES"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN353978"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0039",
+        "caption": "Gormi Kirnak",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-03-15T07:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-03-15T07:00:00",
+        "properties": {
+          "name": [
+            "Gormi Kirnak"
+          ],
+          "firstName": [
+            "Gormi"
+          ],
+          "lastName": [
+            "Kirnak"
+          ],
+          "birthDate": [
+            "1995-02-25"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0040",
+        "caption": "Горми Кирнак",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-11-27T07:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-11-27T07:00:00",
+        "properties": {
+          "name": [
+            "Горми Кирнак"
+          ],
+          "alias": [
+            "GORMI KIRNAK"
+          ],
+          "birthDate": [
+            "1992-02-13"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0065",
+        "caption": "Istami Group",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-02-20T04:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-02-20T04:00:00",
+        "properties": {
+          "name": [
+            "Istami Group"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN816907"
+          ],
+          "incorporationDate": [
+            "1994"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0066",
+        "caption": "Istami Logistics",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2024-10-19T04:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-10-19T04:00:00",
+        "properties": {
+          "name": [
+            "Istami Logistics"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN366275"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0059",
+        "caption": "Nakost Industries",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-12-23T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-12-23T16:00:00",
+        "properties": {
+          "name": [
+            "Nakost Industries"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN774464"
+          ],
+          "incorporationDate": [
+            "1947"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0060",
+        "caption": "NAKOST INDUSTRIES",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2022-11-19T22:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-11-19T22:00:00",
+        "properties": {
+          "name": [
+            "NAKOST INDUSTRIES"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN774464"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0005",
+        "caption": "Dotel Fentel",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-06-15T18:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-06-15T18:00:00",
+        "properties": {
+          "name": [
+            "Dotel Fentel"
+          ],
+          "firstName": [
+            "Dotel"
+          ],
+          "lastName": [
+            "Fentel"
+          ],
+          "birthDate": [
+            "1980-12-03"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0006",
+        "caption": "FENTEL, Dotel",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-05-08T05:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-05-08T05:00:00",
+        "properties": {
+          "name": [
+            "FENTEL, Dotel"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0063",
+        "caption": "Miostmun Industries",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-02-28T08:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-02-28T08:00:00",
+        "properties": {
+          "name": [
+            "Miostmun Industries"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN196408"
+          ],
+          "incorporationDate": [
+            "1992"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0064",
+        "caption": "Miostmun Trading",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2023-04-24T20:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-04-24T20:00:00",
+        "properties": {
+          "name": [
+            "Miostmun Trading"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN864763"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0069",
+        "caption": "Nakmi Group",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-05-13T06:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-05-13T06:00:00",
+        "properties": {
+          "name": [
+            "Nakmi Group"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN118354"
+          ],
+          "incorporationDate": [
+            "1974"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0070",
+        "caption": "Nakmi Trading",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2022-03-24T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-03-24T16:00:00",
+        "properties": {
+          "name": [
+            "Nakmi Trading"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN178237"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0041",
+        "caption": "Doban Muntazo",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-01-11T17:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-01-11T17:00:00",
+        "properties": {
+          "name": [
+            "Doban Muntazo"
+          ],
+          "firstName": [
+            "Doban"
+          ],
+          "lastName": [
+            "Muntazo"
+          ],
+          "birthDate": [
+            "1971-04-12"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0042",
+        "caption": "MUNTAZO, Doban",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-06-17T19:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-06-17T19:00:00",
+        "properties": {
+          "name": [
+            "MUNTAZO, Doban"
+          ],
+          "birthDate": [
+            "1974-08-23"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0055",
+        "caption": "Ronak Trading",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-08-09T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-08-09T16:00:00",
+        "properties": {
+          "name": [
+            "Ronak Trading"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN473905"
+          ],
+          "incorporationDate": [
+            "1945"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0056",
+        "caption": "RONAK TRADING",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2023-09-25T00:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-09-25T00:00:00",
+        "properties": {
+          "name": [
+            "RONAK TRADING"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN473905"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0003",
+        "caption": "Tellu Pepe",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-03-18T03:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-03-18T03:00:00",
+        "properties": {
+          "name": [
+            "Tellu Pepe"
+          ],
+          "firstName": [
+            "Tellu"
+          ],
+          "lastName": [
+            "Pepe"
+          ],
+          "birthDate": [
+            "1970-01-08"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0004",
+        "caption": "Теллу Пепе",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-09-27T21:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-09-27T21:00:00",
+        "properties": {
+          "name": [
+            "Теллу Пепе"
+          ],
+          "alias": [
+            "TELLU PEPE"
+          ],
+          "birthDate": [
+            "1970-01-08"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0027",
+        "caption": "Milu Luis",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-11-03T21:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-11-03T21:00:00",
+        "properties": {
+          "name": [
+            "Milu Luis"
+          ],
+          "firstName": [
+            "Milu"
+          ],
+          "lastName": [
+            "Luis"
+          ],
+          "birthDate": [
+            "1957-06-07"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0028",
+        "caption": "Милу Луис",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-12-25T06:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-12-25T06:00:00",
+        "properties": {
+          "name": [
+            "Милу Луис"
+          ],
+          "alias": [
+            "MILU LUIS"
+          ],
+          "birthDate": [
+            "1957-06-07"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0037",
+        "caption": "Lommun Banbri",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-09-07T14:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-09-07T14:00:00",
+        "properties": {
+          "name": [
+            "Lommun Banbri"
+          ],
+          "firstName": [
+            "Lommun"
+          ],
+          "lastName": [
+            "Banbri"
+          ],
+          "birthDate": [
+            "1973-09-18"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0038",
+        "caption": "Lommun Banbre",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-02-22T07:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-02-22T07:00:00",
+        "properties": {
+          "name": [
+            "Lommun Banbre"
+          ],
+          "birthDate": [
+            "1971-02-13"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0043",
+        "caption": "Nakmun Tellu",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-03-27T13:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-03-27T13:00:00",
+        "properties": {
+          "name": [
+            "Nakmun Tellu"
+          ],
+          "firstName": [
+            "Nakmun"
+          ],
+          "lastName": [
+            "Tellu"
+          ],
+          "birthDate": [
+            "1951-02-09"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0044",
+        "caption": "Nakmun Telli",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-12-11T02:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-12-11T02:00:00",
+        "properties": {
+          "name": [
+            "Nakmun Telli"
+          ],
+          "birthDate": [
+            "1970-03-18"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0013",
+        "caption": "Tais Dovel",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-12-14T11:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-12-14T11:00:00",
+        "properties": {
+          "name": [
+            "Tais Dovel"
+          ],
+          "firstName": [
+            "Tais"
+          ],
+          "lastName": [
+            "Dovel"
+          ],
+          "birthDate": [
+            "1970-09-09"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0014",
+        "caption": "Tais Doveo",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-02-06T04:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-02-06T04:00:00",
+        "properties": {
+          "name": [
+            "Tais Doveo"
+          ],
+          "birthDate": [
+            "1970-09-09"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0009",
+        "caption": "Kirmi Zobanfen",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-08-23T21:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-08-23T21:00:00",
+        "properties": {
+          "name": [
+            "Kirmi Zobanfen"
+          ],
+          "firstName": [
+            "Kirmi"
+          ],
+          "lastName": [
+            "Zobanfen"
+          ],
+          "birthDate": [
+            "1983-08-19"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0010",
+        "caption": "Кирми Зобанфен",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2022-12-23T09:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-12-23T09:00:00",
+        "properties": {
+          "name": [
+            "Кирми Зобанфен"
+          ],
+          "alias": [
+            "KIRMI ZOBANFEN"
+          ],
+          "birthDate": [
+            "1983-08-19"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0019",
+        "caption": "Telzo Telka",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-02-28T06:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-02-28T06:00:00",
+        "properties": {
+          "name": [
+            "Telzo Telka"
+          ],
+          "firstName": [
+            "Telzo"
+          ],
+          "lastName": [
+            "Telka"
+          ],
+          "birthDate": [
+            "1981-03-18"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0020",
+        "caption": "Telzo Telku",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-11-09T11:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-11-09T11:00:00",
+        "properties": {
+          "name": [
+            "Telzo Telku"
+          ],
+          "birthDate": [
+            "1981-03-18"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0067",
+        "caption": "Isro Group",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-05-23T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-05-23T16:00:00",
+        "properties": {
+          "name": [
+            "Isro Group"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN381828"
+          ],
+          "incorporationDate": [
+            "1989"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0068",
+        "caption": "Isro Logistics",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2025-08-25T03:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-08-25T03:00:00",
+        "properties": {
+          "name": [
+            "Isro Logistics"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN587234"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0029",
+        "caption": "Isdo Suzomi",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-03-05T00:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-03-05T00:00:00",
+        "properties": {
+          "name": [
+            "Isdo Suzomi"
+          ],
+          "firstName": [
+            "Isdo"
+          ],
+          "lastName": [
+            "Suzomi"
+          ],
+          "birthDate": [
+            "1991-07-15"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0030",
+        "caption": "SUZOMI, Isdo",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-11-05T19:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-11-05T19:00:00",
+        "properties": {
+          "name": [
+            "SUZOMI, Isdo"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0049",
+        "caption": "Rokaka Industries",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-02-22T20:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-02-22T20:00:00",
+        "properties": {
+          "name": [
+            "Rokaka Industries"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN677816"
+          ],
+          "incorporationDate": [
+            "1977"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0050",
+        "caption": "ROKAKA INDUSTRIES",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2025-09-27T12:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-09-27T12:00:00",
+        "properties": {
+          "name": [
+            "ROKAKA INDUSTRIES"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN677816"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0061",
+        "caption": "Mika Holdings",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-09-02T20:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-09-02T20:00:00",
+        "properties": {
+          "name": [
+            "Mika Holdings"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN239558"
+          ],
+          "incorporationDate": [
+            "1951"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0062",
+        "caption": "Mika Trading",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2023-08-09T00:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-08-09T00:00:00",
+        "properties": {
+          "name": [
+            "Mika Trading"
+          ],
+          "jurisdiction": [
+            "xb"
+          ],
+          "registrationNumber": [
+            "SYN756646"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0011",
+        "caption": "Supe Nakbanta",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-08-02T06:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-08-02T06:00:00",
+        "properties": {
+          "name": [
+            "Supe Nakbanta"
+          ],
+          "firstName": [
+            "Supe"
+          ],
+          "lastName": [
+            "Nakbanta"
+          ],
+          "birthDate": [
+            "1987-06-01"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0012",
+        "caption": "NAKBANTA, Supe",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-12-08T12:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-12-08T12:00:00",
+        "properties": {
+          "name": [
+            "NAKBANTA, Supe"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0001",
+        "caption": "Zovar Suromi",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-07-14T02:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-07-14T02:00:00",
+        "properties": {
+          "name": [
+            "Zovar Suromi"
+          ],
+          "firstName": [
+            "Zovar"
+          ],
+          "lastName": [
+            "Suromi"
+          ],
+          "birthDate": [
+            "1979-02-12"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0002",
+        "caption": "Zovar Surome",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-01-27T18:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-01-27T18:00:00",
+        "properties": {
+          "name": [
+            "Zovar Surome"
+          ],
+          "birthDate": [
+            "1979-02-12"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0025",
+        "caption": "Senlu Ostlusen",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-05-07T22:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-05-07T22:00:00",
+        "properties": {
+          "name": [
+            "Senlu Ostlusen"
+          ],
+          "firstName": [
+            "Senlu"
+          ],
+          "lastName": [
+            "Ostlusen"
+          ],
+          "birthDate": [
+            "1978-08-12"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0026",
+        "caption": "Senlu Ostluseu",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-12-12T11:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-12-12T11:00:00",
+        "properties": {
+          "name": [
+            "Senlu Ostluseu"
+          ],
+          "birthDate": [
+            "1978-08-12"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0051",
+        "caption": "Bansenlu Logistics",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-01-03T20:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-01-03T20:00:00",
+        "properties": {
+          "name": [
+            "Bansenlu Logistics"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN308272"
+          ],
+          "incorporationDate": [
+            "1970"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0052",
+        "caption": "BANSENLU LOGISTICS",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2025-03-02T02:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-03-02T02:00:00",
+        "properties": {
+          "name": [
+            "BANSENLU LOGISTICS"
+          ],
+          "jurisdiction": [
+            "xa"
+          ],
+          "registrationNumber": [
+            "SYN308272"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0031",
+        "caption": "Lomis Vardradra",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-04-01T08:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-04-01T08:00:00",
+        "properties": {
+          "name": [
+            "Lomis Vardradra"
+          ],
+          "firstName": [
+            "Lomis"
+          ],
+          "lastName": [
+            "Vardradra"
+          ],
+          "birthDate": [
+            "1953-01-01"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0032",
+        "caption": "Lomis Vardradre",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-05-18T13:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-05-18T13:00:00",
+        "properties": {
+          "name": [
+            "Lomis Vardradre"
+          ],
+          "birthDate": [
+            "1963-09-08"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0015",
+        "caption": "Lukir Kais",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-09-12T19:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-09-12T19:00:00",
+        "properties": {
+          "name": [
+            "Lukir Kais"
+          ],
+          "firstName": [
+            "Lukir"
+          ],
+          "lastName": [
+            "Kais"
+          ],
+          "birthDate": [
+            "1982-03-09"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0016",
+        "caption": "Лукир Каис",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-03-23T16:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-03-23T16:00:00",
+        "properties": {
+          "name": [
+            "Лукир Каис"
+          ],
+          "alias": [
+            "LUKIR KAIS"
+          ],
+          "birthDate": [
+            "1982-03-09"
+          ],
+          "nationality": [
+            "xb"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0023",
+        "caption": "Kasen Varbandra",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-03-12T07:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-03-12T07:00:00",
+        "properties": {
+          "name": [
+            "Kasen Varbandra"
+          ],
+          "firstName": [
+            "Kasen"
+          ],
+          "lastName": [
+            "Varbandra"
+          ],
+          "birthDate": [
+            "1946-09-10"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0024",
+        "caption": "VARBANDRA, Kasen",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2024-11-08T19:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-11-08T19:00:00",
+        "properties": {
+          "name": [
+            "VARBANDRA, Kasen"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0045",
+        "caption": "Briro Gormi",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2023-02-09T03:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-02-09T03:00:00",
+        "properties": {
+          "name": [
+            "Briro Gormi"
+          ],
+          "firstName": [
+            "Briro"
+          ],
+          "lastName": [
+            "Gormi"
+          ],
+          "birthDate": [
+            "1962-01-21"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0046",
+        "caption": "Бриро Горми",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2025-05-20T04:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-05-20T04:00:00",
+        "properties": {
+          "name": [
+            "Бриро Горми"
+          ],
+          "alias": [
+            "BRIRO GORMI"
+          ],
+          "birthDate": [
+            "1974-01-11"
+          ],
+          "nationality": [
+            "zz"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0007",
+        "caption": "Banlu Penak",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-02-17T13:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-02-17T13:00:00",
+        "properties": {
+          "name": [
+            "Banlu Penak"
+          ],
+          "firstName": [
+            "Banlu"
+          ],
+          "lastName": [
+            "Penak"
+          ],
+          "birthDate": [
+            "1978-08-11"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0008",
+        "caption": "Banlu Penae",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-08-14T01:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-08-14T01:00:00",
+        "properties": {
+          "name": [
+            "Banlu Penae"
+          ],
+          "birthDate": [
+            "1978-08-11"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0057",
+        "caption": "Brimi Trading",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-11-08T02:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-11-08T02:00:00",
+        "properties": {
+          "name": [
+            "Brimi Trading"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN518917"
+          ],
+          "incorporationDate": [
+            "1970"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0058",
+        "caption": "BRIMI TRADING",
+        "schema": "Company",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_c"
+        ],
+        "first_seen": "2025-06-24T15:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-06-24T15:00:00",
+        "properties": {
+          "name": [
+            "BRIMI TRADING"
+          ],
+          "jurisdiction": [
+            "zz"
+          ],
+          "registrationNumber": [
+            "SYN518917"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0035",
+        "caption": "Osttel Zokir",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-04-07T08:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-04-07T08:00:00",
+        "properties": {
+          "name": [
+            "Osttel Zokir"
+          ],
+          "firstName": [
+            "Osttel"
+          ],
+          "lastName": [
+            "Zokir"
+          ],
+          "birthDate": [
+            "1978-09-18"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0036",
+        "caption": "ZOKIR, Osttel",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2022-02-15T10:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-02-15T10:00:00",
+        "properties": {
+          "name": [
+            "ZOKIR, Osttel"
+          ],
+          "birthDate": [
+            "1947-02-17"
+          ],
+          "topics": [
+            "role.pep"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0017",
+        "caption": "Lomsu Velkir",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2025-11-13T01:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2025-11-13T01:00:00",
+        "properties": {
+          "name": [
+            "Lomsu Velkir"
+          ],
+          "firstName": [
+            "Lomsu"
+          ],
+          "lastName": [
+            "Velkir"
+          ],
+          "birthDate": [
+            "1980-07-13"
+          ],
+          "nationality": [
+            "xc"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0018",
+        "caption": "VELKIR, Lomsu",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2022-04-15T05:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-04-15T05:00:00",
+        "properties": {
+          "name": [
+            "VELKIR, Lomsu"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "positive",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0047",
+        "caption": "Romun Teldo",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2024-09-25T06:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2024-09-25T06:00:00",
+        "properties": {
+          "name": [
+            "Romun Teldo"
+          ],
+          "firstName": [
+            "Romun"
+          ],
+          "lastName": [
+            "Teldo"
+          ],
+          "birthDate": [
+            "1961-01-06"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "gender": [
+            "female"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0048",
+        "caption": "TELDO, Romun",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-05-12T00:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-05-12T00:00:00",
+        "properties": {
+          "name": [
+            "TELDO, Romun"
+          ],
+          "birthDate": [
+            "1963-08-17"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    },
+    {
+      "left": {
+        "id": "synthetic-0033",
+        "caption": "Varro Velkirpe",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_a"
+        ],
+        "first_seen": "2022-08-25T05:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2022-08-25T05:00:00",
+        "properties": {
+          "name": [
+            "Varro Velkirpe"
+          ],
+          "firstName": [
+            "Varro"
+          ],
+          "lastName": [
+            "Velkirpe"
+          ],
+          "birthDate": [
+            "1978-07-27"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "gender": [
+            "male"
+          ],
+          "topics": [
+            "debarment"
+          ]
+        }
+      },
+      "right": {
+        "id": "synthetic-0034",
+        "caption": "Варро Велкирпе",
+        "schema": "Person",
+        "referents": [],
+        "datasets": [
+          "synthetic_list_b"
+        ],
+        "first_seen": "2023-03-16T19:00:00",
+        "last_seen": "2025-12-01T00:00:00",
+        "last_change": "2023-03-16T19:00:00",
+        "properties": {
+          "name": [
+            "Варро Велкирпе"
+          ],
+          "alias": [
+            "VARRO VELKIRPE"
+          ],
+          "birthDate": [
+            "1983-01-25"
+          ],
+          "nationality": [
+            "xa"
+          ],
+          "topics": [
+            "sanction"
+          ]
+        }
+      },
+      "judgement": "negative",
+      "synthetic": true
+    }
+  ]
+}

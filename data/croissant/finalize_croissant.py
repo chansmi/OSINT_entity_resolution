@@ -49,10 +49,51 @@ DATA_COLLECTION = (
 )
 
 RELEASE_PLAN = (
-    "The snapshot is immutable: pairs.json.gz will not be modified, so "
-    "results remain comparable. Documentation and metadata fixes are made "
-    "through the Hugging Face repository history. The continuously updated "
-    "corpus is maintained upstream by OpenSanctions."
+    "The current release is v1 (Hugging Face tag v1), a fixed snapshot of the "
+    "OpenSanctions pairs file dated 2025-12-09. A released version is never "
+    "rewritten, so cited results stay reproducible; documentation fixes go "
+    "through the repository history. No further releases are currently planned. "
+    "Because v1 is a snapshot, entities delisted after 2025-12-09 still appear "
+    "in it; any future version will reflect upstream delistings and removals, "
+    "and the terms of use require moving to it and deleting superseded copies. "
+    "Access is gated on Hugging Face: users accept the licence and terms of use "
+    "(non-commercial research use; no linking with external datasets to "
+    "re-identify individuals or to extend use beyond identification; use of the "
+    "current version) and are approved automatically. Correction and deletion "
+    "requests go to the body that maintains the relevant list "
+    "(https://www.opensanctions.org/docs/delisting/)."
+)
+
+DESCRIPTION = (
+    "OpenSanctions Pairs: 755,540 labelled pairs of entity records (persons, "
+    "organisations and other FollowTheMoney schemas) from public sanctions, "
+    "watchlist and politically-exposed-person sources aggregated by "
+    "OpenSanctions. Each pair is labelled positive (same real-world entity) or "
+    "negative by OpenSanctions analysts, for benchmarking pairwise entity "
+    "matching. Snapshot of 2025-12-09, released as v1 under CC BY-NC 4.0 with "
+    "gated access."
+)
+
+PSI_LEGAL = (
+    " Legal basis: the records are compiled by OpenSanctions Datenbanken GmbH "
+    "(Berlin), which processes them under the EU GDPR on the basis of "
+    "legitimate interest (Art. 6(1)(f); https://www.opensanctions.org/docs/privacy/). "
+    "The dataset contains no records about the general public. Identifying "
+    "fields are kept because matching identities is the task itself; access is "
+    "gated with terms of use instead."
+)
+
+MITIGATIONS = (
+    "Mitigations: access is gated on Hugging Face and requires accepting the "
+    "CC BY-NC 4.0 licence and terms of use that prohibit linking the data with "
+    "external datasets to re-identify individuals or to extend its use beyond "
+    "identification, and that require using the current version. A synthetic "
+    "preview with fabricated values lets users inspect the format without "
+    "access. The dataset includes only fields the upstream sources publish. "
+    "Users should consult live OpenSanctions data, not this snapshot, for any "
+    "operational decision, and should not use model predictions as a substitute "
+    "for an authoritative compliance workflow. Correction and deletion requests "
+    "go to the listing body (https://www.opensanctions.org/docs/delisting/)."
 )
 
 
@@ -75,6 +116,13 @@ def main(src: Path, dst: Path) -> None:
             c[k] = v
     c["rai:dataCollection"] = DATA_COLLECTION
     c["rai:dataReleaseMaintenancePlan"] = RELEASE_PLAN
+    c["description"] = DESCRIPTION
+    psi = c.get("rai:personalSensitiveInformation", "")
+    if PSI_LEGAL.strip() not in psi:
+        c["rai:personalSensitiveInformation"] = psi.rstrip() + PSI_LEGAL
+    impact = c.get("rai:dataSocialImpact", "")
+    if "Mitigations:" in impact:
+        c["rai:dataSocialImpact"] = impact[: impact.index("Mitigations:")] + MITIGATIONS
 
     c["creator"] = [
         {

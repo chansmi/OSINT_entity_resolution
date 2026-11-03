@@ -28,6 +28,7 @@ import gzip
 import hashlib
 import json
 import random
+import sys
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -142,17 +143,45 @@ def stratified(rng, pool, n, target_ratio):
     return rng.sample(pos, n_pos) + rng.sample(neg, n_neg)
 
 
+def pair_hash(a, b):
+    """sha256 of the two entity ids, sorted and joined by '|'."""
+    a, b = sorted((a, b))
+    return hashlib.sha256(f"{a}|{b}".encode("utf-8")).hexdigest()
+
+
+class _Contamination:
+    """Membership test over (left_id, right_id) tuples, backed by id pairs or their hashes."""
+
+    def __init__(self):
+        self.pairs, self.hashes = set(), set()
+
+    def __contains__(self, key):
+        return key in self.pairs or (bool(self.hashes) and pair_hash(*key) in self.hashes)
+
+    def __len__(self):
+        return len(self.pairs) + len(self.hashes)
+
+
 def load_contamination(paths, root):
-    """Set of sorted (left_id, right_id) tuples from prior eval/dev/tuning samples."""
-    contam = set()
+    """Pairs from prior eval/dev/tuning samples, to exclude from every split.
+
+    Accepts sample files (full records), id-pair files ({"pairs": [[l, r], ...]}) or
+    hashed files ({"pairs_sha256": [...]}, see pair_hash). A missing file is an error,
+    since silently skipping it would change the splits.
+    """
+    contam = _Contamination()
     for p in paths:
         fp = root / p
         if not fp.exists():
-            continue
+            raise FileNotFoundError(f"contamination file missing: {fp}")
         data = json.load(open(fp, encoding="utf-8"))
+        if isinstance(data, dict) and "pairs_sha256" in data:
+            contam.hashes.update(data["pairs_sha256"])
+            continue
         pairs = data["pairs"] if isinstance(data, dict) else data
         for it in pairs:
-            contam.add(tuple(sorted((it["left"]["id"], it["right"]["id"]))))
+            ids = it if isinstance(it, list) else (it["left"]["id"], it["right"]["id"])
+            contam.pairs.add(tuple(sorted(ids)))
     return contam
 
 
@@ -266,6 +295,8 @@ def cluster_stats(uf):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="eval/config.yaml")
+    ap.add_argument("--write-manifest", action="store_true",
+                    help="overwrite data/splits/manifest.json instead of verifying against it")
     args = ap.parse_args()
     cfg = yaml.safe_load(open(args.config))
     root = Path(__file__).resolve().parents[1]
@@ -315,8 +346,20 @@ def main():
             "sha256": sha256_file(paths[name]),
             "filters": cfg["splits"].get(name, {"note": "overall mirror, auto-merge included"}),
         }
-    json.dump(manifest, open(outdir / "manifest.json", "w"), indent=2)
-    print(f"wrote manifest with {len(sel)} splits -> data/splits/manifest.json")
+    mpath = outdir / "manifest.json"
+    if mpath.exists() and not args.write_manifest:
+        ref = json.load(open(mpath))
+        ok = ref.get("corpus_sha256") == manifest["corpus_sha256"]
+        for name, info in manifest["splits"].items():
+            match = ref["splits"].get(name, {}).get("sha256") == info["sha256"]
+            ok &= match
+            print(f"  {name:24s} {'matches published checksum' if match else 'DIFFERS from published checksum'}")
+        if not ok:
+            sys.exit("splits do not match data/splits/manifest.json")
+        print("all splits match data/splits/manifest.json")
+    else:
+        json.dump(manifest, open(mpath, "w"), indent=2)
+        print(f"wrote manifest with {len(sel)} splits -> data/splits/manifest.json")
 
 
 if __name__ == "__main__":

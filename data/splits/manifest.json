@@ -13,8 +13,7 @@
     "UnknownLink"
   ],
   "contamination_files": [
-    "data/samples/sample_1000.json",
-    "data/samples/sample_10000.json"
+    "data/splits/excluded_dev_pairs.json"
   ],
   "contamination_pairs_excluded": 10202,
   "splits": {

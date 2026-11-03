@@ -132,7 +132,8 @@ def taxonomy(args):
         pred, truth = _y(r["classification"]), _y(r["ground_truth"])
         if pred == truth:
             continue
-        cat = _categorize(r.get("reasoning"))
+        # Released predictions carry the precomputed category; raw runs carry the rationale.
+        cat = r.get("error_category") or _categorize(r.get("reasoning"))
         (fp_cats if pred and not truth else fn_cats)[cat] = \
             (fp_cats if pred and not truth else fn_cats).get(cat, 0) + 1
     label = args.label or Path(args.pred).stem

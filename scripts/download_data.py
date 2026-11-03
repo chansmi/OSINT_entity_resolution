@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-"""Download the OpenSanctions Pairs corpus and verify its checksum.
+"""Download the OpenSanctions Pairs corpus (v1) and verify its checksum.
 
-The corpus is fetched from the Hugging Face Hub (default) or directly from
-OpenSanctions, written to data/raw/pairs-20251209.json.gz, and checked against
-the sha256 recorded in data/splits/manifest.json, so the frozen evaluation
-splits can be rebuilt bit-for-bit.
+The dataset on the Hugging Face Hub is gated: log in (`hf auth login`, or set
+HF_TOKEN) and accept the terms of use on the dataset page once; approval is
+automatic. The same snapshot can also be fetched directly from OpenSanctions.
 
-    python scripts/download_data.py                  # from the Hugging Face Hub
-    python scripts/download_data.py --source opensanctions
+The corpus is written to data/raw/pairs-20251209.json.gz and checked against the
+sha256 in data/splits/manifest.json, so the frozen evaluation splits rebuild
+bit for bit (python eval/build_splits.py).
+
+    python scripts/download_data.py                        # Hugging Face Hub, revision v1
+    python scripts/download_data.py --source opensanctions # OpenSanctions download
+    python scripts/download_data.py --sample               # also the 1,000-pair dev sample (Hub)
 """
 import argparse
 import hashlib
@@ -19,9 +23,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HF_REPO = "sanctions-er-anon/opensanctions_pairs"
+HF_REVISION = "v1"
 HF_FILE = "pairs.json.gz"
+HF_PAGE = f"https://huggingface.co/datasets/{HF_REPO}"
 OPENSANCTIONS_URL = "https://data.opensanctions.org/contrib/training/pairs-20251209.json.gz"
 DEST = ROOT / "data" / "raw" / "pairs-20251209.json.gz"
+SAMPLE_DEST = ROOT / "data" / "samples" / "sample_1000.json"
 MANIFEST = ROOT / "data" / "splits" / "manifest.json"
 
 
@@ -33,10 +40,26 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def hub_download(filename: str, dest: Path) -> None:
+    from huggingface_hub import hf_hub_download
+    from huggingface_hub.errors import GatedRepoError
+
+    try:
+        cached = hf_hub_download(repo_id=HF_REPO, filename=filename, repo_type="dataset", revision=HF_REVISION)
+    except GatedRepoError:
+        sys.exit(
+            f"The dataset is gated. Log in (`hf auth login` or set HF_TOKEN) and accept the terms at\n"
+            f"  {HF_PAGE}\nthen rerun, or use --source opensanctions."
+        )
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(cached, dest)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--source", choices=["hf", "opensanctions"], default="hf")
     ap.add_argument("--dest", type=Path, default=DEST)
+    ap.add_argument("--sample", action="store_true", help=f"also fetch sample_1000.json to {SAMPLE_DEST.relative_to(ROOT)}")
     ap.add_argument("--force", action="store_true", help="re-download even if the file exists")
     args = ap.parse_args()
 
@@ -46,10 +69,7 @@ def main():
     if args.dest.exists() and not args.force:
         print(f"{args.dest} exists, verifying checksum")
     elif args.source == "hf":
-        from huggingface_hub import hf_hub_download
-
-        cached = hf_hub_download(repo_id=HF_REPO, filename=HF_FILE, repo_type="dataset")
-        shutil.copyfile(cached, args.dest)
+        hub_download(HF_FILE, args.dest)
     else:
         print(f"downloading {OPENSANCTIONS_URL}")
         urllib.request.urlretrieve(OPENSANCTIONS_URL, args.dest)
@@ -58,6 +78,13 @@ def main():
     if got != expected:
         sys.exit(f"checksum mismatch for {args.dest}: expected {expected}, got {got}")
     print(f"ok: {args.dest} (sha256 {got[:12]}...)")
+
+    if args.sample:
+        if SAMPLE_DEST.exists() and not args.force:
+            print(f"{SAMPLE_DEST} exists")
+        else:
+            hub_download("sample_1000.json", SAMPLE_DEST)
+            print(f"ok: {SAMPLE_DEST}")
 
 
 if __name__ == "__main__":

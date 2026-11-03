@@ -4,10 +4,13 @@ Code and evaluation artifacts for **OpenSanctions Pairs: A Large-Scale Dataset f
 
 The task: given two entity records (persons, organisations, vessels, ...) drawn from sanctions, PEP and watchlist sources, decide whether they refer to the same real-world entity. The corpus has 755,540 labelled pairs from [OpenSanctions](https://www.opensanctions.org/docs/opensource/pairs/).
 
-- **Dataset:** [huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs](https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs) (CC BY-NC 4.0)
+- **Dataset:** [huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs](https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs) (CC BY-NC 4.0, gated: accept the terms of use once, approval is automatic)
+- **Synthetic preview** (real schema, fabricated values, no login needed): [`data/preview/synthetic_pairs.json`](data/preview/synthetic_pairs.json)
 - **Croissant metadata (with RAI fields):** [`data/croissant/croissant.json`](data/croissant/croissant.json), rebuilt from the Hub with `data/croissant/finalize_croissant.py`
-- **Frozen evaluation splits:** [`data/splits/`](data/splits/), checksummed in `manifest.json`
+- **Frozen evaluation splits:** rebuilt deterministically from the corpus and verified against the checksums in [`data/splits/manifest.json`](data/splits/manifest.json)
 - **Every model prediction behind the reported numbers:** [`results/predictions/`](results/predictions/)
+
+The records name real people and organisations taken from official sanctions, watchlist and PEP sources, so they are distributed only through the gated Hugging Face release. This repository holds code, checksums, predictions and results, never the records themselves. See the dataset card for the terms of use, legal basis and how to request corrections.
 
 ## Results
 
@@ -41,12 +44,15 @@ Optional extras: `uv sync --extra local` (open-source models on GPU), `--extra f
 
 ### Download the corpus
 
+The Hugging Face dataset is gated. Log in once (`hf auth login`, or set `HF_TOKEN`) and accept the terms of use on the [dataset page](https://huggingface.co/datasets/sanctions-er-anon/opensanctions_pairs); approval is automatic.
+
 ```bash
-python scripts/download_data.py                         # from the Hugging Face Hub
-python scripts/download_data.py --source opensanctions  # or directly from OpenSanctions
+python scripts/download_data.py                         # Hugging Face Hub, release v1
+python scripts/download_data.py --sample                # also the 1,000-pair dev sample -> data/samples/
+python scripts/download_data.py --source opensanctions  # or the same snapshot from OpenSanctions
 ```
 
-Both write `data/raw/pairs-20251209.json.gz` and verify its sha256 against `data/splits/manifest.json`.
+Each writes `data/raw/pairs-20251209.json.gz` and verifies its sha256 against `data/splits/manifest.json`.
 
 ### Load it
 
@@ -63,9 +69,9 @@ for pair in load_pairs("data/raw/pairs-20251209.json.gz"):   # streams, low memo
 Straight from the Hub with `datasets` (`pip install datasets`):
 
 ```python
-from datasets import load_dataset
-pairs  = load_dataset("sanctions-er-anon/opensanctions_pairs", split="train")                 # 755,540 pairs
-sample = load_dataset("sanctions-er-anon/opensanctions_pairs", "sample_1000", split="train")  # 1,000-pair sample
+from datasets import load_dataset   # after logging in and accepting the terms
+pairs  = load_dataset("sanctions-er-anon/opensanctions_pairs", split="train", revision="v1")                 # 755,540 pairs
+sample = load_dataset("sanctions-er-anon/opensanctions_pairs", "sample_1000", split="train", revision="v1")  # 1,000-pair sample
 ```
 
 The Hub also serves an auto-converted Parquet copy of both configs on the `refs/convert/parquet` branch, which the dataset viewer and Croissant metadata use.
@@ -89,17 +95,23 @@ Parquet files are generated locally and not committed.
 
 ### Record format
 
+The example below is from the synthetic preview, so every value is invented; real records have the same structure.
+
 ```json
 {
   "left": {
-    "id": "ofac-40604",
-    "caption": "Aliasghar Norouzi",
+    "id": "synthetic-0021",
+    "caption": "Lomfen Teltelis",
     "schema": "Person",
-    "datasets": ["us_ofac_sdn", "us_trade_csl"],
-    "first_seen": "2023-04-20T10:27:20",
-    "properties": {"alias": ["Ali Asghar Norowzi"], "birthDate": ["1962-11-11"], "nationality": ["ir"]}
+    "datasets": ["synthetic_list_a"],
+    "first_seen": "2022-12-11T23:00:00",
+    "properties": {"birthDate": ["1974-08-16"], "nationality": ["xb"]}
   },
-  "right": {"...": "..."},
+  "right": {
+    "id": "synthetic-0022",
+    "caption": "Ломфен Телтелис",
+    "properties": {"alias": ["LOMFEN TELTELIS"], "birthDate": ["1974-08-16"]}
+  },
   "judgement": "positive"
 }
 ```
@@ -108,7 +120,7 @@ Split files also carry `pair_key = "{left_id}__{right_id}__{corpus_line}"` to jo
 
 ## Evaluation splits
 
-Built deterministically (seed 42) by `eval/build_splits.py` from the corpus and `eval/config.yaml`. The development samples in `data/samples/` are excluded from every split.
+Built deterministically (seed 42) by `eval/build_splits.py` from the corpus and `eval/config.yaml`, then checked against the published checksums. The split files contain real records, so they are rebuilt locally rather than committed. The development samples used during prompt development are excluded from every split; `data/splits/excluded_dev_pairs.json` stores them as hashed entity-id pairs.
 
 | Split | N | Contents |
 |---|---|---|
@@ -124,10 +136,10 @@ Built deterministically (seed 42) by `eval/build_splits.py` from the corpus and 
 Everything below runs on a laptop except open-source model inference.
 
 ```bash
-# 1. Rebuild the splits; they match the committed files byte for byte (about 40 s)
+# 1. Download the corpus and rebuild the splits (about 40 s); the script checks
+#    every split against the sha256 in data/splits/manifest.json
 python scripts/download_data.py
 python eval/build_splits.py --config eval/config.yaml
-git diff --stat data/splits            # only the generated_at timestamp changes
 
 # 2. Recompute every table from the committed predictions (no API keys needed)
 python eval/make_tables.py
@@ -137,6 +149,7 @@ python eval/analysis.py per-script --label gpt-4o \
     --pred results/predictions/gpt-4o__script_eval.jsonl --split data/splits/script_eval.jsonl
 python eval/analysis.py clusters
 python eval/make_figure.py             # Figure 2 (needs --extra notebooks)
+python eval/export_clusters.py         # entity -> cluster mapping, data/clusters/clusters.parquet
 
 # 3. Re-run everything reported in the paper (skips existing prediction files)
 bash eval/run_all.sh api      # closed models, via an OpenAI-compatible endpoint
@@ -150,7 +163,7 @@ python eval/run_nomenklatura.py --input data/splits/common_analyst_judged.jsonl 
     --output results/predictions/nomenklatura-regv1__common_analyst_judged.jsonl
 ```
 
-API models were called through a [LiteLLM](https://github.com/BerriAI/litellm) proxy, so a single OpenAI-compatible client reaches both OpenAI and Anthropic models: set `OPENAI_BASE_URL` and `OPENAI_API_KEY` in `.env`. Error categories in `results/taxonomy_*.csv` come from `eval/analysis.py taxonomy`, a keyword rule over each model's stated rationale.
+API models were called through a [LiteLLM](https://github.com/BerriAI/litellm) proxy, so a single OpenAI-compatible client reaches both OpenAI and Anthropic models: set `OPENAI_BASE_URL` and `OPENAI_API_KEY` in `.env`. Error categories in `results/taxonomy_*.csv` come from `eval/analysis.py taxonomy`, a keyword rule over each model's stated rationale. The released prediction files keep each error's category but not the rationale text, which quotes the records. A response that cannot be parsed is scored as a negative prediction (27 of GPT-5 Nano's 3,000).
 
 Predictions align to their split by line position (`pair_index`). Re-running API models can shift results slightly because provider models are not fully deterministic.
 
@@ -160,10 +173,10 @@ Predictions align to their split by line position (`pair_index`). Re-running API
 - `scripts/baselines/llm_local.py`: Llama 3.1 8B and DeepSeek-R1-Distill-Qwen-14B via `transformers`. `python scripts/download_models.py` fetches weights; gated models need `HF_TOKEN`. Set `PRETRAINED_MODELS_DIR` to reuse an existing model directory.
 - `eval/run_nomenklatura.py`: OpenSanctions' `RegressionV1` matcher from the pinned `scripts/vendor/nomenklatura` submodule (Python 3.11+, ICU).
 - `scripts/baselines/simple_fuzzy.py`: deterministic weighted string-similarity baseline.
-- `scripts/baselines/dspy_er/`: DSPy MIPROv2 prompt optimisation; optimised prompts are in `data/prompts/`.
+- `scripts/baselines/dspy_er/`: DSPy MIPROv2 prompt optimisation; optimised prompts are in `data/prompts/`. Their few-shot demonstrations were real records and have been removed; rerun the optimiser to regenerate them.
 - `scripts/finetune/`: LoRA fine-tuning with entity-level train/test splits.
 
-Sample-based scripts take `--offset 200` to skip the 200 development pairs of `data/samples/sample_1000.json`.
+Sample-based scripts read `data/samples/sample_1000.json` (fetch it with `python scripts/download_data.py --sample`) and take `--offset 200` to skip its 200 development pairs.
 
 ### Earlier sample-based results
 
@@ -173,15 +186,17 @@ Sample-based scripts take `--offset 200` to skip the 200 development pairs of `d
 
 ```
 data/
-  croissant/          Croissant + RAI metadata
-  splits/             frozen evaluation splits (JSONL) + manifest.json with sha256s
-  samples/            1k / 10k development samples (excluded from all splits)
+  croissant/          Croissant + RAI metadata, copy of the dataset card
+  preview/            synthetic preview (fabricated values, real schema)
+  splits/             manifest.json (sha256 of every split) + hashed dev-sample exclusion list
+  samples/            dev sample, downloaded with --sample (gitignored)
   prompts/            optimised prompts per model, registry.json
   examples/           curated few-shot examples
-  raw/, parquet/      downloaded corpus and local Parquet exports (gitignored)
+  raw/, parquet/, clusters/   downloaded corpus and local derived files (gitignored)
 eval/
   config.yaml         seed, split definitions, model list, pricing
-  build_splits.py     corpus -> splits + manifest + cluster statistics
+  build_splits.py     corpus -> splits (verified against manifest) + cluster statistics
+  export_clusters.py  entity -> canonical cluster mapping (n-ary structure)
   run_model.py        run a baseline on a split -> results/predictions/
   run_nomenklatura.py rule baseline on a split
   significance.py     bootstrap CIs, exact McNemar, Wilson intervals
@@ -195,7 +210,8 @@ results/
   *.csv, *.json       metrics, significance, per-script, taxonomy, cost, cluster sizes
   sample_1000/        predictions and manifest for the earlier sample-based evaluation
 scripts/
-  download_data.py    fetch and verify the corpus
+  download_data.py    fetch and verify the corpus (gated Hub or OpenSanctions)
+  make_synthetic_preview.py  regenerate data/preview/
   export_parquet.py   JSONL -> Parquet
   load_data.py        streaming loader (JSONL, JSON, Parquet)
   baselines/          rule, fuzzy, API, local and DSPy baselines

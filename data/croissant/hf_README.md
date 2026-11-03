@@ -25,6 +25,17 @@ configs:
   - split: train
     path: sample_1000.json
   field: pairs
+extra_gated_heading: "Request access to OpenSanctions Pairs"
+extra_gated_prompt: >-
+  This dataset contains records of real, named individuals and organisations
+  taken from public sanctions, watchlist and politically-exposed-person sources.
+  Access is granted automatically once you accept the licence and the terms of
+  use below.
+extra_gated_fields:
+  I will use this dataset for non-commercial research or evaluation only, under its CC BY-NC licence and within its intended use: checkbox
+  I will not link or join this dataset with external datasets to re-identify individuals or to use the records beyond the identification purpose for which they were published: checkbox
+  I will use the current version of the dataset and delete superseded versions once a new version is released: checkbox
+extra_gated_button_content: "Accept terms and access"
 ---
 
 # Sanctions Entity Resolution Benchmark
@@ -116,25 +127,29 @@ https://github.com/chansmi/OSINT_entity_resolution.
 
 ## Record Schema
 
-One JSON object per line:
+One JSON object per line. The example uses invented values from the synthetic
+preview (https://github.com/chansmi/OSINT_entity_resolution/blob/main/data/preview/synthetic_pairs.json);
+real records have the same structure:
 
 ```json
 {
   "left": {
-    "id": "ofac-40604",
-    "caption": "Aliasghar Norouzi",
+    "id": "synthetic-0021",
+    "caption": "Lomfen Teltelis",
     "schema": "Person",
     "properties": {
-      "alias": ["Ali Asghar Norowzi"],
-      "birthDate": ["1962-11-11"],
-      "nationality": ["ir"]
+      "birthDate": ["1974-08-16"],
+      "nationality": ["xb"]
     }
   },
   "right": {
-    "id": "...",
-    "caption": "...",
+    "id": "synthetic-0022",
+    "caption": "Ломфен Телтелис",
     "schema": "Person",
-    "properties": { "...": ["..."] }
+    "properties": {
+      "alias": ["LOMFEN TELTELIS"],
+      "birthDate": ["1974-08-16"]
+    }
   },
   "judgement": "positive"
 }
@@ -169,6 +184,45 @@ Or stream without download:
 ```python
 ds = load_dataset("sanctions-er-anon/opensanctions_pairs", split="train", streaming=True)
 ```
+
+## Access and Versioning
+
+Access is gated: downloading requires a Hugging Face account and accepting
+the licence and terms of use shown on this page. Approval is automatic.
+
+The current release is **v1**, a fixed snapshot of the OpenSanctions pairs
+file dated 2025-12-09. A released version is never rewritten, so results that
+cite it stay reproducible. Pin it when loading:
+
+```python
+ds = load_dataset("sanctions-er-anon/opensanctions_pairs", split="train", revision="v1")
+```
+
+No further releases are currently planned. Because v1 is a snapshot, a
+person or organisation delisted after 2025-12-09 still appears in it. Do not
+use this dataset to make or support decisions about any individual; use the
+live OpenSanctions data for any operational purpose. If a new version is
+released, it will reflect upstream delistings and removals, and the terms of
+use require moving to it and deleting superseded copies.
+
+## Personal Data and Legal Basis
+
+The records name real people and organisations, including names, aliases,
+dates of birth, nationalities and positions, because matching identities is
+the task itself; removing them would remove the benchmark. They are drawn
+only from official sanctions lists, regulatory watchlists and
+politically-exposed-person sources that authorities publish so that the
+designated parties can be identified. The dataset contains no records about
+the general public and adds nothing the sources did not publish.
+
+The data is compiled by OpenSanctions Datenbanken GmbH (Berlin), which
+processes it under the EU General Data Protection Regulation on the basis of
+legitimate interest (Art. 6(1)(f) GDPR); see
+https://www.opensanctions.org/docs/privacy/. Requests to correct or delete a
+record go to the governmental or international body that maintains the
+relevant list, and a person removed from a source list is removed from
+OpenSanctions at its next reconciliation. Contact points for each listing
+body: https://www.opensanctions.org/docs/delisting/
 
 ## Intended Uses
 
