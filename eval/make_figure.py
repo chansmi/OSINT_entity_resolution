@@ -11,6 +11,8 @@ rather than a third peer -- with a square marker as secondary encoding.
 import csv, matplotlib
 from pathlib import Path
 matplotlib.use("Agg")
+matplotlib.rcParams["pdf.fonttype"] = 42  # TrueType, not Type 3 (proceedings font check)
+matplotlib.rcParams["ps.fonttype"] = 42
 import matplotlib.pyplot as plt
 
 CLOSED, OPEN, RULE = "#2a78d6", "#eb6834", "#52514e"
