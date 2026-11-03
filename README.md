@@ -138,12 +138,19 @@ python eval/analysis.py per-script --label gpt-4o \
 python eval/analysis.py clusters
 python eval/make_figure.py             # Figure 2 (needs --extra notebooks)
 
-# 3. Re-run a model on a split (writes results/predictions/<model>__<split>.jsonl)
+# 3. Re-run everything reported in the paper (skips existing prediction files)
+bash eval/run_all.sh api      # closed models, via an OpenAI-compatible endpoint
+bash eval/run_all.sh local    # Llama 3.1 8B, DeepSeek-R1-Distill-Qwen-14B (GPU)
+bash eval/run_all.sh rule     # nomenklatura RegressionV1
+
+# Or one model on one split (writes results/predictions/<model>__<split>.jsonl)
 python eval/run_model.py --runner zeroshot --model gpt-4o --split common_analyst_judged --parallel 20
 python eval/run_model.py --runner local --model llama-8b --split common_analyst_judged   # GPU
 python eval/run_nomenklatura.py --input data/splits/common_analyst_judged.jsonl \
     --output results/predictions/nomenklatura-regv1__common_analyst_judged.jsonl
 ```
+
+API models were called through a [LiteLLM](https://github.com/BerriAI/litellm) proxy, so a single OpenAI-compatible client reaches both OpenAI and Anthropic models: set `OPENAI_BASE_URL` and `OPENAI_API_KEY` in `.env`. Error categories in `results/taxonomy_*.csv` come from `eval/analysis.py taxonomy`, a keyword rule over each model's stated rationale.
 
 Predictions align to their split by line position (`pair_index`). Re-running API models can shift results slightly because provider models are not fully deterministic.
 
@@ -181,6 +188,7 @@ eval/
   analysis.py         per-script F1, cost frontier, error taxonomy, cluster sizes
   make_tables.py      predictions -> results/tables/*.md
   make_figure.py      results/metrics.csv -> Figure 2
+  run_all.sh          every (model, split) in the paper, then all tables
 results/
   predictions/        <model>__<split>.jsonl for every reported number
   tables/             generated markdown tables
