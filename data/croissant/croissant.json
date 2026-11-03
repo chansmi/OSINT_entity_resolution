@@ -69,6 +69,15 @@
     },
     {
       "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-clusters",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "clusters/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
       "@id": "parquet-files-for-config-sample_1000",
       "containedIn": {
         "@id": "repo"
@@ -136,6 +145,95 @@
             },
             "extract": {
               "column": "judgement"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "clusters_splits/split_name"
+      },
+      "@id": "clusters_splits",
+      "name": "clusters_splits",
+      "description": "Splits for the clusters config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "clusters_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "clusters_splits/split_name": "train"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "clusters",
+      "description": "sanctions-er-anon/opensanctions_pairs - 'clusters' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "clusters/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-clusters"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "clusters/(?:partial-)?(train)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "clusters_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "clusters/entity_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-clusters"
+            },
+            "extract": {
+              "column": "entity_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "clusters/cluster_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-clusters"
+            },
+            "extract": {
+              "column": "cluster_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "clusters/cluster_size",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-clusters"
+            },
+            "extract": {
+              "column": "cluster_size"
             }
           }
         }
@@ -5413,8 +5511,7 @@
     "text-classification",
     "English",
     "cc-by-nc-4.0",
-    "100K - 1M",
-    "Text",
+    "100K<n<1M",
     "🇺🇸 Region: US",
     "entity-resolution",
     "entity-matching",

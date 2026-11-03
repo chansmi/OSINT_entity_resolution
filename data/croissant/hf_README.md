@@ -25,6 +25,10 @@ configs:
   - split: train
     path: sample_1000.json
   field: pairs
+- config_name: clusters
+  data_files:
+  - split: train
+    path: clusters/clusters.jsonl.gz
 extra_gated_heading: "Request access to OpenSanctions Pairs"
 extra_gated_prompt: >-
   This dataset contains records of real, named individuals and organisations
@@ -87,6 +91,18 @@ available at:
 |------|-------------|------|
 | `pairs.json.gz` | Full benchmark, JSON Lines (gzipped) | ~390 MB |
 | `sample_1000.json` | 1,000-pair representative sample (see below) | ~3 MB |
+| `clusters/clusters.jsonl.gz` | Canonical cluster of every entity (see below) | ~23 MB |
+
+### Cluster structure
+
+`clusters/clusters.jsonl.gz` (config `clusters`) has one row per entity:
+`entity_id`, `cluster_id` (the smallest entity id in its cluster) and
+`cluster_size`. A cluster is a connected component of the graph whose edges
+are the positive pairs, so it groups every record that refers to the same
+real-world entity: 1,002,093 entities in 459,763 clusters, of which 35,341
+contain more than two entities (up to 81). Use it for n-ary evaluation such
+as clustering and transitivity. It is produced by `eval/export_clusters.py`
+in the code repository.
 
 ### 1,000-pair representative sample
 

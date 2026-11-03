@@ -149,7 +149,7 @@ python eval/analysis.py per-script --label gpt-4o \
     --pred results/predictions/gpt-4o__script_eval.jsonl --split data/splits/script_eval.jsonl
 python eval/analysis.py clusters
 python eval/make_figure.py             # Figure 2 (needs --extra notebooks)
-python eval/export_clusters.py         # entity -> cluster mapping, data/clusters/clusters.parquet
+python eval/export_clusters.py         # entity -> cluster mapping, data/clusters/clusters.jsonl.gz
 
 # 3. Re-run everything reported in the paper (skips existing prediction files)
 bash eval/run_all.sh api      # closed models, via an OpenAI-compatible endpoint
@@ -196,7 +196,7 @@ data/
 eval/
   config.yaml         seed, split definitions, model list, pricing
   build_splits.py     corpus -> splits (verified against manifest) + cluster statistics
-  export_clusters.py  entity -> canonical cluster mapping (n-ary structure)
+  export_clusters.py  entity -> canonical cluster mapping (n-ary structure; also the `clusters` config on the Hub)
   run_model.py        run a baseline on a split -> results/predictions/
   run_nomenklatura.py rule baseline on a split
   significance.py     bootstrap CIs, exact McNemar, Wilson intervals

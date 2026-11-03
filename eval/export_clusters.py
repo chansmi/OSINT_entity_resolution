@@ -10,7 +10,8 @@ entities in 459,763 clusters, 35,341 of them with more than two entities (up
 to 81). The count includes 178 entities that appear only in negative pairs,
 which results/cluster_sizes.json (computed during split building) omits.
 
-Output (Parquet, one row per entity in the corpus):
+Output (one row per entity in the corpus; gzipped JSON Lines, the format of the
+Hugging Face release, or Parquet if the path ends in .parquet):
     entity_id      OpenSanctions entity id as it appears in the pairs file
     cluster_id     smallest entity_id in the cluster (stable, deterministic)
     cluster_size   number of entities in the cluster
@@ -18,7 +19,7 @@ Output (Parquet, one row per entity in the corpus):
 The file is derived from the gated corpus, so it is written locally and not
 committed; the dataset release on Hugging Face carries the same file.
 
-    python eval/export_clusters.py                       # data/clusters/clusters.parquet
+    python eval/export_clusters.py                       # data/clusters/clusters.jsonl.gz
     python eval/export_clusters.py --out some/path.parquet
 """
 import argparse
@@ -40,7 +41,7 @@ from build_splits import UnionFind  # noqa: E402
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--config", default="eval/config.yaml")
-    ap.add_argument("--out", type=Path, default=ROOT / "data" / "clusters" / "clusters.parquet")
+    ap.add_argument("--out", type=Path, default=ROOT / "data" / "clusters" / "clusters.jsonl.gz")
     args = ap.parse_args()
 
     cfg = yaml.safe_load(open(ROOT / args.config))
@@ -73,7 +74,12 @@ def main():
         "cluster_size": pa.array([rows_s[i] for i in order], pa.int32()),
     })
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    pq.write_table(table, args.out, compression="zstd")
+    if args.out.suffix == ".parquet":
+        pq.write_table(table, args.out, compression="zstd")
+    else:
+        with gzip.open(args.out, "wt", encoding="utf-8") as f:
+            for row in table.to_pylist():
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     sizes = Counter(len(v) for v in members.values())
     multi = {k: v for k, v in members.items() if len(v) > 1}
